@@ -2,7 +2,7 @@ package com.sparta.andbackoffice.controller;
 
 import com.sparta.andbackoffice.dto.ApiResponseDto;
 import com.sparta.andbackoffice.dto.request.BoardRequestDto;
-import com.sparta.andbackoffice.dto.BoardResponseDto;
+import com.sparta.andbackoffice.dto.response.BoardResponseDto;
 import com.sparta.andbackoffice.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Slf4j
+@Slf4j(topic = "BoardController")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/admin/posts")

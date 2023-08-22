@@ -1,95 +1,69 @@
 package com.sparta.andbackoffice.service;
 
 import com.sparta.andbackoffice.dto.ApiResponseDto;
-import com.sparta.andbackoffice.dto.BoardResponseDto;
 import com.sparta.andbackoffice.dto.request.BoardRequestDto;
+import com.sparta.andbackoffice.dto.response.BoardResponseDto;
 import com.sparta.andbackoffice.entity.Board;
-import com.sparta.andbackoffice.entity.Category;
-import com.sparta.andbackoffice.repository.BoardRepository;
-import com.sparta.andbackoffice.repository.CategoryRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-@Service
-@Slf4j(topic = "PostService")
-@RequiredArgsConstructor
-public class BoardService {
+public interface BoardService {
 
-	private final BoardRepository boardRepository;
-	private final CategoryRepository categoryRepository;
+	/**
+	 * 게시글 생성
+	 *
+	 * @param categoryId : 카테고리
+	 * @param requestDto : 작성할 내용
+	 * @return : 생성한 글 내용 반환
+	 */
+	BoardResponseDto createBoard(Long categoryId, BoardRequestDto requestDto);
 
-	public BoardResponseDto createBoard(Long categoryId, BoardRequestDto requestDto) {
-		log.info("Service - createBoard : 시작");
+	/**
+	 * 게시글 단건 조회
+	 *
+	 * @param categoryId : 카테고리
+	 * @param boardId    : 조회할 글 id
+	 * @return : 게시글 정보 반환
+	 */
+	BoardResponseDto getBoard(Long categoryId, Long boardId);
 
-		findCategory(categoryId);
-		Board board = boardRepository.save(new Board(categoryId, requestDto));
+	/**
+	 * 게시글 수정
+	 *
+	 * @param categoryId : 카테고리
+	 * @param boardId    : 수정할 게시글 id
+	 * @param requestDto : 수정할 내용
+	 * @return : 수정된 게시글 내용 반환
+	 */
+	BoardResponseDto modifyBoard(Long categoryId, Long boardId, BoardRequestDto requestDto);
 
-		log.info("Service - createBoard : 끝");
-		return new BoardResponseDto(board);
-	}
+	/**
+	 * 게시글 삭제
+	 *
+	 * @param categoryId : 카테고리
+	 * @param boardId    : 삭제할 게시글 id
+	 * @return : 요청 처리 메시지 + 상태코드
+	 */
+	ApiResponseDto deleteBoard(Long categoryId, Long boardId);
 
-	public BoardResponseDto getBoard(Long categoryId, Long boardId) {
-		log.info("Service - getBoard : 시작");
+	/**
+	 * 존재하는 카테고리인지 검증
+	 *
+	 * @param categoryId : 검증할 카테고리 id
+	 */
+	void findCategory(Long categoryId);
 
-		// TODO : findCategory 메서드를 boolean 반환하게 바꿀지?
-		findCategory(categoryId);
-		Board board = findBoard(boardId);
-		equalsCategory(categoryId, board);
+	/**
+	 * 존재하는 게시글인지 검증
+	 *
+	 * @param boardId : 검증할 게시글 id
+	 * @return 존재하면 게시글 정보 반환
+	 */
+	Board findBoard(Long boardId);
 
-		log.info("Service - getBoard : 끝");
-		return new BoardResponseDto(board);
-	}
-
-	@Transactional
-	public BoardResponseDto modifyBoard(Long categoryId, Long boardId, BoardRequestDto requestDto) {
-		log.info("Service - modifyBoard : 시작");
-
-		findCategory(categoryId);
-		Board board = findBoard(boardId);
-		equalsCategory(categoryId, board);
-
-		if (!(requestDto.getCategory() == null)) {
-			board.setCategory(requestDto.getCategory());
-		}
-		board.setTitle(requestDto.getTitle());
-		board.setContents(requestDto.getContents());
-
-		log.info("Service - modifyBoard : 끝");
-		return new BoardResponseDto(board);
-	}
-
-	@Transactional
-	public ApiResponseDto deleteBoard(Long categoryId, Long boardId) {
-		log.info("Service - deleteBoard : 시작");
-
-		findCategory(categoryId);
-		Board board = findBoard(boardId);
-		equalsCategory(categoryId, board);
-		boardRepository.delete(board);
-
-		log.info("Service - deleteBoard : 끝");
-		return new ApiResponseDto("게시글 삭제 완료", HttpStatus.OK.value());
-
-	}
-
-	private void findCategory(Long categoryId) {
-		Category category = categoryRepository.findById(categoryId).orElseThrow(
-				() -> new IllegalArgumentException("존재하지 않는 카테고리입니다.")
-		);
-	}
-
-	private Board findBoard(Long boardId) {
-		return boardRepository.findById(boardId).orElseThrow(
-				() -> new IllegalArgumentException("존재하지 않는 글입니다.")
-		);
-	}
-
-	private void equalsCategory(Long categoryId, Board board) {
-		if (!(board.getCategory().equals(categoryId))) {
-			throw new IllegalArgumentException("카테고리가 일치하는지 다시 확인해주세요.");
-		}
-	}
+	/**
+	 * 해당 카테고리에 존재하는 글인지 / 글이 위치한 카테고리가 일치하는지 검증
+	 *
+	 * @param categoryId : 내가 입력한 카테고리
+	 * @param board      : 게시글 정보 - 실제 글이 위치한 카테고리 id
+	 */
+	void equalsCategory(Long categoryId, Board board);
 }

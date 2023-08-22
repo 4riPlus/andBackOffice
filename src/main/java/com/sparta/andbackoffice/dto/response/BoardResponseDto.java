@@ -1,4 +1,4 @@
-package com.sparta.andbackoffice.dto;
+package com.sparta.andbackoffice.dto.response;
 
 import com.sparta.andbackoffice.entity.Board;
 import lombok.Getter;

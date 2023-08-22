@@ -16,6 +16,7 @@ public class Contest extends TimeStamped {
 	@Column(name = "contest_id")
 	private Long id;
 
+	// 공모전 카테고리로 디폴트 id값 넣어주고 싶은데 1번 어떤가용
 	@Column(name = "category")
 	private Long category;
 
