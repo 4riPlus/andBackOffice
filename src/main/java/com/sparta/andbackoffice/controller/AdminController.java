@@ -3,7 +3,6 @@ package com.sparta.andbackoffice.controller;
 import com.sparta.andbackoffice.service.AdminService;
 import com.sparta.andbackoffice.dto.response.AdminListResponseDto;
 import com.sparta.andbackoffice.dto.response.AdminResponseDto;
-import com.sparta.andbackoffice.dto.reponse.ApiResponseDto;
 import com.sparta.andbackoffice.dto.request.AdminRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,21 +26,21 @@ public class AdminController {
     @PostMapping("/admin")
     public ResponseEntity<AdminResponseDto> createAdmin(@PathVariable Long id, @RequestBody AdminRequestDto adminRequestDto) {
 
-        AdminResponseDto createAdmin = adminService.createAdmin(id,adminRequestDto);
+        AdminResponseDto createAdmin = adminService.createAdmin(id, adminRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createAdmin);
     }
 
     //관리자 수정
     @PutMapping("/admin/{id}")
-    public ResponseEntity<ApiResponseDto> updateAdmin(@PathVariable Long id, @RequestBody AdminRequestDto adminRequestDto) {
-        adminService.updateAdmin(id, adminRequestDto);
-        return ResponseEntity.ok().body(new ApiResponseDto("관리자 수정완료", HttpStatus.OK.value()));
+    public ResponseEntity<AdminResponseDto> updateAdmin(@PathVariable Long id, @RequestBody AdminRequestDto adminRequestDto) {
+        AdminResponseDto updateAdmin = adminService.updateAdmin(id, adminRequestDto);
+        return ResponseEntity.ok().body(updateAdmin);
     }
 
     //관리자 삭제
     @DeleteMapping("/admin/{id}")
-    public ResponseEntity<ApiResponseDto> deleteAdmin(@PathVariable Long id) {
-        adminService.deleteAdmin(id);
-        return ResponseEntity.ok().body(new ApiResponseDto("관리자 삭제완료", HttpStatus.OK.value()));
+    public ResponseEntity<AdminResponseDto> deleteAdmin(@PathVariable Long id) {
+        AdminResponseDto deleteAdmin = adminService.deleteAdmin(id);
+        return ResponseEntity.ok().body(deleteAdmin);
     }
 }

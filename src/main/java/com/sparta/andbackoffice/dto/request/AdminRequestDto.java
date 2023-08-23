@@ -11,7 +11,7 @@ public class AdminRequestDto {
     private String adminName;
     private String amdinPassword;
 
-    public AdminRequestDto(Admin admin){
+    public AdminRequestDto(Admin admin) {
         this.companyNo = admin.getCompanyNo();
         this.adminName = admin.getAdminName();
         this.amdinPassword = admin.getAdminPassword();

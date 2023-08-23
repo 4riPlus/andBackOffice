@@ -34,7 +34,7 @@ public class AdminService {
             throw new IllegalArgumentException("접근권한이 없습니다.");
         }
 
-        Admin result = new Admin(adminRequestDto.getCompanyNo(),adminRequestDto.getAdminName(),adminRequestDto.getAmdinPassword());
+        Admin result = new Admin(adminRequestDto.getCompanyNo(), adminRequestDto.getAdminName(), adminRequestDto.getAmdinPassword());
         return new AdminResponseDto(adminRepository.save(result));
     }
 
@@ -56,7 +56,7 @@ public class AdminService {
 
     //관리자 삭제
     @Transactional
-    public String deleteAdmin(Long id) {
+    public AdminResponseDto deleteAdmin(Long id) {
 
         Admin admin = findById(id);
         if (admin.getId() != 1) {
@@ -64,7 +64,7 @@ public class AdminService {
         }
 
         adminRepository.delete(admin);
-        return "삭제완료";
+        return new AdminResponseDto(admin);
     }
 
     private Admin findById(Long id) {
