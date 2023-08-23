@@ -6,8 +6,10 @@ import com.sparta.andbackoffice.dto.response.ReportCommentResponseDto;
 import com.sparta.andbackoffice.entity.Comment;
 import com.sparta.andbackoffice.entity.DeleteStatus;
 import com.sparta.andbackoffice.entity.Post;
+import com.sparta.andbackoffice.entity.ReportComment;
 import com.sparta.andbackoffice.repository.CommentRepository;
 import com.sparta.andbackoffice.repository.PostRepository;
+import com.sparta.andbackoffice.repository.ReportCommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -38,16 +40,13 @@ public class CommentServiceImpl implements CommentService{
         comments.forEach(c -> {
             CommentResponseDto commentResponseDto = new CommentResponseDto(c);
 
+            convertComment(commentResponseDto, c.getIsDeleted());
+
             commentResponseDtoHashMap.put(commentResponseDto.getCommentId(), commentResponseDto);
             if(c.getParent() != null) commentResponseDtoHashMap.get(c.getParent().getId()).getChild().add(commentResponseDto);
             else commentResponseDtoList.add(commentResponseDto);
         });
         return commentResponseDtoList;
-    }
-
-    @Override
-    public List<ReportCommentResponseDto> getReportComments() {
-        return null;
     }
 
     @Transactional
@@ -76,5 +75,11 @@ public class CommentServiceImpl implements CommentService{
             return getDeletableAncestorComment(parent);
         }
         return comment;
+    }
+
+    private void convertComment(CommentResponseDto commentResponseDto, DeleteStatus isDeleted) {
+        if(isDeleted.equals(DeleteStatus.Y)) {
+            commentResponseDto.setContent("비밀댓글입니다.");
+        }
     }
 }
