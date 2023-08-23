@@ -1,10 +1,10 @@
 package com.sparta.andbackoffice.controller;
 
 import com.sparta.andbackoffice.service.AdminService;
-import dto.reponse.AdminListResponseDto;
-import dto.reponse.AdminResponseDto;
-import dto.reponse.ApiResponseDto;
-import dto.request.AdminRequestDto;
+import com.sparta.andbackoffice.dto.response.AdminListResponseDto;
+import com.sparta.andbackoffice.dto.response.AdminResponseDto;
+import com.sparta.andbackoffice.dto.reponse.ApiResponseDto;
+import com.sparta.andbackoffice.dto.request.AdminRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

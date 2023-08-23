@@ -1,4 +1,4 @@
-package dto.request;
+package com.sparta.andbackoffice.dto.request;
 
 import com.sparta.andbackoffice.entity.Admin;
 import lombok.Getter;

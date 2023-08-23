@@ -2,9 +2,9 @@ package com.sparta.andbackoffice.service;
 
 import com.sparta.andbackoffice.entity.Admin;
 import com.sparta.andbackoffice.repository.AdminRepository;
-import dto.reponse.AdminListResponseDto;
-import dto.reponse.AdminResponseDto;
-import dto.request.AdminRequestDto;
+import com.sparta.andbackoffice.dto.response.AdminListResponseDto;
+import com.sparta.andbackoffice.dto.response.AdminResponseDto;
+import com.sparta.andbackoffice.dto.request.AdminRequestDto;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
