@@ -1,6 +1,5 @@
 package com.sparta.andbackoffice.dto.response;
 
-import com.sparta.and.entity.Category;
 import com.sparta.andbackoffice.entity.Category;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
