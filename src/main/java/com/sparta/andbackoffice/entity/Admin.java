@@ -9,8 +9,9 @@ import lombok.Setter;
 @Setter
 @Table(name="admin")
 @NoArgsConstructor
+
+
 public class Admin {
-    // 관리자 아이디
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
