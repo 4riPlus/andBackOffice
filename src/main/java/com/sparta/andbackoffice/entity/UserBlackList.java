@@ -13,9 +13,10 @@ import org.springframework.stereotype.Component;
 public class UserBlackList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "blackListId")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
 
