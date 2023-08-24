@@ -4,8 +4,7 @@ import lombok.*;
 
 @Getter
 @Setter
-//@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class ReportCommentCountResponseDto {
     private Long commentId;

@@ -79,7 +79,7 @@ public class CommentServiceImpl implements CommentService{
 
     private void convertComment(CommentResponseDto commentResponseDto, DeleteStatus isDeleted) {
         if(isDeleted.equals(DeleteStatus.Y)) {
-            commentResponseDto.setContent("비밀댓글입니다.");
+            commentResponseDto.setContent("삭제된 댓글입니다.");
         }
     }
 }
