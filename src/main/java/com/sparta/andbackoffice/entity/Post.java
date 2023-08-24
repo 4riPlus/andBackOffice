@@ -1,11 +1,20 @@
 package com.sparta.andbackoffice.entity;
 
-import com.sparta.andbackoffice.dto.request.PostRequestDto;
-import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.annotations.DynamicInsert;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.DynamicInsert;
 
 @Entity
 @Getter
@@ -23,6 +32,10 @@ public class Post extends TimeStamped {
 
     @Column(name = "contents", nullable = false)
     private String contents;
+
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
+    private List<ReportPost> reportPostList = new ArrayList<>();
 
     @Column(name = "communityPostViews")
     @ColumnDefault("0")
