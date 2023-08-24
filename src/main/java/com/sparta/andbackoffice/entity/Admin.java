@@ -1,19 +1,21 @@
 package com.sparta.andbackoffice.entity;
-
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "admins")
+@Setter
+@Table(name="admin")
+@NoArgsConstructor
+
+
 public class Admin {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "admin_id")
-    private Long id; // 관리자 아이디
+    private Long id;
 
     @Column(name = "company_no", nullable = false)
     private Long companyNo;
@@ -22,4 +24,10 @@ public class Admin {
     @Column(name = "admin_password",nullable = false)
     private String adminPassword;
 
-}
+    public Admin( Long companyNo,String adminName,String adminPassword){
+        this.companyNo = companyNo;
+        this.adminName = adminName;
+        this.adminPassword = adminPassword;
+    }
+
+    }

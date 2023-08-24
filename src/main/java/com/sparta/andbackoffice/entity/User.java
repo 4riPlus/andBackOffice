@@ -31,9 +31,9 @@ public class User {
 	@Column(name = "nickname", nullable = false, unique = true)
 	private String nickname;
 
-	private Long kakaoId;
-
-	private String googleId;
+//	private Long kakaoId;
+//
+//	private String googleId;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Post> myPostList = new ArrayList<>();
@@ -51,28 +51,30 @@ public class User {
 		this.userEmail = userEmail;
 	}
 
-	public User(String userName, String userPassword, String nickname, Long kakaoId) {
-		this.userName = userName;
-		this.userPassword = userPassword;
-		this.nickname = nickname;
-		this.kakaoId = kakaoId;
-	}
 
-	public User(String userName, String userPassword, String nickname, String googleId) {
-		this.userName = userName;
-		this.userPassword = userPassword;
-		this.nickname = nickname;
-		this.googleId = googleId;
-	}
+	//클라이언트 서버 OAuth 로그인
+//	public User(String userName, String userPassword, String nickname, Long kakaoId) {
+//		this.userName = userName;
+//		this.userPassword = userPassword;
+//		this.nickname = nickname;
+//		this.kakaoId = kakaoId;
+//	}
 
-	public User kakaoIdUpdate(Long kakaoId) {
-		this.kakaoId = kakaoId;
-		return this;
-	}
-
-	public User googleIdUpdate(String googleId) {
-		this.googleId = googleId;
-		return this;
-	}
+//	public User(String userName, String userPassword, String nickname, String googleId) {
+//		this.userName = userName;
+//		this.userPassword = userPassword;
+//		this.nickname = nickname;
+//		this.googleId = googleId;
+//	}
+//
+//	public User kakaoIdUpdate(Long kakaoId) {
+//		this.kakaoId = kakaoId;
+//		return this;
+//	}
+//
+//	public User googleIdUpdate(String googleId) {
+//		this.googleId = googleId;
+//		return this;
+//	}
 
 }
