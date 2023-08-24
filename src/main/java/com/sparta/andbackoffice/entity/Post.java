@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,5 +27,7 @@ public class Post {
     @Column(name = "contents", nullable = false)
     private String contents;
 
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
+    private List<ReportPost> reportPostList = new ArrayList<>();
 
 }
