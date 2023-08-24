@@ -36,7 +36,6 @@ public class BoardServiceImpl implements BoardService {
 	public BoardResponseDto getBoard(Long categoryId, Long boardId) {
 		log.info("Service - getBoard : 시작");
 
-		// TODO : findCategory 메서드를 boolean 반환하게 바꿀지?
 		findCategory(categoryId);
 		Board board = findBoard(boardId);
 		equalsCategory(categoryId, board);

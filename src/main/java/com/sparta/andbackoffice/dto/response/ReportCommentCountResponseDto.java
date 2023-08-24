@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class ReportCommentCountResponseDto {
-    private Long commentId;
-    private String content;
-    private Long reportCommentCount;
+	private Long commentId;
+	private String content;
+	private Long reportCommentCount;
 }

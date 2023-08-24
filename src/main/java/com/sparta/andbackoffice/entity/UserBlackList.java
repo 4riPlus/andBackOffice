@@ -11,15 +11,15 @@ import org.springframework.stereotype.Component;
 @Table(name = "UserBlackList")
 @NoArgsConstructor
 public class UserBlackList {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
-    private User user;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "userId")
+	private User user;
 
-    public UserBlackList(Long id) {
-        this.id = id;
-    }
+	public UserBlackList(Long id) {
+		this.id = id;
+	}
 }

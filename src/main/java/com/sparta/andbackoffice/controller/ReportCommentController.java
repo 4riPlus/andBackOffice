@@ -15,15 +15,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/admin/reportComments")
 public class ReportCommentController {
-    private final ReportCommentService reportCommentService;
+	private final ReportCommentService reportCommentService;
 
-    @GetMapping
-    public ResponseEntity<List<ReportCommentResponseDto>> getReportComments() {
-        return ResponseEntity.ok().body(reportCommentService.getReportComments());
-    }
+	@GetMapping
+	public ResponseEntity<List<ReportCommentResponseDto>> getReportComments() {
+		return ResponseEntity.ok().body(reportCommentService.getReportComments());
+	}
 
-    @GetMapping("/counts")
-    public ResponseEntity<List<ReportCommentCountResponseDto>> getReportCommentCounts() {
-        return ResponseEntity.ok().body(reportCommentService.getReportCommentCounts());
-    }
+	@GetMapping("/counts")
+	public ResponseEntity<List<ReportCommentCountResponseDto>> getReportCommentCounts() {
+		return ResponseEntity.ok().body(reportCommentService.getReportCommentCounts());
+	}
 }

@@ -6,10 +6,10 @@ import java.util.List;
 
 @Getter
 public class PostListResponseDto {
-    private List<PostResponseDto> postsList;
+	private List<PostResponseDto> postsList;
 
-    public PostListResponseDto(List<PostResponseDto> postList) {
-        this.postsList = postList;
-    }
+	public PostListResponseDto(List<PostResponseDto> postList) {
+		this.postsList = postList;
+	}
 
 }
