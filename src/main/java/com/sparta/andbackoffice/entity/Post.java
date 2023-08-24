@@ -1,11 +1,13 @@
 package com.sparta.andbackoffice.entity;
 
-import com.sparta.andbackoffice.dto.request.PostRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
+
+import java.sql.Timestamp;
 
 @Entity
 @Getter
