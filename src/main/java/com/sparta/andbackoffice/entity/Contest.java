@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @Table(name = "contest_posts")
 @NoArgsConstructor
-public class ContestPost extends TimeStamped {
+public class Contest extends TimeStamped {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "contest_post_id")
@@ -47,4 +47,8 @@ public class ContestPost extends TimeStamped {
 	// 북마크
 	@OneToMany(mappedBy = "contestPost", cascade = CascadeType.REMOVE)
 	private List<Bookmark> bookmarkList = new ArrayList<>();
+
+	@OneToMany(mappedBy = "contest")
+	private List<Contest_BottomCategory> bottomCategories = new ArrayList<>();
+
 }

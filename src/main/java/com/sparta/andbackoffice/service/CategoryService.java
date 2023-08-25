@@ -37,6 +37,7 @@ public class CategoryService {
 
 	//카테고리 수정
 
+	@Transactional
 	public CategoryResponseDto updateCategory(Long id, CategoryRequestDto categoryRequestDto) {
 		// 카테고리 아이디로 카테고리를 먼저 받아오기
 		Category category = findById(id);
