@@ -1,8 +1,8 @@
 package com.sparta.andbackoffice.service;
 
-import com.sparta.andbackoffice.dto.request.SignupRequestDto;
 import com.sparta.andbackoffice.dto.request.AdminRequestDto;
 import com.sparta.andbackoffice.dto.request.LoginRequestDto;
+import com.sparta.andbackoffice.dto.request.SignupRequestDto;
 import com.sparta.andbackoffice.dto.response.AdminListResponseDto;
 import com.sparta.andbackoffice.dto.response.AdminResponseDto;
 import com.sparta.andbackoffice.entity.Admin;
@@ -51,9 +51,9 @@ public class AdminService {
 		Admin admin = adminRepository.findByAdminName(name).orElseThrow(
 				() -> new IllegalArgumentException("등록된 사용자가 없습니다.")
 		);
-				log.info("네임 검증");
+		log.info("네임 검증");
 
-		if(!passwordEncoder.matches(password, admin.getAdminPassword())) {
+		if (!passwordEncoder.matches(password, admin.getAdminPassword())) {
 			log.info("비밀번호 검증");
 			throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
 		}
@@ -64,16 +64,16 @@ public class AdminService {
 
 		String accessToken = jwtUtil.getJwtFromHeader(request);
 
-		if(!jwtUtil.validateToken(accessToken)){
+		if (!jwtUtil.validateToken(accessToken)) {
 			throw new IllegalArgumentException("유효하지 않은 토큰입니다");
 		}
 
-		if(redisTemplate.opsForValue().get("RT:"+admin.getAdminName())!=null){
-			redisTemplate.delete("RT:"+admin.getAdminName());
+		if (redisTemplate.opsForValue().get("RT:" + admin.getAdminName()) != null) {
+			redisTemplate.delete("RT:" + admin.getAdminName());
 		}
 		Claims info = jwtUtil.getUserInfoFromToken(accessToken);
 		Long expiration = info.getExpiration().getTime();
-		redisTemplate.opsForValue().set(accessToken,"logout",expiration, TimeUnit.MICROSECONDS);
+		redisTemplate.opsForValue().set(accessToken, "logout", expiration, TimeUnit.MICROSECONDS);
 		return "로그아웃 성공";
 	}
 

@@ -1,6 +1,5 @@
 package com.sparta.andbackoffice.jwt;
 
-import com.sparta.andbackoffice.dto.TokenDto;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
