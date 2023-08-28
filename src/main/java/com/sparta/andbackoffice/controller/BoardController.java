@@ -1,7 +1,7 @@
 package com.sparta.andbackoffice.controller;
 
-import com.sparta.andbackoffice.dto.ApiResponseDto;
 import com.sparta.andbackoffice.dto.request.BoardRequestDto;
+import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.BoardResponseDto;
 import com.sparta.andbackoffice.service.BoardService;
 import lombok.RequiredArgsConstructor;

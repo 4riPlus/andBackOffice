@@ -27,7 +27,8 @@ public class MiddleCategory {
     @OneToMany(mappedBy = "middleCategory", orphanRemoval = true)
     private List<BottomCategory> bottomCategories;
 
-    public MiddleCategory(String categoryName){
-        this.categoryName=categoryName;
+
+    public MiddleCategory(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

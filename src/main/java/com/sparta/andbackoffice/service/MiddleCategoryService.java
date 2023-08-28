@@ -24,8 +24,9 @@ public class MiddleCategoryService {
                 .collect(Collectors.toList());
         return new MiddleCategoryListResponseDto(middleCategoryList);
     }
+
     //생성
-    public void createMiddleCategory(MiddleCategoryRequestDto middleCategoryRequestDto){
+    public void createMiddleCategory(MiddleCategoryRequestDto middleCategoryRequestDto) {
         String CategoryName = middleCategoryRequestDto.getCategoryName();
         MiddleCategory middleCategory = new MiddleCategory(CategoryName);
         middleCategoryRepository.save(middleCategory);
@@ -34,7 +35,7 @@ public class MiddleCategoryService {
 
     //수정
     @Transactional
-    public MiddleCategoryResponseDto updateMiddleCategory(Long id, MiddleCategoryRequestDto middleCategoryRequestDto){
+    public MiddleCategoryResponseDto updateMiddleCategory(Long id, MiddleCategoryRequestDto middleCategoryRequestDto) {
         MiddleCategory middleCategory = findById(id);
         middleCategory.setCategoryName(middleCategoryRequestDto.getCategoryName());
         return new MiddleCategoryResponseDto(middleCategory);
@@ -42,13 +43,13 @@ public class MiddleCategoryService {
 
     //삭제
     @Transactional
-    public String deleteMiddleCategory(Long id){
+    public String deleteMiddleCategory(Long id) {
         MiddleCategory middleCategory = findById(id);
         middleCategoryRepository.delete(middleCategory);
         return "카테고리 삭제완료";
     }
 
-    private MiddleCategory findById(Long id){
+    private MiddleCategory findById(Long id) {
         return middleCategoryRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("해당 카테고리를 찾을 수 없습니다.")
         );

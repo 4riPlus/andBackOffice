@@ -19,32 +19,31 @@ public class MiddleCategoryController {
 
     //생성
     @PostMapping("/middlecategory")
-    public ResponseEntity<ApiResponseDto>createMiddleCategory(@RequestBody MiddleCategoryRequestDto middleCategoryRequestDto){
+    public ResponseEntity<ApiResponseDto> createMiddleCategory(@RequestBody MiddleCategoryRequestDto middleCategoryRequestDto) {
         middleCategoryService.createMiddleCategory(middleCategoryRequestDto);
         return ResponseEntity.ok().body(new ApiResponseDto("카테고리 생성완료", HttpStatus.OK.value()));
     }
 
     //조회
     @GetMapping("/middlecategory")
-    public ResponseEntity<MiddleCategoryListResponseDto> getMiddleCategory(){
+    public ResponseEntity<MiddleCategoryListResponseDto> getMiddleCategory() {
         MiddleCategoryListResponseDto getMiddleCategory = middleCategoryService.getMiddleCategory();
         return ResponseEntity.ok().body(getMiddleCategory);
     }
 
     //수정
     @PutMapping("/middlecategory/{id}")
-    public ResponseEntity<MiddleCategoryResponseDto> updateMiddleCategory(@PathVariable Long id, @RequestBody MiddleCategoryRequestDto middleCategoryRequestDto){
-        MiddleCategoryResponseDto updateMiddleCategory = middleCategoryService.updateMiddleCategory(id,middleCategoryRequestDto);
+    public ResponseEntity<MiddleCategoryResponseDto> updateMiddleCategory(@PathVariable Long id, @RequestBody MiddleCategoryRequestDto middleCategoryRequestDto) {
+        MiddleCategoryResponseDto updateMiddleCategory = middleCategoryService.updateMiddleCategory(id, middleCategoryRequestDto);
         return ResponseEntity.ok().body(updateMiddleCategory);
     }
 
     //삭제
     @DeleteMapping("/middlecategory/{id}")
-    public ResponseEntity<String> deleteMiddleCategory(@PathVariable Long id){
+    public ResponseEntity<String> deleteMiddleCategory(@PathVariable Long id) {
         String msg = middleCategoryService.deleteMiddleCategory(id);
         return ResponseEntity.ok(msg);
     }
-
 
 
 }

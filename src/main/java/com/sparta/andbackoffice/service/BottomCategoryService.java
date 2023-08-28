@@ -37,12 +37,12 @@ public class BottomCategoryService {
     public BottomCategoryResponseDto updateBottomCategory(Long id, BottomCategoryRequestDto bottomCategoryRequestDto) {
         BottomCategory bottomCategory = findById(id);
         bottomCategory.setCategoryName(bottomCategoryRequestDto.getCategoryName());
-        return  new BottomCategoryResponseDto(bottomCategory);
+        return new BottomCategoryResponseDto(bottomCategory);
     }
 
     //삭제
     @Transactional
-    public String deleteBottomCategory(Long id){
+    public String deleteBottomCategory(Long id) {
         BottomCategory bottomCategory = findById(id);
         bottomCategoryRepository.delete(bottomCategory);
         return "카테고리 삭제완료";

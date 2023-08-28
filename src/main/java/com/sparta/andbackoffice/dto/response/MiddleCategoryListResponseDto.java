@@ -8,7 +8,8 @@ import java.util.List;
 public class MiddleCategoryListResponseDto {
 
     private List<MiddleCategoryResponseDto> middleCategoryList;
-    public MiddleCategoryListResponseDto(List<MiddleCategoryResponseDto> middleCategoryList){
+
+    public MiddleCategoryListResponseDto(List<MiddleCategoryResponseDto> middleCategoryList) {
         this.middleCategoryList = middleCategoryList;
     }
 }

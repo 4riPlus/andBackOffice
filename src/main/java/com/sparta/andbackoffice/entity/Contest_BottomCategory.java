@@ -9,11 +9,11 @@ public class Contest_BottomCategory {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="bottomcategory_id")
+    @JoinColumn(name = "bottomcategory_id")
     private BottomCategory bottomCategory;
 
     @ManyToOne
-    @JoinColumn(name="contest_id")
+    @JoinColumn(name = "contest_id")
     private Contest contest;
 }
   
