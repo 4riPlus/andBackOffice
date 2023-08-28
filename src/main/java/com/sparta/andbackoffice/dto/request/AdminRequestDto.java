@@ -9,11 +9,11 @@ import lombok.Setter;
 public class AdminRequestDto {
 	private Long companyNo;
 	private String adminName;
-	private String amdinPassword;
+	private String adminPassword;
 
 	public AdminRequestDto(Admin admin) {
 		this.companyNo = admin.getCompanyNo();
 		this.adminName = admin.getAdminName();
-		this.amdinPassword = admin.getAdminPassword();
+		this.adminPassword = admin.getAdminPassword();
 	}
 }

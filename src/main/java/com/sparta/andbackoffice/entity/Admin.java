@@ -30,5 +30,4 @@ public class Admin {
 		this.adminName = adminName;
 		this.adminPassword = adminPassword;
 	}
-
 }
