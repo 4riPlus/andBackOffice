@@ -10,6 +10,7 @@ public class CategoryListResponseDto {
 	private List<CategoryResponseDto> categoryList;
 
 	public CategoryListResponseDto(List<CategoryResponseDto> categoryList) {
+
 		this.categoryList = categoryList;
 	}
 }

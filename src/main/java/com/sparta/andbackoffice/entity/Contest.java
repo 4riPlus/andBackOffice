@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -40,4 +43,17 @@ public class Contest extends TimeStamped {
 
 	@Column(name = "contents")
 	private String contents;
+
+
+	// 북마크 카운트
+	@Column
+	private Long bookmarkCnt;
+
+	// 북마크
+	@OneToMany(mappedBy = "contestPost", cascade = CascadeType.REMOVE)
+	private List<Bookmark> bookmarkList = new ArrayList<>();
+
+	@OneToMany(mappedBy = "contest")
+	private List<Contest_BottomCategory> bottomCategories = new ArrayList<>();
+
 }

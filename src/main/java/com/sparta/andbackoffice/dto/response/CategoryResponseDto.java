@@ -13,7 +13,7 @@ public class CategoryResponseDto {
 	private String categoryName;
 
 	public CategoryResponseDto(Category category) {
-		this.id = category.getId();
+		this.id = category.getCategoryId();
 		this.categoryName = category.getCategoryName();
 	}
 }
