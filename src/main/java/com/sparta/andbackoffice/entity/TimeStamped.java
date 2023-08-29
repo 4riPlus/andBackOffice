@@ -17,10 +17,10 @@ public abstract class TimeStamped {
 	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
 	@CreatedDate
-	@Column(updatable = false) //최초 생성시간만 초기화 되고 그 뒤 수정될 수 없음
+	@Column(updatable = false)
 	private LocalDateTime createdDate;
 
-	@LastModifiedDate //변경될 때마다 시간 저장
+	@LastModifiedDate
 	@Column
 	private LocalDateTime modifiedDate;
 

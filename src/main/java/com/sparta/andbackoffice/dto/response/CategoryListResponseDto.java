@@ -7,9 +7,10 @@ import java.util.List;
 @Getter
 public class CategoryListResponseDto {
 
-	private List<CategoryResponseDto> categoryList;
+    private List<CategoryResponseDto> categoryList;
 
-	public CategoryListResponseDto(List<CategoryResponseDto> categoryList) {
-		this.categoryList = categoryList;
-	}
+    public CategoryListResponseDto(List<CategoryResponseDto> categoryList) {
+
+        this.categoryList = categoryList;
+    }
 }

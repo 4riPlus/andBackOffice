@@ -9,11 +9,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CategoryResponseDto {
-	private Long id;
-	private String categoryName;
+    private Long id;
+    private String categoryName;
 
-	public CategoryResponseDto(Category category) {
-		this.id = category.getId();
-		this.categoryName = category.getCategoryName();
-	}
+    public CategoryResponseDto(Category category) {
+        this.id = category.getCategoryId();
+        this.categoryName = category.getCategoryName();
+    }
 }

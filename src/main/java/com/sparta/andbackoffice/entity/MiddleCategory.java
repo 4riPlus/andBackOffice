@@ -11,19 +11,24 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+public class MiddleCategory {
 
-public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long CategoryId;
+    private Long middleCategoryId;
 
     @Column(nullable = false)
     private String categoryName;
 
-    @OneToMany(mappedBy = "category", orphanRemoval = true)
-    private List<MiddleCategory> middleCategories;
+    @ManyToOne
+    @JoinColumn(name = "top_category_id")
+    private Category category;
 
-    public Category(String categoryName) {
+    @OneToMany(mappedBy = "middleCategory", orphanRemoval = true)
+    private List<BottomCategory> bottomCategories;
+
+
+    public MiddleCategory(String categoryName) {
         this.categoryName = categoryName;
     }
 }
