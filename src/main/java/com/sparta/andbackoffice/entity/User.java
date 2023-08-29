@@ -50,6 +50,9 @@ public class User {
 		this.userPassword = userPassword;
 		this.userEmail = userEmail;
 	}
+	public User(Long userId) {
+		this.userId = userId;
+	}
 
 
 	//클라이언트 서버 OAuth 로그인
