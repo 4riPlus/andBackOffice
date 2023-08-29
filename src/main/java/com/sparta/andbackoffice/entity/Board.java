@@ -12,35 +12,39 @@ import org.hibernate.annotations.DynamicInsert;
 @DynamicInsert
 @NoArgsConstructor
 public class Board extends TimeStamped {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "board_id")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "board_id")
+    private Long id;
 
-	@Column(name = "category")
-	private Long category;
+    @Column(name = "category")
+    private Long category;
 
-	@Column(name = "title")
-	private String title;
+    @Column(name = "title")
+    private String title;
 
-	@Column(name = "contents")
-	private String contents;
+    @Column(name = "contents")
+    private String contents;
 
-	public void setContents(String contents) {
-		this.contents = contents;
-	}
+    @ManyToOne
+    @JoinColumn(name = "bottom_category_id")
+    private BottomCategory bottomCategory;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setContents(String contents) {
+        this.contents = contents;
+    }
 
-	public void setCategory(Long category) {
-		this.category = category;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public Board(Long category, BoardRequestDto requestDto) {
-		this.category = category;
-		this.title = requestDto.getTitle();
-		this.contents = requestDto.getContents();
-	}
+    public void setCategory(Long category) {
+        this.category = category;
+    }
+
+    public Board(Long category, BoardRequestDto requestDto) {
+        this.category = category;
+        this.title = requestDto.getTitle();
+        this.contents = requestDto.getContents();
+    }
 }

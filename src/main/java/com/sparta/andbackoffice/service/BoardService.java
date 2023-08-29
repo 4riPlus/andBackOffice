@@ -1,7 +1,7 @@
 package com.sparta.andbackoffice.service;
 
-import com.sparta.andbackoffice.dto.ApiResponseDto;
 import com.sparta.andbackoffice.dto.request.BoardRequestDto;
+import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.BoardResponseDto;
 import com.sparta.andbackoffice.entity.Board;
 
