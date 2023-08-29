@@ -12,14 +12,14 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class PostService {
-    private final PostRepository PostRepository;
+	private final PostRepository PostRepository;
 
-    // 어드민 - 자유게시판 전체 조회
-    public PostListResponseDto getPosts() {
-        List<PostResponseDto> postList = PostRepository.findAll().stream()
-                .map(PostResponseDto::new)
-                .collect(Collectors.toList());
+	// 어드민 - 자유게시판 전체 조회
+	public PostListResponseDto getPosts() {
+		List<PostResponseDto> postList = PostRepository.findAll().stream()
+				.map(PostResponseDto::new)
+				.collect(Collectors.toList());
 
-        return new PostListResponseDto(postList);
-    }
+		return new PostListResponseDto(postList);
+	}
 }

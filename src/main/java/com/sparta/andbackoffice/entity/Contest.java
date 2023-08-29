@@ -46,7 +46,7 @@ public class Contest extends TimeStamped {
 	private String homepage;
 
 	@Column(name = "postViews")
-	private Long contestPostViews;
+	private Long contestViews;
 
 	@Column(name = "contents")
 	private String contents;

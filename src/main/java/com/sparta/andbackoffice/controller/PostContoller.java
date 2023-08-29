@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/admin")
 public class PostContoller {
 
-    private final PostService postService;
-    // 어드민 - 자유게시판 전체 조회
-    @GetMapping("/posts")
-    public ResponseEntity<PostListResponseDto> getPosts() {
-        PostListResponseDto getPosts = postService.getPosts();
-        return ResponseEntity.ok().body(getPosts);
-    }
+	private final PostService postService;
+
+	// 어드민 - 자유게시판 전체 조회
+	@GetMapping("/posts")
+	public ResponseEntity<PostListResponseDto> getPosts() {
+		PostListResponseDto getPosts = postService.getPosts();
+		return ResponseEntity.ok().body(getPosts);
+	}
 }
