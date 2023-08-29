@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +33,14 @@ public class Contest extends TimeStamped {
 	@Column(name = "company")
 	private String company;
 
-	@Column(name = "deadline")
-	private String deadline;
+	@Column(name = "endDate")
+	private LocalDate endDate;
+
+	@Column(name="startDate")
+ 	private LocalDate startDate;
+
+	@Column(name="contest")
+	private ContestStatus status;
 
 	@Column(name = "homepage")
 	private String homepage;
@@ -50,7 +57,7 @@ public class Contest extends TimeStamped {
 	private Long bookmarkCnt;
 
 	// 북마크
-	@OneToMany(mappedBy = "contestPost", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "contest", cascade = CascadeType.REMOVE)
 	private List<Bookmark> bookmarkList = new ArrayList<>();
 
 	@OneToMany(mappedBy = "contest")
