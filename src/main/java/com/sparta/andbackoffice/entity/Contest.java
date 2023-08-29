@@ -57,7 +57,7 @@ public class Contest extends TimeStamped {
 	private Long bookmarkCnt;
 
 	// 북마크
-	@OneToMany(mappedBy = "contestPost", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "contest", cascade = CascadeType.REMOVE)
 	private List<Bookmark> bookmarkList = new ArrayList<>();
 
 	@OneToMany(mappedBy = "contest")
