@@ -6,13 +6,20 @@ import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.BoardResponseDto;
 import com.sparta.andbackoffice.dto.response.ContestResponseDto;
 import com.sparta.andbackoffice.entity.Board;
+
 import com.sparta.andbackoffice.entity.Contest;
+import com.sparta.andbackoffice.entity.ContestStatus;
+import com.sparta.andbackoffice.entity.ContestStatus;
 import com.sparta.andbackoffice.repository.ContestRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
+
+import java.time.LocalDate;
 
 @Service
 @Slf4j(topic = "ContestService")
@@ -67,4 +74,18 @@ public class ContestService {
 				() -> new IllegalArgumentException("존재하지 않는 글입니다.")
 		);
 	}
+
+//	public ContestStatus contestStatus(Contest contest) {
+//		LocalDate currentDate = LocalDate.now();
+//
+//		if (currentDate.isBefore(contest.getStartDate())) {
+//			return ContestStatus.UPCOMING;
+//		} else if (currentDate.isEqual(contest.getStartDate()) || currentDate.isEqual(contest.getEndDate()) || currentDate.isBefore(contest.getEndDate())) {
+//			return ContestStatus.ONGOING;
+//		} else if (currentDate.isBefore(contest.getEndDate().minusDays(3))) {
+//			return ContestStatus.CLOSING;
+//		} else {
+//			return ContestStatus.CLOSED;
+//		}
+//	}
 }

@@ -1,11 +1,9 @@
 package com.sparta.andbackoffice.entity;
 
-import com.sparta.andbackoffice.dto.request.ContestRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.DynamicInsert;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,7 +14,6 @@ import java.util.List;
 @Setter
 @Table(name = "contest")
 @NoArgsConstructor
-@DynamicInsert
 public class Contest extends TimeStamped {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,32 +24,41 @@ public class Contest extends TimeStamped {
 	@Column(name = "category")
 	private Long category;
 
-	@Column(name = "author", nullable = false)
+	@Column(name = "author")
 	private String author;
 
-	@Column(name = "title", nullable = false)
+	@Column(name = "title")
 	private String title;
 
-	@Column(name = "company", nullable = false)
+	@Column(name = "company")
 	private String company;
 
-	@Column(name = "endDate", nullable = false)
+	@Column(name = "endDate")
 	private LocalDate endDate;
 
-	@Column(name="startDate", nullable = false)
+	@Column(name="startDate")
  	private LocalDate startDate;
 
-	@Column(name="contest", nullable = false)
+	@Column(name="contest")
 	private ContestStatus status;
 
-	@Column(name = "homepage", nullable = false)
+	@Column(name = "homepage")
 	private String homepage;
 
 	@Column(columnDefinition = "integer default 0", nullable = false)
 	private Long contestViews;
 
-	@Column(name = "contents", nullable = false)
+	@Column(name = "contents")
 	private String contents;
+
+
+	// 북마크 카운트
+	@Column
+	private Long bookmarkCnt;
+
+	// 북마크
+	@OneToMany(mappedBy = "contest", cascade = CascadeType.REMOVE)
+	private List<Bookmark> bookmarkList = new ArrayList<>();
 
 	@OneToMany(mappedBy = "contest")
 	private List<Contest_BottomCategory> bottomCategories = new ArrayList<>();
