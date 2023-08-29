@@ -1,5 +1,6 @@
 package com.sparta.andbackoffice.entity;
 
+import com.sparta.andbackoffice.dto.request.ContestRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
