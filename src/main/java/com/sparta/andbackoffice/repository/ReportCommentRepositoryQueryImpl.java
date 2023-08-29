@@ -27,6 +27,8 @@ public class ReportCommentRepositoryQueryImpl implements ReportCommentRepository
                                 qReportComment.comment.content,
                                 qReportComment.count().as("reportCounts")
                         )
-                ).fetch();
+                )
+                .orderBy(qReportComment.count().desc())
+                .fetch();
     }
 }
