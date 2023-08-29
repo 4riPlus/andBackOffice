@@ -75,7 +75,6 @@ public class BoardServiceImpl implements BoardService {
 
 		log.info("Service - deleteBoard : 끝");
 		return new ApiResponseDto("게시글 삭제 완료", HttpStatus.OK.value());
-
 	}
 
 	@Override
