@@ -2,9 +2,7 @@ package com.sparta.andbackoffice.service;
 
 import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.CommentResponseDto;
-import com.sparta.andbackoffice.dto.response.ReportCommentResponseDto;
 import com.sparta.andbackoffice.entity.Comment;
-import com.sparta.andbackoffice.entity.ReportComment;
 
 import java.util.List;
 
@@ -17,12 +15,6 @@ public interface CommentService {
      * @return                  게시글의 전체 댓글 리스트
      */
     List<CommentResponseDto> getComments(Long postId);
-
-    /**
-     * 신고 댓글 조회
-     *
-     */
-    List<ReportCommentResponseDto> getReportComments();
 
     /**
      * 댓글 삭제
