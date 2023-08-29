@@ -4,12 +4,12 @@ import lombok.Getter;
 
 @Getter
 public enum SecretStatus {
-    Y("비밀댓글 o"),
-    N("비밀댓글 x");
+	Y("비밀댓글 o"),
+	N("비밀댓글 x");
 
-    private final String description;
+	private final String description;
 
-    SecretStatus(String description){
-        this.description = description;
-    }
+	SecretStatus(String description) {
+		this.description = description;
+	}
 }

@@ -11,17 +11,18 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ReportCommentServiceImpl implements ReportCommentService {
-    private final ReportCommentRepository reportCommentRepository;
-    @Override
-    public List<ReportCommentResponseDto> getReportComments() {
-        return reportCommentRepository.findAll()
-                .stream()
-                .map(ReportCommentResponseDto::new)
-                .toList();
-    }
+	private final ReportCommentRepository reportCommentRepository;
 
-    @Override
-    public List<ReportCommentCountResponseDto> getReportCommentCounts() {
-        return reportCommentRepository.getReportCommentCount();
-    }
+	@Override
+	public List<ReportCommentResponseDto> getReportComments() {
+		return reportCommentRepository.findAll()
+				.stream()
+				.map(ReportCommentResponseDto::new)
+				.toList();
+	}
+
+	@Override
+	public List<ReportCommentCountResponseDto> getReportCommentCounts() {
+		return reportCommentRepository.getReportCommentCount();
+	}
 }

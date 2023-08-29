@@ -8,10 +8,10 @@ import java.util.List;
 public interface ReportCommentService {
 
 
-    /**
-     * 신고 댓글 조회
-     */
-    List<ReportCommentResponseDto> getReportComments();
+	/**
+	 * 신고 댓글 조회
+	 */
+	List<ReportCommentResponseDto> getReportComments();
 
-    List<ReportCommentCountResponseDto> getReportCommentCounts();
+	List<ReportCommentCountResponseDto> getReportCommentCounts();
 }

@@ -21,7 +21,7 @@ public class UserService {
     // 유저 블랙리스트로 등록
     public UserBlackListResponseDto registerUser(Long userId, UserBlackListRequestDto userBlackListRequestDto) {
         User user = userRepository.findByUserId(userId)
-               .orElseThrow(() -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다."));
 
         UserBlackList userBlackList = new UserBlackList(userBlackListRequestDto.getUserId());
 
@@ -29,7 +29,4 @@ public class UserService {
         userRepository.delete(user);
         return new UserBlackListResponseDto();
     }
-
-
-    }
-
+}
