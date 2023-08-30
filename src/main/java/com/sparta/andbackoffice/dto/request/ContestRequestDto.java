@@ -2,6 +2,7 @@ package com.sparta.andbackoffice.dto.request;
 
 import com.sparta.andbackoffice.entity.ContestStatus;
 import lombok.Getter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -11,8 +12,13 @@ public class ContestRequestDto {
 	private String author;
 	private String title;
 	private String company;
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDate endDate;
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDate startDate;
+
 	private ContestStatus status;
 	private String homepage;
 	private String contents;

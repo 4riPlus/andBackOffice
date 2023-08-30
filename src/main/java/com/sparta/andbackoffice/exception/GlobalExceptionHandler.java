@@ -19,4 +19,14 @@ public class GlobalExceptionHandler {
 				HttpStatus.BAD_REQUEST
 		);
 	}
+
+	@ExceptionHandler({NullPointerException.class})
+	public ResponseEntity<RestApiException> NullPointerExceptionHandler(NullPointerException e) {
+		log.info("GlobalExceptionHandler - NullPointerExceptionHandler");
+		RestApiException restApiException = new RestApiException("권한이 없습니다.", HttpStatus.BAD_REQUEST.value());
+		return new ResponseEntity<>(
+				restApiException,
+				HttpStatus.BAD_REQUEST
+		);
+	}
 }

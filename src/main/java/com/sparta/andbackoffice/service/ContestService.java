@@ -5,12 +5,12 @@ import com.sparta.andbackoffice.dto.request.ContestRequestDto;
 import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.BoardResponseDto;
 import com.sparta.andbackoffice.dto.response.ContestResponseDto;
-import com.sparta.andbackoffice.entity.Board;
+import com.sparta.andbackoffice.entity.*;
 
-import com.sparta.andbackoffice.entity.Contest;
 import com.sparta.andbackoffice.entity.ContestStatus;
-import com.sparta.andbackoffice.entity.ContestStatus;
+import com.sparta.andbackoffice.repository.AdminRepository;
 import com.sparta.andbackoffice.repository.ContestRepository;
+import com.sparta.andbackoffice.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -27,20 +27,22 @@ import java.time.LocalDate;
 public class ContestService {
 
 	private final ContestRepository contestRepository;
+	private final AdminRepository adminRepository;
 
-
-	public ContestResponseDto createContest(ContestRequestDto requestDto) {
+	public ContestResponseDto createContest(ContestRequestDto requestDto, UserDetailsImpl userDetails) {
 		log.info("Service - createContest : 시작");
 
+		checkAdmin(userDetails);
 		Contest contest = contestRepository.save(new Contest(requestDto));
 
 		log.info("Service - createContest : 끝");
 		return new ContestResponseDto(contest);
 	}
 
-	public ContestResponseDto getContest(Long contestId) {
+	public ContestResponseDto getContest(Long contestId, UserDetailsImpl userDetails) {
 		log.info("Service - getContest : 시작");
 
+		checkAdmin(userDetails);
 		Contest contest = findContest(contestId);
 
 		log.info("Service - getContest : 끝");
@@ -48,9 +50,10 @@ public class ContestService {
 	}
 
 	@Transactional
-	public ContestResponseDto modifyContest(Long contestId, ContestRequestDto requestDto) {
+	public ContestResponseDto modifyContest(Long contestId, ContestRequestDto requestDto, UserDetailsImpl userDetails) {
 		log.info("Service - modifyContest : 시작");
 
+		checkAdmin(userDetails);
 		Contest contest = findContest(contestId);
 		// requestDto를 List로 받아서 반복문 돌리기
 
@@ -59,14 +62,22 @@ public class ContestService {
 	}
 
 	@Transactional
-	public ApiResponseDto deleteContest(Long contestId) {
+	public ApiResponseDto deleteContest(Long contestId, UserDetailsImpl userDetails) {
 		log.info("Service - deleteContest : 시작");
 
+		checkAdmin(userDetails);
 		Contest contest = findContest(contestId);
 		contestRepository.delete(contest);
 
 		log.info("Service - deleteContest : 끝");
 		return new ApiResponseDto("게시글 삭제 완료", HttpStatus.OK.value());
+	}
+
+	public void checkAdmin(UserDetailsImpl userDetails) {
+		Admin admin = adminRepository.findByAdminName(userDetails.getUser().getAdminName())
+				.orElseThrow(
+						() -> new IllegalArgumentException("권한이 없습니다.")
+				);
 	}
 
 	public Contest findContest(Long contestId) {

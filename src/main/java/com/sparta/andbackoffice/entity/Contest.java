@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.List;
 @Setter
 @Table(name = "contest")
 @NoArgsConstructor
+@DynamicInsert
 public class Contest extends TimeStamped {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,16 +27,16 @@ public class Contest extends TimeStamped {
 	@Column(name = "category")
 	private Long category;
 
-	@Column(name = "author")
+	@Column(name = "author", nullable = false)
 	private String author;
 
-	@Column(name = "title")
+	@Column(name = "title", nullable = false)
 	private String title;
 
-	@Column(name = "company")
+	@Column(name = "company", nullable = false)
 	private String company;
 
-	@Column(name = "endDate")
+	@Column(name = "endDate", nullable = false)
 	private LocalDate endDate;
 
 	@Column(name="startDate")
@@ -43,23 +45,14 @@ public class Contest extends TimeStamped {
 	@Column(name="contest")
 	private ContestStatus status;
 
-	@Column(name = "homepage")
+	@Column(name = "homepage", nullable = false)
 	private String homepage;
 
-	@Column(columnDefinition = "integer default 0", nullable = false)
+	@Column(columnDefinition = "integer default 0")
 	private Long contestViews;
 
-	@Column(name = "contents")
+	@Column(name = "contents", nullable = false)
 	private String contents;
-
-
-	// 북마크 카운트
-	@Column
-	private Long bookmarkCnt;
-
-	// 북마크
-	@OneToMany(mappedBy = "contest", cascade = CascadeType.REMOVE)
-	private List<Bookmark> bookmarkList = new ArrayList<>();
 
 	@OneToMany(mappedBy = "contest")
 	private List<Contest_BottomCategory> bottomCategories = new ArrayList<>();
