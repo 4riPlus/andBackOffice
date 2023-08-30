@@ -34,14 +34,8 @@ public class AdminController {
 
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody LoginRequestDto requestDto, HttpServletResponse response) {
-		try {
-			adminService.login(requestDto);
-		} catch (IllegalArgumentException e) {
-			return ResponseEntity.badRequest().body(new ApiResponseDto("회원을 찾을 수 없습니다.", HttpStatus.BAD_REQUEST.value()));
-		}
-
+		adminService.login(requestDto);
 		response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(requestDto.getAdminName()));
-
 		return ResponseEntity.ok().body(new ApiResponseDto("로그인 성공", HttpStatus.CREATED.value()));
 	}
 
