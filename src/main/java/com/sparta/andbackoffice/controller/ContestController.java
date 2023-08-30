@@ -20,6 +20,7 @@ public class ContestController {
 
 	private final ContestService contestService;
 
+	// 글 작성
 	@PostMapping
 	public ResponseEntity<?> createContest(@RequestBody ContestRequestDto requestDto,
 	                                       @AuthenticationPrincipal UserDetailsImpl userDetails) {

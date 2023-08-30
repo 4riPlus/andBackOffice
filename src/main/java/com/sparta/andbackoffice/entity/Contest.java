@@ -9,6 +9,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,6 @@ public class Contest extends TimeStamped {
 	@Column(name = "contest_id")
 	private Long id;
 
-	// 공모전 카테고리로 디폴트 id값 넣어주고 싶은데 1번 어떤가용
 	@Column(name = "category")
 	private Long category;
 
@@ -38,10 +38,10 @@ public class Contest extends TimeStamped {
 	private String company;
 
 	@Column(name = "endDate", nullable = false)
-	private LocalDate endDate;
+	private LocalDateTime endDate;
 
 	@Column(name="startDate")
- 	private LocalDate startDate;
+ 	private LocalDateTime startDate;
 
 	@Column(name="status")
 	private ContestStatus status;
@@ -49,12 +49,13 @@ public class Contest extends TimeStamped {
 	@Column(name = "homepage", nullable = false)
 	private String homepage;
 
-//	@Column(columnDefinition = "integer default 0")
-	@ColumnDefault("0")
-	private Long contestViews;
-
 	@Column(name = "contents", nullable = false)
 	private String contents;
+
+//	@Column(columnDefinition = "integer default 0")
+//	@ColumnDefault("0")
+//	@Column(name = "contestViews")
+	private Long contestViews = 0L;
 
 	@OneToMany(mappedBy = "contest")
 	private List<Contest_BottomCategory> bottomCategories = new ArrayList<>();
@@ -74,5 +75,6 @@ public class Contest extends TimeStamped {
 	@PrePersist
 	public void prePersist() {
 		this.category = this.category == null ? 1 : this.category;
+//		this.contestViews = this.contestViews == null ? 0 : this.contestViews;
 	}
 }

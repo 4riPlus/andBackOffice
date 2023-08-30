@@ -87,7 +87,7 @@ public class BoardServiceImpl implements BoardService {
 	public void checkAdmin(UserDetailsImpl userDetails) {
 		adminRepository.findByAdminName(userDetails.getUser().getAdminName())
 				.orElseThrow(
-						() -> new IllegalArgumentException("권한이 없습니다.")
+						() -> new NullPointerException("권한이 없습니다.")
 				);
 	}
 

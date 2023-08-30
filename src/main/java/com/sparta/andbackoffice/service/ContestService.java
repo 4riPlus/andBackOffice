@@ -4,6 +4,7 @@ import com.sparta.andbackoffice.dto.request.ContestRequestDto;
 import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.ContestResponseDto;
 import com.sparta.andbackoffice.entity.Contest;
+import com.sparta.andbackoffice.entity.ContestStatus;
 import com.sparta.andbackoffice.repository.AdminRepository;
 import com.sparta.andbackoffice.repository.ContestRepository;
 import com.sparta.andbackoffice.security.UserDetailsImpl;
@@ -23,21 +24,12 @@ public class ContestService {
 	private final ContestRepository contestRepository;
 	private final AdminRepository adminRepository;
 
-	@Transactional
 	public ContestResponseDto createContest(ContestRequestDto requestDto, UserDetailsImpl userDetails) {
 		log.info("Service - createContest : 시작");
 
 		checkAdmin(userDetails);
-		LocalDate start = requestDto.getStartDate();
-		log.info("start : " + start);
-
-		LocalDate end = requestDto.getEndDate();
-		log.info("end : " + end);
 
 		Contest contest = contestRepository.save(new Contest(requestDto));
-
-		contest.setStartDate(start);
-		contest.setStartDate(end);
 
 		log.info("Service - createContest : 끝");
 		return new ContestResponseDto(contest);
@@ -60,7 +52,7 @@ public class ContestService {
 		checkAdmin(userDetails);
 		Contest contest = findContest(contestId);
 
-		// Dto -> List 받아서 반복문 돌리게 변경
+		// Dto -> List 받아서 반복문 돌리게 하고 싶지만...
 		contest.setAuthor(requestDto.getAuthor());
 		contest.setTitle(requestDto.getTitle());
 		contest.setCompany(requestDto.getCompany());
@@ -88,7 +80,7 @@ public class ContestService {
 	public void checkAdmin(UserDetailsImpl userDetails) {
 		adminRepository.findByAdminName(userDetails.getUser().getAdminName())
 				.orElseThrow(
-						() -> new IllegalArgumentException("권한이 없습니다.")
+						() -> new NullPointerException("권한이 없습니다.")
 				);
 	}
 
@@ -97,7 +89,7 @@ public class ContestService {
 				() -> new IllegalArgumentException("존재하지 않는 글입니다.")
 		);
 	}
-//
+
 //	public ContestStatus contestStatus(Contest contest) {
 //		LocalDate currentDate = LocalDate.now();
 //

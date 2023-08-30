@@ -5,18 +5,19 @@ import com.sparta.andbackoffice.entity.ContestStatus;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 public class ContestResponseDto {
 	private String author;
 	private String title;
 	private String company;
-	private LocalDate endDate;
-	private LocalDate startDate;
+	private LocalDateTime endDate;
+	private LocalDateTime startDate;
 	private ContestStatus status;
 	private String homepage;
-	private Long contestViews;
 	private String contents;
+	private Long contestViews;
 
 	public ContestResponseDto(Contest contest) {
 		this.author = contest.getAuthor();
