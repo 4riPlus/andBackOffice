@@ -27,8 +27,8 @@ public class ReportPostController {
 		return reportPostService.getReports();
 	}
 
-	@DeleteMapping("/{postid}")
-	public ResponseEntity<ApiResponseDto> deleteReports (@PathVariable Long postid){
-		return reportPostService.deleteReport(postid);
+	@DeleteMapping("/{postId}")
+	public ResponseEntity<ApiResponseDto> deleteReports (@PathVariable Long postId){
+		return reportPostService.deleteReport(postId);
 	}
 }

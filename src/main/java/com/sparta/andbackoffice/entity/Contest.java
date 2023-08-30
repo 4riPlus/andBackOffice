@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.time.LocalDate;
@@ -42,13 +43,14 @@ public class Contest extends TimeStamped {
 	@Column(name="startDate")
  	private LocalDate startDate;
 
-	@Column(name="contest")
+	@Column(name="status")
 	private ContestStatus status;
 
 	@Column(name = "homepage", nullable = false)
 	private String homepage;
 
-	@Column(columnDefinition = "integer default 0")
+//	@Column(columnDefinition = "integer default 0")
+	@ColumnDefault("0")
 	private Long contestViews;
 
 	@Column(name = "contents", nullable = false)
@@ -63,7 +65,7 @@ public class Contest extends TimeStamped {
 		this.company = requestDto.getCompany();
 		this.endDate = requestDto.getEndDate();
 		this.startDate = requestDto.getStartDate();
-		this.status = requestDto.getStatus();
+		this.status = (ContestStatus.CLOSED);
 		this.homepage = requestDto.getHomepage();
 		this.contents = requestDto.getContents();
 	}

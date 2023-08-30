@@ -15,51 +15,51 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class CategoryService {
-    private final CategoryRepository categoryRepository;
+	private final CategoryRepository categoryRepository;
 
-    //카테고리 전체조회
-    public CategoryListResponseDto getCategory() {
-        List<CategoryResponseDto> categoryList = categoryRepository.findAll().stream()
-                .map(CategoryResponseDto::new)
-                .collect(Collectors.toList());
+	//카테고리 전체조회
+	public CategoryListResponseDto getCategory() {
+		List<CategoryResponseDto> categoryList = categoryRepository.findAll().stream()
+				.map(CategoryResponseDto::new)
+				.collect(Collectors.toList());
 
-        return new CategoryListResponseDto(categoryList);
-    }
+		return new CategoryListResponseDto(categoryList);
+	}
 
-    //카테고리생성
-    public void createCategory(CategoryRequestDto categoryRequestDto) {
-        String categoryName = categoryRequestDto.getCategoryName();
+	//카테고리생성
+	public void createCategory(CategoryRequestDto categoryRequestDto) {
+		String categoryName = categoryRequestDto.getCategoryName();
 
-        Category category = new Category(categoryName);
+		Category category = new Category(categoryName);
 
-        categoryRepository.save(category);
-    }
+		categoryRepository.save(category);
+	}
 
-    //카테고리 수정
+	//카테고리 수정
 
-    @Transactional
-    public CategoryResponseDto updateCategory(Long id, CategoryRequestDto categoryRequestDto) {
-        // 카테고리 아이디로 카테고리를 먼저 받아오기
-        Category category = findById(id);
+	@Transactional
+	public CategoryResponseDto updateCategory(Long id, CategoryRequestDto categoryRequestDto) {
+		// 카테고리 아이디로 카테고리를 먼저 받아오기
+		Category category = findById(id);
 
-        //세터를 사용
-        category.setCategoryName(categoryRequestDto.getCategoryName());
+		//세터를 사용
+		category.setCategoryName(categoryRequestDto.getCategoryName());
 
-        return new CategoryResponseDto(category);
-    }
+		return new CategoryResponseDto(category);
+	}
 
-    //카테고리 삭제
-    @Transactional
-    public String deleteCategory(Long id) {
-        Category category = findById(id);
-        categoryRepository.delete(category);
-        return "카테고리 삭제완료";
-    }
+	//카테고리 삭제
+	@Transactional
+	public String deleteCategory(Long id) {
+		Category category = findById(id);
+		categoryRepository.delete(category);
+		return "카테고리 삭제완료";
+	}
 
-    private Category findById(Long id) {
-        return categoryRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("해당 카테고리를 찾을 수 없습니다.")
-        );
-    }
+	private Category findById(Long id) {
+		return categoryRepository.findById(id).orElseThrow(
+				() -> new IllegalArgumentException("해당 카테고리를 찾을 수 없습니다.")
+		);
+	}
 
 }

@@ -3,9 +3,7 @@ package com.sparta.andbackoffice.service;
 import com.sparta.andbackoffice.dto.request.BoardRequestDto;
 import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.BoardResponseDto;
-import com.sparta.andbackoffice.entity.Admin;
 import com.sparta.andbackoffice.entity.Board;
-import com.sparta.andbackoffice.entity.Category;
 import com.sparta.andbackoffice.repository.AdminRepository;
 import com.sparta.andbackoffice.repository.BoardRepository;
 import com.sparta.andbackoffice.repository.CategoryRepository;
@@ -87,7 +85,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void checkAdmin(UserDetailsImpl userDetails) {
-		Admin admin = adminRepository.findByAdminName(userDetails.getUser().getAdminName())
+		adminRepository.findByAdminName(userDetails.getUser().getAdminName())
 				.orElseThrow(
 						() -> new IllegalArgumentException("권한이 없습니다.")
 				);
@@ -95,7 +93,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void findCategory(Long categoryId) {
-		Category category = categoryRepository.findById(categoryId).orElseThrow(
+		categoryRepository.findById(categoryId).orElseThrow(
 				() -> new IllegalArgumentException("존재하지 않는 카테고리입니다.")
 		);
 	}
