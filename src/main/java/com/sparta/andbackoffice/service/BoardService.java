@@ -4,7 +4,6 @@ import com.sparta.andbackoffice.dto.request.BoardRequestDto;
 import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.BoardResponseDto;
 import com.sparta.andbackoffice.entity.Board;
-import com.sparta.andbackoffice.security.UserDetailsImpl;
 
 public interface BoardService {
 
@@ -15,7 +14,7 @@ public interface BoardService {
 	 * @param requestDto : 작성할 내용
 	 * @return : 생성한 글 내용 반환
 	 */
-	BoardResponseDto createBoard(Long categoryId, BoardRequestDto requestDto, UserDetailsImpl userDetails);
+	BoardResponseDto createBoard(Long categoryId, BoardRequestDto requestDto);
 
 	/**
 	 * 게시글 단건 조회
@@ -24,7 +23,7 @@ public interface BoardService {
 	 * @param boardId    : 조회할 글 id
 	 * @return : 게시글 정보 반환
 	 */
-	BoardResponseDto getBoard(Long categoryId, Long boardId, UserDetailsImpl userDetails);
+	BoardResponseDto getBoard(Long categoryId, Long boardId);
 
 	/**
 	 * 게시글 수정
@@ -34,7 +33,7 @@ public interface BoardService {
 	 * @param requestDto : 수정할 내용
 	 * @return : 수정된 게시글 내용 반환
 	 */
-	BoardResponseDto modifyBoard(Long categoryId, Long boardId, BoardRequestDto requestDto, UserDetailsImpl userDetails);
+	BoardResponseDto modifyBoard(Long categoryId, Long boardId, BoardRequestDto requestDto);
 
 	/**
 	 * 게시글 삭제
@@ -43,14 +42,7 @@ public interface BoardService {
 	 * @param boardId    : 삭제할 게시글 id
 	 * @return : 요청 처리 메시지 + 상태코드
 	 */
-	ApiResponseDto deleteBoard(Long categoryId, Long boardId, UserDetailsImpl userDetails);
-
-	/**
-	 * Admin 검증
-	 *
-	 * @param userDetails : 로그인한 유저 정보
-	 */
-	void checkAdmin(UserDetailsImpl userDetails);
+	ApiResponseDto deleteBoard(Long categoryId, Long boardId);
 
 	/**
 	 * 존재하는 카테고리인지 검증

@@ -4,10 +4,8 @@ import com.sparta.andbackoffice.dto.request.BoardRequestDto;
 import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.BoardResponseDto;
 import com.sparta.andbackoffice.entity.Board;
-import com.sparta.andbackoffice.repository.AdminRepository;
 import com.sparta.andbackoffice.repository.BoardRepository;
 import com.sparta.andbackoffice.repository.CategoryRepository;
-import com.sparta.andbackoffice.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -21,13 +19,11 @@ public class BoardServiceImpl implements BoardService {
 
 	private final BoardRepository boardRepository;
 	private final CategoryRepository categoryRepository;
-	private final AdminRepository adminRepository;
 
 	@Override
-	public BoardResponseDto createBoard(Long categoryId, BoardRequestDto requestDto, UserDetailsImpl userDetails) {
+	public BoardResponseDto createBoard(Long categoryId, BoardRequestDto requestDto) {
 		log.info("Service - createBoard : 시작");
 
-		checkAdmin(userDetails);
 		findCategory(categoryId);
 		Board board = boardRepository.save(new Board(categoryId, requestDto));
 
@@ -36,10 +32,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardResponseDto getBoard(Long categoryId, Long boardId, UserDetailsImpl userDetails) {
+	public BoardResponseDto getBoard(Long categoryId, Long boardId) {
 		log.info("Service - getBoard : 시작");
 
-		checkAdmin(userDetails);
 		findCategory(categoryId);
 		Board board = findBoard(boardId);
 		equalsCategory(categoryId, board);
@@ -50,10 +45,9 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	@Transactional
-	public BoardResponseDto modifyBoard(Long categoryId, Long boardId, BoardRequestDto requestDto, UserDetailsImpl userDetails) {
+	public BoardResponseDto modifyBoard(Long categoryId, Long boardId, BoardRequestDto requestDto) {
 		log.info("Service - modifyBoard : 시작");
 
-		checkAdmin(userDetails);
 		findCategory(categoryId);
 		Board board = findBoard(boardId);
 		equalsCategory(categoryId, board);
@@ -70,10 +64,9 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	@Transactional
-	public ApiResponseDto deleteBoard(Long categoryId, Long boardId, UserDetailsImpl userDetails) {
+	public ApiResponseDto deleteBoard(Long categoryId, Long boardId) {
 		log.info("Service - deleteBoard : 시작");
 
-		checkAdmin(userDetails);
 		findCategory(categoryId);
 		Board board = findBoard(boardId);
 		equalsCategory(categoryId, board);
@@ -81,14 +74,6 @@ public class BoardServiceImpl implements BoardService {
 
 		log.info("Service - deleteBoard : 끝");
 		return new ApiResponseDto("게시글 삭제 완료", HttpStatus.OK.value());
-	}
-
-	@Override
-	public void checkAdmin(UserDetailsImpl userDetails) {
-		adminRepository.findByAdminName(userDetails.getUser().getAdminName())
-				.orElseThrow(
-						() -> new NullPointerException("권한이 없습니다.")
-				);
 	}
 
 	@Override
