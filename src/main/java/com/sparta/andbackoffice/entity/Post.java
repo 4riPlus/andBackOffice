@@ -31,13 +31,13 @@ public class Post extends TimeStamped {
 	private String contents;
 
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
-    private List<ReportPost> reportPostList = new ArrayList<>();
+	@OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
+	private List<ReportPost> reportPostList = new ArrayList<>();
 
-    @Column(name = "communityPostViews")
-    @ColumnDefault("0")
-    // 조회수 디폴트 값을 0으로 주긴 했는데 좋아요 카운트 했던 것처럼 증가, 감소 메서드를 만들어야 하는 건지 잘 모르겠어요...
-    private Long postviews;
+	@Column(name = "communityPostViews")
+	@ColumnDefault("0")
+	// 조회수 디폴트 값을 0으로 주긴 했는데 좋아요 카운트 했던 것처럼 증가, 감소 메서드를 만들어야 하는 건지 잘 모르겠어요...
+	private Long postviews;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "userId")
@@ -60,3 +60,4 @@ public class Post extends TimeStamped {
 		this.contents = requestDto.getContents();
 		this.user = user;
 	}
+}

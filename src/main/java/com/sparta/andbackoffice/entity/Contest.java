@@ -5,10 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,18 +39,18 @@ public class Contest extends TimeStamped {
 	private LocalDateTime endDate;
 
 	@Column(name = "startDate")
- 	private LocalDateTime startDate;
+	private LocalDateTime startDate;
 
 	@Column(name = "status")
 	private ContestStatus status;
 
-  @Column(name = "homepage", nullable = false)
+	@Column(name = "homepage", nullable = false)
 	private String homepage;
 
 	@Column(name = "contents", nullable = false)
 	private String contents;
 
-  @Column(name = "contestViews")
+	@Column(name = "contestViews")
 	private Long contestViews = 0L;
 
 	@OneToMany(mappedBy = "contest")
