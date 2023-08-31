@@ -40,21 +40,19 @@ public class Contest extends TimeStamped {
 	@Column(name = "endDate", nullable = false)
 	private LocalDateTime endDate;
 
-	@Column(name="startDate")
+	@Column(name = "startDate")
  	private LocalDateTime startDate;
 
-	@Column(name="status")
+	@Column(name = "status")
 	private ContestStatus status;
 
-	@Column(name = "homepage", nullable = false)
+  @Column(name = "homepage", nullable = false)
 	private String homepage;
 
 	@Column(name = "contents", nullable = false)
 	private String contents;
 
-//	@Column(columnDefinition = "integer default 0")
-//	@ColumnDefault("0")
-//	@Column(name = "contestViews")
+  @Column(name = "contestViews")
 	private Long contestViews = 0L;
 
 	@OneToMany(mappedBy = "contest")

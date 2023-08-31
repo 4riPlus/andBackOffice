@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.sparta.andbackoffice.dto.request.PostRequestDto;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -58,4 +60,3 @@ public class Post extends TimeStamped {
 		this.contents = requestDto.getContents();
 		this.user = user;
 	}
-}
