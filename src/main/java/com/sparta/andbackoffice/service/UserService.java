@@ -15,18 +15,18 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 public class UserService {
-    private final UserBlackListRepository userBlackListRepository;
-    private final UserRepository userRepository;
+	private final UserBlackListRepository userBlackListRepository;
+	private final UserRepository userRepository;
 
-    // 유저 블랙리스트로 등록
-    public UserBlackListResponseDto registerUser(Long userId, UserBlackListRequestDto userBlackListRequestDto) {
-        User user = userRepository.findByUserId(userId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다."));
+	// 유저 블랙리스트로 등록
+	public UserBlackListResponseDto registerUser(Long userId, UserBlackListRequestDto userBlackListRequestDto) {
+		User user = userRepository.findByUserId(userId)
+				.orElseThrow(() -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다."));
 
-        UserBlackList userBlackList = new UserBlackList(userBlackListRequestDto.getUserId());
+		UserBlackList userBlackList = new UserBlackList(userBlackListRequestDto.getUserId());
 
-        userBlackListRepository.save(userBlackList);
-        userRepository.delete(user);
-        return new UserBlackListResponseDto();
-    }
+		userBlackListRepository.save(userBlackList);
+		userRepository.delete(user);
+		return new UserBlackListResponseDto();
+	}
 }

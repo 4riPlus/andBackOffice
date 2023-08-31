@@ -18,17 +18,15 @@ public class ReportCommentRepositoryQueryImpl implements ReportCommentRepository
 	public List<ReportCommentCountResponseDto> getReportCommentCount() {
 		QReportComment qReportComment = QReportComment.reportComment;
 
-        return jpaQueryFactory.from(qReportComment)
-                .groupBy(qReportComment.comment.id)
-                .select(
-                        Projections.constructor(
-                                ReportCommentCountResponseDto.class,
-                                qReportComment.comment.id,
-                                qReportComment.comment.content,
-                                qReportComment.count().as("reportCounts")
-                        )
-                )
-                .orderBy(qReportComment.count().desc())
-                .fetch();
-    }
+		return jpaQueryFactory.from(qReportComment)
+				.groupBy(qReportComment.comment.id)
+				.select(
+						Projections.constructor(
+								ReportCommentCountResponseDto.class,
+								qReportComment.comment.id,
+								qReportComment.comment.content,
+								qReportComment.count().as("reportCounts")
+						)
+				).fetch();
+	}
 }

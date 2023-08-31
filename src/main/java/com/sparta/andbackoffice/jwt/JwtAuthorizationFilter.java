@@ -1,7 +1,7 @@
 package com.sparta.andbackoffice.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sparta.andbackoffice.dto.ApiResponseDto;
+import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.security.UserDetailsServiceImpl;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;

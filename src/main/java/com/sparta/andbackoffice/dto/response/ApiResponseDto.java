@@ -13,17 +13,16 @@ public class ApiResponseDto {
 	private Object data;
 
 
-    public ApiResponseDto(String message, int status) {
-        this.status = status;
-        this.message = message;
-    }
+	public ApiResponseDto(String message, int status) {
+		this.status = status;
+		this.message = message;
+		this.data = null;
+	}
 
 	public ApiResponseDto(int status, String message, Object data) {
 		this.status = status;
 		this.message = message;
 		this.data = data;
 	}
-}
-
 
 

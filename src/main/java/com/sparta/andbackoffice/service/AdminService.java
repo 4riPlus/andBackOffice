@@ -49,9 +49,9 @@ public class AdminService {
 		String password = requestDto.getAdminPassword();
 
 		Admin admin = adminRepository.findByAdminName(name).orElseThrow(
-				() -> new IllegalArgumentException("등록된 사용자가 없습니다.")
+				() -> new IllegalArgumentException("회원을 찾을 수 없습니다.")
 		);
-		log.info("네임 검증");
+		log.info("아이디 검증");
 
 		if (!passwordEncoder.matches(password, admin.getAdminPassword())) {
 			log.info("비밀번호 검증");

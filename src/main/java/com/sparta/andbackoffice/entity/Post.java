@@ -60,5 +60,3 @@ public class Post extends TimeStamped {
 		this.contents = requestDto.getContents();
 		this.user = user;
 	}
-}
-
