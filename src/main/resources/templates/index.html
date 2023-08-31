@@ -22,10 +22,6 @@
       max-width: 150px;
       height: auto;
     }
-    .menu-bar {
-      display: flex;
-      align-items: center;
-    }
 
     .search-icon img {
       max-width: 90%;
@@ -33,7 +29,9 @@
     }
 
 
-    .auth-buttons button {
+    .auth-buttons {
+      width: 149px;
+      height: 25px;
       margin-left: 10px;
       padding: 8px 16px;
       border: none;
@@ -42,7 +40,20 @@
       color: white;
       cursor: pointer;
     }
-
+    #profile-text {
+      /* 추가된 스타일 */
+      display: inline-block;
+      margin-left: 40px;
+      color: #000;
+      font-weight: bold;
+    }
+    #profile-text:hover  {
+      /* 추가된 스타일 */
+      display: inline-block;
+      margin-left: 40px;
+      color: #fff;
+      font-weight: bold;
+    }
     /* Container Styles */
     .container {
       display: flex;
@@ -54,7 +65,6 @@
       padding: 20px;
       background-color: #fff;
     }
-
     /* Banner Styles */
     .banner img {
       width: 100%;
@@ -63,10 +73,26 @@
     }
 
     /* Contest List Styles */
-
+    .section {
+      /* 추가된 스타일 */
+      flex: 1;
+      padding: 20px;
+      background-color: lightgray;
+    }
     .sections-container {
+      margin-left: 200px;
+      height: 750px;
       display: flex;
       gap: 30px;
+      background-color: #fff;
+    }
+    .section_in{
+      background-color: white;
+      height: 650px;
+    }
+    .section-heading {
+      margin-top: 5px;
+      text-align: center;
     }
 
 
@@ -74,10 +100,6 @@
     @media screen and (max-width: 768px) {
       .container {
         flex-direction: column;
-      }
-
-      .auth-buttons {
-        margin-top: 10px;
       }
     }
 
@@ -108,7 +130,9 @@
     }
 
     .cd1 {
-      margin-left: 210px;
+      margin-left: 20px;
+      height: 100px;
+      background-color: linen;
     }
   </style>
   <script>
@@ -138,7 +162,91 @@
 
     // 페이지 로드 시 최근 게시물 목록을 가져와서 표시
     window.onload = fetchPosts;
-  </script>
+
+    function logout() {
+      let authCookie = getCookie('Authorization');
+      console.log(authCookie);
+      $.ajax({
+        url: 'http://localhost:8080/api/user/logout',
+        type: 'POST',
+        headers: {
+          'Authorization': authCookie
+        },
+        processData: false,
+        contentType: false,
+        success: function(response) {
+
+          Cookies.remove('Authorization', {path: '/'}); // 쿠키삭제
+          // Cookies.set('Authorization', token, {path: '/', expires: expirationDate});
+          // 요청 성공 시 처리할
+          alert("로그아웃 성공 !");
+          window.location.href = host + '/api/view/user/login';
+        },
+        error: function(xhr, status, error) {
+          console.log(xhr);
+          alert("로그아웃 실패 !");
+        }
+      });
+    }
+
+    this.checkCount(req.cookies.connect_time, res);
+
+    exports.checkCount = (connect_time, res) => {
+      let today = moment();
+      if (connect_time) {
+        if (moment(connect_time).isAfter(today, 'day')) {
+          res.cookie('connect_time', today.format("YYYY-MM-DD"), {
+            maxAge: 60 * 60 * 24 * 1000
+          });
+          this.connectCount();
+        } else {
+          often.log('pass');
+        }
+      } else {
+        res.cookie('connect_time', today.format("YYYY-MM-DD"), {
+          maxAge: 60 * 60 * 24 * 1000
+        });
+        this.connectCount();
+      }
+
+      //방문자 수 카운팅
+      exports.connectCount = () => {
+        async function start() {
+          //데이터베이스 로직
+        }
+
+        start();
+      }
+      this.checkCount(req.cookies.connect_time, res);
+
+      exports.checkCount = (connect_time, res) => {
+        let today = moment();
+        if (connect_time) {
+          if (moment(connect_time).isAfter(today, 'day')) {
+            res.cookie('connect_time', today.format("YYYY-MM-DD"), {
+              maxAge: 60 * 60 * 24 * 1000
+            });
+            this.connectCount();
+          } else {
+            often.log('pass');
+          }
+        } else {
+          res.cookie('connect_time', today.format("YYYY-MM-DD"), {
+            maxAge: 60 * 60 * 24 * 1000
+          });
+          this.connectCount();
+        }
+
+
+        exports.connectCount = () => {
+          async function start() {
+            //데이터베이스 로직
+          }
+
+          start();
+        }
+      }
+    }
   </script>
 </head>
 <body>
@@ -158,43 +266,42 @@
     <br>
     <br>
     <br>
-    <button></button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="auth-buttons">
+      <span id="profile-text" href="javascript:logout()">로그아웃</span> </div>
   </ul>
-
-  <div class="cd1">
-    <h1>큰 제목</h1>
-    <h2>작은 제목</h2>
-    <p>내용</p>
-    <p>내용</p>
-    <p>내용</p>
-    <p>내용</p>
-    <p>내용</p>
-    <p>내용</p>
-    <p>내용</p>
-    <p>내용</p>
-    <p>내용</p>
-    <p>내용</p>
-    <p>내용</p>
-    <p>내용</p>
-    <p>내용</p>
-    <p>내용</p>
-    <p>내용</p>
-    <p>내용</p>
-    <p>내용</p>
-
   </div>
-
-</div>
+  <div class="cd1">
+  </div>
 </header>
 
 <div class="container">
 
   <main class="sections-container">
     <div class="section">
-<!--      <h2 class="section-heading">최근 게시글 목록</h2>-->
-<!--      <div class="section_in">-->
+      <h3 class="section-heading">일자별 사이트 방문자수</h3>
+      <div class="section_in">
+      <h1>dd</h1>
 
-<!--      </div>-->
+    </div>
+    </div>
+    <div class="section">
+      <h3 class="section-heading">신고 게시글/댓글 추이</h3>
+      <div class="section_in">
+        <h1>dd</h1>
+      </div>
     </div>
   </main>
 </div>
