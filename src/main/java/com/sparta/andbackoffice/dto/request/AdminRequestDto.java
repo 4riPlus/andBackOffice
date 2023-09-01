@@ -7,13 +7,13 @@ import lombok.Setter;
 @Setter
 @Getter
 public class AdminRequestDto {
-    private Long companyNo;
-    private String adminName;
-    private String amdinPassword;
+	private Long companyNo;
+	private String adminName;
+	private String adminPassword;
 
-    public AdminRequestDto(Admin admin) {
-        this.companyNo = admin.getCompanyNo();
-        this.adminName = admin.getAdminName();
-        this.amdinPassword = admin.getAdminPassword();
-    }
+	public AdminRequestDto(Admin admin) {
+		this.companyNo = admin.getCompanyNo();
+		this.adminName = admin.getAdminName();
+		this.adminPassword = admin.getAdminPassword();
+	}
 }

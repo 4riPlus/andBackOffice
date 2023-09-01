@@ -13,13 +13,14 @@ import org.springframework.stereotype.Component;
 public class UserBlackList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "blackListId")
+    private Long blackListId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
 
-    public UserBlackList(Long id) {
-        this.id = id;
+    public UserBlackList(Long blackListId) {
+        this.blackListId = blackListId;
     }
 }

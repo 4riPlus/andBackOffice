@@ -4,7 +4,6 @@ import com.sparta.andbackoffice.dto.request.BoardRequestDto;
 import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.BoardResponseDto;
 import com.sparta.andbackoffice.entity.Board;
-import com.sparta.andbackoffice.entity.Category;
 import com.sparta.andbackoffice.repository.BoardRepository;
 import com.sparta.andbackoffice.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +35,6 @@ public class BoardServiceImpl implements BoardService {
 	public BoardResponseDto getBoard(Long categoryId, Long boardId) {
 		log.info("Service - getBoard : 시작");
 
-		// TODO : findCategory 메서드를 boolean 반환하게 바꿀지?
 		findCategory(categoryId);
 		Board board = findBoard(boardId);
 		equalsCategory(categoryId, board);
@@ -76,12 +74,11 @@ public class BoardServiceImpl implements BoardService {
 
 		log.info("Service - deleteBoard : 끝");
 		return new ApiResponseDto("게시글 삭제 완료", HttpStatus.OK.value());
-
 	}
 
 	@Override
 	public void findCategory(Long categoryId) {
-		Category category = categoryRepository.findById(categoryId).orElseThrow(
+		categoryRepository.findById(categoryId).orElseThrow(
 				() -> new IllegalArgumentException("존재하지 않는 카테고리입니다.")
 		);
 	}
