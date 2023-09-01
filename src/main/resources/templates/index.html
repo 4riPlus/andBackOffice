@@ -136,38 +136,11 @@
     }
   </style>
   <script>
-    // 더미 데이터 예시 (실제로는 서버에서 가져와야 함)
-    const dummyPosts = [
-      { title: "게시물 1 제목", content: "게시물 1 내용..." },
-      { title: "게시물 2 제목", content: "게시물 2 내용..." },
-      // ... 더 많은 더미 데이터 ...
-    ];
-    // 데이터를 가져와서 표시하는 함수
-    function fetchPosts() {
-      fetch('/posts')
-              .then(response => response.json())
-              .then(posts => {
-                const postList = document.getElementById('post-list');
-                posts.forEach(post => {
-                  const listItem = document.createElement('li');
-                  listItem.innerHTML = `
-              <h2>${post.title}</h2>
-              <p>${post.content.substring(0, 100)}...</p>
-            `;
-                  postList.appendChild(listItem);
-                });
-              })
-              .catch(error => console.error('Error fetching posts:', error));
-    }
-
-    // 페이지 로드 시 최근 게시물 목록을 가져와서 표시
-    window.onload = fetchPosts;
-
     function logout() {
       let authCookie = getCookie('Authorization');
       console.log(authCookie);
       $.ajax({
-        url: 'http://localhost:8080/api/user/logout',
+        url: 'http://localhost:8080/api/users/logout',
         type: 'POST',
         headers: {
           'Authorization': authCookie
@@ -188,65 +161,93 @@
         }
       });
     }
+    document.addEventListener('DOMContentLoaded', function () {
+      const postMenu = document.querySelector('#post');
+      const homeMenu = document.querySelector('#home');
+      const reportMenu = document.querySelector('#report-post');
+      const contestMenu = document.querySelector('#contest');
+      const categoryMenu = document.querySelector('#category');
+      const userMenu = document.querySelector('#user');
+      const etcMenu = document.querySelector('#etc');
 
-    this.checkCount(req.cookies.connect_time, res);
+      const homeContainer = document.querySelector('.home.container');
+      const postContainer = document.querySelector('.post.container');
+      const reportContainer = document.querySelector('.report.container');
+      const contestContainer = document.querySelector('.contest.container');
+      const categoryContainer = document.querySelector('.category.container');
+      const userContainer = document.querySelector('.user.container');
+      const etcContainer = document.querySelector('.etc.container');
 
-    exports.checkCount = (connect_time, res) => {
-      let today = moment();
-      if (connect_time) {
-        if (moment(connect_time).isAfter(today, 'day')) {
-          res.cookie('connect_time', today.format("YYYY-MM-DD"), {
-            maxAge: 60 * 60 * 24 * 1000
-          });
-          this.connectCount();
-        } else {
-          often.log('pass');
-        }
-      } else {
-        res.cookie('connect_time', today.format("YYYY-MM-DD"), {
-          maxAge: 60 * 60 * 24 * 1000
-        });
-        this.connectCount();
-      }
+      postMenu.addEventListener('click', function () {
+        homeContainer.style.display = 'none';
+        postContainer.style.display = 'block';
+        reportContainer.style.display = 'none';
+        contestContainer.style.display = 'none';
+        categoryContainer.style.display = 'none';
+        userContainer.style.display = 'none';
+        etcContainer.style.display = 'none';
+      });
 
-      //방문자 수 카운팅
-      exports.connectCount = () => {
-        async function start() {
-          //데이터베이스 로직
-        }
+      homeMenu.addEventListener('click', function () {
+        homeContainer.style.display = 'block';
+        postContainer.style.display = 'none';
+        reportContainer.style.display = 'none';
+        contestContainer.style.display = 'none';
+        categoryContainer.style.display = 'none';
+        userContainer.style.display = 'none';
+        etcContainer.style.display = 'none';
+      });
 
-        start();
-      }
-      this.checkCount(req.cookies.connect_time, res);
+      reportMenu.addEventListener('click', function () {
+        homeContainer.style.display = 'none';
+        postContainer.style.display = 'none';
+        reportContainer.style.display = 'block';
+        contestContainer.style.display = 'none';
+        categoryContainer.style.display = 'none'; // 다른 컨테이너 숨기기
+        userContainer.style.display = 'none';
+        etcContainer.style.display = 'none';
+      });
 
-      exports.checkCount = (connect_time, res) => {
-        let today = moment();
-        if (connect_time) {
-          if (moment(connect_time).isAfter(today, 'day')) {
-            res.cookie('connect_time', today.format("YYYY-MM-DD"), {
-              maxAge: 60 * 60 * 24 * 1000
-            });
-            this.connectCount();
-          } else {
-            often.log('pass');
-          }
-        } else {
-          res.cookie('connect_time', today.format("YYYY-MM-DD"), {
-            maxAge: 60 * 60 * 24 * 1000
-          });
-          this.connectCount();
-        }
+      contestMenu.addEventListener('click', function () {
+        homeContainer.style.display = 'none';
+        postContainer.style.display = 'none';
+        reportContainer.style.display = 'none';
+        contestContainer.style.display = 'block';
+        categoryContainer.style.display = 'none'; // 다른 컨테이너 숨기기
+        userContainer.style.display = 'none';
+        etcContainer.style.display = 'none';
+      });
 
+      categoryMenu.addEventListener('click', function () {
+        homeContainer.style.display = 'none';
+        postContainer.style.display = 'none';
+        reportContainer.style.display = 'none';
+        contestContainer.style.display = 'none';
+        categoryContainer.style.display = 'block';
+        userContainer.style.display = 'none';
+        etcContainer.style.display = 'none';
+      });
 
-        exports.connectCount = () => {
-          async function start() {
-            //데이터베이스 로직
-          }
+      userMenu.addEventListener('click', function () {
+        homeContainer.style.display = 'none';
+        postContainer.style.display = 'none';
+        reportContainer.style.display = 'none';
+        contestContainer.style.display = 'none';
+        categoryContainer.style.display = 'none';
+        userContainer.style.display = 'block';
+        etcContainer.style.display = 'none';
+      });
 
-          start();
-        }
-      }
-    }
+      etcMenu.addEventListener('click', function () {
+        homeContainer.style.display = 'none';
+        postContainer.style.display = 'none';
+        reportContainer.style.display = 'none';
+        contestContainer.style.display = 'none';
+        categoryContainer.style.display = 'none';
+        userContainer.style.display = 'none';
+        etcContainer.style.display = 'block';
+      });
+    });
   </script>
 </head>
 <body>
@@ -254,13 +255,13 @@
   <div class="logo">
   <ul>
     <img src="https://i.postimg.cc/T3KxY0gd/2.png" alt="Logo">
-    <li><a class="home" href="#">홈</a></li>
-    <li><a href="#">최근 게시글</a></li>
-    <li><a href="#">신고된 게시글/댓글 관리</a></li>
-    <li><a href="#">공지 및 공모전 관리</a></li>
-    <li><a href="#">카테고리 관리</a></li>
-    <li><a href="#">유저 관리</a></li>
-    <li><a href="#">기타 이용약관</a></li>
+    <li><a id="home" href="#">홈</a></li>
+    <li><a id="post" href="#">최근 게시글</a></li>
+    <li><a id="report-post" href="#">신고된 게시글/댓글 관리</a></li>
+    <li><a id="contest" href="#">공지 및 공모전 관리</a></li>
+    <li><a id="category" href="#">카테고리 관리</a></li>
+    <li><a id="user" href="#">유저 관리</a></li>
+    <li><a id="etc" href="#">기타 이용약관</a></li>
     <br>
     <br>
     <br>
@@ -287,67 +288,124 @@
   </div>
 </header>
 
-<div class="container">
-
+<div class="home container"style="display: block;">
   <main class="sections-container">
     <div class="section">
-      <h3 class="section-heading">일자별 사이트 방문자수</h3>
+      <h3 class="section-heading">0</h3>
       <div class="section_in">
-      <h1>dd</h1>
-
+      <h1>이게된다??</h1>
     </div>
     </div>
     <div class="section">
-      <h3 class="section-heading">신고 게시글/댓글 추이</h3>
+      <h3 class="section-heading">0</h3>
       <div class="section_in">
-        <h1>dd</h1>
+        <h1>이게된다??</h1>
       </div>
     </div>
   </main>
 </div>
 
-<!--<footer>-->
-<!--  <div id="footer" class="re_text" module="Layout_footer">-->
-<!--  <ul>-->
-<!--    <li>-->
-<!--            <span>-->
-<!--                <strong>CS CENTER</strong> <br>-->
-<!--                02-2033-0816 <br><br>-->
-<!--            </span>-->
-<!--      <span>-->
-<!--                업무시간   09:00 - 21:00 <br>-->
-<!--                점심시간   13:00 - 14:00 <br>-->
-<!--                저녁시간   18:00 - 19:00 <br>-->
-<!--                휴무일자   토요일,일요일,공휴일-->
-<!--            </span>-->
-<!--    </li>-->
-<!--  </ul>-->
-<!--  <ul>-->
-<!--    <li>-->
-<!--      <p>-->
-<!--        회사명 : 주식회사 사리추가 대표 : 조혜연<br>-->
-<!--        사업자등록번호 : 000-00-00000 <br>-->
-<!--        통신판매업 신고 : 2023-서울강남-2023 <br>-->
-<!--        주소 : 02023 서울특별시 스파코구 게더길 4<br>-->
-<!--        스파르타코딩클럽4조, 4호<br>-->
-<!--        개인정보관리책임자 : 책임안짐 <br>-->
-<!--        <br>-->
-<!--      </p>-->
-<!--    </li>-->
-<!--  </ul>-->
+<div class="post container" style="display: none;">
+  <main class="sections-container">
+    <div class="section">
+      <h3 class="section-heading">1</h3>
+      <div class="section_in">
+        <h1>이게되네</h1>
+      </div>
+    </div>
+    <div class="section">
+      <h3 class="section-heading">1</h3>
+      <div class="section_in">
+        <h1>이게되네!!</h1>
+      </div>
+    </div>
+  </main>
+</div>
 
-<!--  <ul>-->
-<!--    <li>-->
-<!--      <img src="https://i.postimg.cc/T3KxY0gd/2.png" width="30%"/><br><br>-->
-<!--      <p>-->
-<!--          &nd는 주식회사 사리추가가 소유하고 있습니다. <br>-->
-<!--            &nd에서 사용되는 모든 콘텐츠는 무단복제하여 사용할 수 없으며,<br>-->
-<!--            해당 콘텐츠의 소유권은 주식회사 사리추가에 있습니다.<br>-->
-<!--            Copyright © 4riplus. All rights reserved.-->
-<!--      </p>-->
-<!--    </li>-->
-<!--  </ul>-->
-<!--  </div>-->
-<!--</footer>-->
+<div class="report container" style="display: none;">
+  <main class="sections-container">
+    <div class="section">
+      <h3 class="section-heading">2</h3>
+      <div class="section_in">
+        <h1>야호!!</h1>
+      </div>
+    </div>
+    <div class="section">
+      <h3 class="section-heading">2</h3>
+      <div class="section_in">
+        <h1>야호!!</h1>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="contest container" style="display: none;">
+  <main class="sections-container">
+    <div class="section">
+      <h3 class="section-heading">3</h3>
+      <div class="section_in">
+        <h1>야호~~~~~~~~~~!!</h1>
+      </div>
+    </div>
+    <div class="section">
+      <h3 class="section-heading">3</h3>
+      <div class="section_in">
+        <h1>야호~~~~~~~~~~!!!!</h1>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="category container" style="display: none;">
+  <main class="sections-container">
+    <div class="section">
+      <h3 class="section-heading">4</h3>
+      <div class="section_in">
+        <h1>카테고리 crud</h1>
+      </div>
+    </div>
+    <div class="section">
+      <h3 class="section-heading">4</h3>
+      <div class="section_in">
+        <h1>카테고리 crud</h1>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="user container" style="display: none;">
+  <main class="sections-container">
+    <div class="section">
+      <h3 class="section-heading">5</h3>
+      <div class="section_in">
+        <h1>유저 crud</h1>
+      </div>
+    </div>
+    <div class="section">
+      <h3 class="section-heading">5</h3>
+      <div class="section_in">
+        <h1>유저 crud</h1>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="etc container" style="display: none;">
+  <main class="sections-container">
+    <div class="section">
+      <h3 class="section-heading">6</h3>
+      <div class="section_in">
+        <h1>etc</h1>
+      </div>
+    </div>
+    <div class="section">
+      <h3 class="section-heading">6</h3>
+      <div class="section_in">
+        <h1>etc</h1>
+      </div>
+    </div>
+  </main>
+</div>
+
 </body>
 </html>
