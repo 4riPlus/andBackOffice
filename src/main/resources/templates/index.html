@@ -23,23 +23,7 @@
       height: auto;
     }
 
-    .search-icon img {
-      max-width: 90%;
-      max-height: 90%;
-    }
 
-
-    .auth-buttons {
-      width: 149px;
-      height: 25px;
-      margin-left: 10px;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 20px;
-      background-color: lightsalmon;
-      color: white;
-      cursor: pointer;
-    }
     #profile-text {
       /* 추가된 스타일 */
       display: inline-block;
@@ -71,13 +55,37 @@
       height: auto;
       margin-bottom: 20px;
     }
-
+    .search-bar {
+      display: flex;
+      align-items: center;
+    }
+    .search-bar input[type="text"] {
+      padding: 10px;
+      border: 2px solid lightgray;
+      border-radius: 20px;
+      width: 500px; /* Adjust the width as needed */
+    }
+    .search-icon {
+      margin-left: -40px;
+      padding: 8px;
+      background-color: white;
+      border-radius: 50%;
+      cursor: pointer;
+      width: 17px;
+      height: 17px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .search-icon img {
+      max-width: 90%;
+      max-height: 90%;
+    }
     /* Contest List Styles */
     .section {
       /* 추가된 스타일 */
       flex: 1;
-      padding: 20px;
-      background-color: lightgray;
+      padding: 5px;
     }
     .sections-container {
       margin-left: 200px;
@@ -87,11 +95,11 @@
       background-color: #fff;
     }
     .section_in{
-      background-color: white;
-      height: 650px;
+      background-color: lightgray;
+      height: 700px;
     }
     .section-heading {
-      margin-top: 5px;
+      margin-top: 1px;
       text-align: center;
     }
 
@@ -134,8 +142,248 @@
       height: 100px;
       background-color: linen;
     }
+
+    .auth-buttons {
+      width: 149px;
+      height: 25px;
+      margin-left: 10px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 20px;
+      background-color: lightsalmon;
+      color: white;
+      cursor: pointer;
+    }
+    .delete-button {
+      position: fixed; /* 요소를 화면에 고정 */
+      bottom: 50px; /* 아래 여백 조절 */
+      right: 50px; /* 오른쪽 여백 조절 */
+      z-index: 1; /* 다른 요소 위에 위치하도록 설정 */
+      background-color: lightsalmon;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .delete-button:hover {
+      color: white;
+    }
+    /* 자유게시판 CSS */
+    .post-wrap {
+      margin: 20px;
+      padding: 20px;
+      background-color: #f5f5f5;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .post-title {
+      margin-bottom: 20px;
+    }
+
+    .post-title strong {
+      font-size: 1.3rem;
+    }
+
+    .post-title p {
+      margin-top: 5px;
+      font-size: 0.8rem;
+    }
+
+    .post-list {
+      width: 100%;
+      border-top: 2px solid #000;
+    }
+
+    .post-list > div {
+      border-bottom: 1px solid #ddd;
+      font-size: 0;
+    }
+
+    .post-list > div.top {
+      border-bottom: 1px solid #999;
+    }
+
+    .post-list > div:last-child {
+      border-bottom: 1px solid #000;
+    }
+
+    .post-list > div > div {
+      display: inline-block;
+      padding: 15px 0;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .post-list > div.top > div {
+      font-weight: bold;
+    }
+
+    .post-list .num {
+      width: 10%;
+    }
+
+    .post-list .title {
+      width: 50%;
+      text-align: left;
+    }
+
+    .post-list .top .title {
+      text-align: center;
+    }
+
+    .post-list .writer {
+      width: 10%;
+    }
+
+    .post-list .date {
+      width: 20%;
+    }
+
+    .post-list .count {
+      width: 10%;
+    }
+
+    .post-btn button {
+      margin: 5px;
+      float: right;
+      border: none;
+      border-radius: 6px;
+      background-color: lightsalmon;
+      color: white;
+      cursor: pointer;
+    }
+
+    .post-page {
+      margin-top : 20px;
+      text-align: center;
+      font-size: 0;
+    }
+
+    .post-page a {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      box-sizing: border-box;
+      vertical-align: middle;
+      border: 1px solid #ddd;
+      border-radius: 7px;
+      border-left: 0;
+      line-height: 100%;
+    }
+
+    .post-page a.bt {
+      padding-top: 10px;
+      font-size: 1.0rem;
+      letter-spacing: -1px;
+    }
+
+    .post-page a.num {
+      padding-top: 9px;
+      font-size: 0.9rem;
+    }
+
+    .post-page a.num.on {
+      border-color: #000;
+      background: #000;
+      color: #fff;
+    }
+
+    .post-page a:first-child {
+      border-left: 1px solid #ddd;
+    }
   </style>
   <script>
+    // 자유게시판 페이징 출력
+    function showPosts(page, size) {
+      if(page <= 0) {
+        page = 1;
+      }
+
+      $.ajax({
+        type: 'GET',
+        url: `/api/posts?page=${page}&size=${size}`,
+      })
+              .done(function (response, status, xhr) {
+                let pages = response['totalPages'];
+
+                if(page > pages) {
+                  page = pages;
+                }
+
+                let html = `
+                    <div class="post-wrap">
+                      <div class="post-title">
+                        <strong>자유게시판</strong>
+                        <p>자유로운 정보 공유와 공모전을 위한 커뮤니티입니다.</p>
+                      </div>
+                      <div class="post-list-wrap">
+                          <div class="post-list">
+                            <div class="top">
+                              <div class="num">번호</div>
+                              <div class="title">제목</div>
+                              <div class="writer">작성자</div>
+                              <div class="date">작성일</div>
+                              <div class="count">조회수</div>
+                            </div>`;
+
+                let startNum = (page-1) * pageSize;
+                response['content'].forEach((post) => {
+                  startNum += 1;
+                  html += `
+                        <div>
+                          <div class="num">${startNum}</div>
+                          <div class="title"><a href="#">${post.title}</a></div>
+                          <div class="writer">${post.writer}</div>
+                          <div class="date">${post.modifiedDate}</div>
+                          <div class="count">${post.communityPostViews}</div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                    </div>
+                     <div class="post-btn">
+                       <button>글쓰기</button>
+                     </div>
+                     <div class="post-page">
+                        <a onclick="showPosts(1,pageSize)" class="bt first"><<</a>
+                        <a onclick="showPosts(${page}-1,pageSize)" class="bt prev"><</a>
+                `;
+
+                let startPage = (Math.floor(page / pageBtnSize) * pageBtnSize) + 1;
+                let endPage = (startPage + pageBtnSize) <= pages ? (startPage + pageBtnSize) : pages;
+
+                for(let i=startPage;i<=endPage;i++) {
+                  if(page === i) {
+                    html += `
+                            <a onclick="showPosts(${i},pageSize)" class="num on">${i}</a>
+                        `;
+                  } else {
+                    html += `
+                            <a onclick="showPosts(${i},pageSize)" class="num">${i}</a>
+                        `;
+                  }
+                }
+
+                html += `
+                            <a onclick="showPosts(${page}+1,pageSize)" class="bt first">></a>
+                            <a onclick="showPosts(${pages},pageSize)" class="bt prev">>></a>
+                          </div>
+                      </div>
+                    </div>
+                `;
+                $(".main").empty();
+                $(".main").append(html);
+              })
+              .fail(function(response) {
+                alert("자유게시글 조회 실패");
+                console.log(response.responseJSON.msg);
+              });
+    }
     function logout() {
       let authCookie = getCookie('Authorization');
       console.log(authCookie);
@@ -248,7 +496,18 @@
         etcContainer.style.display = 'block';
       });
     });
+
+    // 삭제 버튼을 클릭했을 때 실행될 함수
+    function deletePost() {
+      // 이 부분에 게시물 삭제 로직을 추가하세요.
+      // 예를 들어, 선택된 게시물을 삭제하는 AJAX 요청 등을 수행할 수 있습니다.
+      // 필요한 경우 서버와 통신하여 삭제 작업을 수행하세요.
+
+      // 여기에 실제 삭제 로직을 추가하세요.
+      alert("게시물이 삭제되었습니다."); // 임시로 경고창을 띄움
+    }
   </script>
+    <script src="/js/post.js"></script>
 </head>
 <body>
 <header>
@@ -256,7 +515,7 @@
   <ul>
     <img src="https://i.postimg.cc/T3KxY0gd/2.png" alt="Logo">
     <li><a id="home" href="#">홈</a></li>
-    <li><a id="post" href="#">최근 게시글</a></li>
+    <li><a id="post" href="#" onclick="showPosts(1,pageSize)">최근 게시글</a></li>
     <li><a id="report-post" href="#">신고된 게시글/댓글 관리</a></li>
     <li><a id="contest" href="#">공지 및 공모전 관리</a></li>
     <li><a id="category" href="#">카테고리 관리</a></li>
@@ -291,13 +550,13 @@
 <div class="home container"style="display: block;">
   <main class="sections-container">
     <div class="section">
-      <h3 class="section-heading">0</h3>
+      <h2 class="section-heading"><&ND> 최근 방문자 수</h2>
       <div class="section_in">
       <h1>이게된다??</h1>
     </div>
     </div>
     <div class="section">
-      <h3 class="section-heading">0</h3>
+      <h2 class="section-heading">최근 신고된 게시글 추이</h2>
       <div class="section_in">
         <h1>이게된다??</h1>
       </div>
@@ -308,15 +567,20 @@
 <div class="post container" style="display: none;">
   <main class="sections-container">
     <div class="section">
-      <h3 class="section-heading">1</h3>
+      <h2 class="section-heading">최근 게시글 전체 조회</h2>
       <div class="section_in">
-        <h1>이게되네</h1>
-      </div>
-    </div>
-    <div class="section">
-      <h3 class="section-heading">1</h3>
-      <div class="section_in">
-        <h1>이게되네!!</h1>
+        <div class="search-bar">
+          <input type="text" placeholder="게시물 검색">
+          <div class="search-icon">
+            <img src="https://i.postimg.cc/MT8tf3Qy/searchmagnifierinterfacesymbol-79894.png" alt="Search Icon">
+          </div>
+        </div>
+        <div class="post-list">
+          <!-- 게시글 목록이 여기에 추가될 것입니다. -->
+        </div>
+        <div class="delete-button">
+          <a onclick="deletePost()">삭제</a>
+        </div>
       </div>
     </div>
   </main>
@@ -325,13 +589,13 @@
 <div class="report container" style="display: none;">
   <main class="sections-container">
     <div class="section">
-      <h3 class="section-heading">2</h3>
+      <h2 class="section-heading">2</h2>
       <div class="section_in">
         <h1>야호!!</h1>
       </div>
     </div>
     <div class="section">
-      <h3 class="section-heading">2</h3>
+      <h2 class="section-heading">2</h2>
       <div class="section_in">
         <h1>야호!!</h1>
       </div>
@@ -342,13 +606,13 @@
 <div class="contest container" style="display: none;">
   <main class="sections-container">
     <div class="section">
-      <h3 class="section-heading">3</h3>
+      <h2 class="section-heading">3</h2>
       <div class="section_in">
         <h1>야호~~~~~~~~~~!!</h1>
       </div>
     </div>
     <div class="section">
-      <h3 class="section-heading">3</h3>
+      <h2 class="section-heading">3</h2>
       <div class="section_in">
         <h1>야호~~~~~~~~~~!!!!</h1>
       </div>
@@ -359,13 +623,13 @@
 <div class="category container" style="display: none;">
   <main class="sections-container">
     <div class="section">
-      <h3 class="section-heading">4</h3>
+      <h2 class="section-heading">4</h2>
       <div class="section_in">
         <h1>카테고리 crud</h1>
       </div>
     </div>
     <div class="section">
-      <h3 class="section-heading">4</h3>
+      <h2 class="section-heading">4</h2>
       <div class="section_in">
         <h1>카테고리 crud</h1>
       </div>
@@ -376,13 +640,13 @@
 <div class="user container" style="display: none;">
   <main class="sections-container">
     <div class="section">
-      <h3 class="section-heading">5</h3>
+      <h2 class="section-heading">5</h2>
       <div class="section_in">
         <h1>유저 crud</h1>
       </div>
     </div>
     <div class="section">
-      <h3 class="section-heading">5</h3>
+      <h2 class="section-heading">5</h2>
       <div class="section_in">
         <h1>유저 crud</h1>
       </div>
@@ -393,13 +657,13 @@
 <div class="etc container" style="display: none;">
   <main class="sections-container">
     <div class="section">
-      <h3 class="section-heading">6</h3>
+      <h2 class="section-heading">6</h2>
       <div class="section_in">
         <h1>etc</h1>
       </div>
     </div>
     <div class="section">
-      <h3 class="section-heading">6</h3>
+      <h2 class="section-heading">6</h2>
       <div class="section_in">
         <h1>etc</h1>
       </div>

@@ -15,14 +15,15 @@ import java.time.format.DateTimeFormatter;
 public abstract class TimeStamped {
 
 	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
+	public static final DateTimeFormatter FORMATTER_DATE = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	@CreatedDate
 	@Column(updatable = false)
 	private LocalDateTime createdDate;
 
 	@LastModifiedDate
-	@Column
+	@Column(updatable = false)
 	private LocalDateTime modifiedDate;
+
 
 	public String getCreatedDateFormatted() {
 		return createdDate.format(FORMATTER);
@@ -30,6 +31,14 @@ public abstract class TimeStamped {
 
 	public String getModifiedDateFormatted() {
 		return modifiedDate.format(FORMATTER);
+	}
+
+	public String getCreatedDateFormatted(DateTimeFormatter formatter) {
+		return createdDate.format(formatter);
+	}
+
+	public String getModifiedDateFormatted(DateTimeFormatter formatter) {
+		return modifiedDate.format(formatter);
 	}
 }
 
