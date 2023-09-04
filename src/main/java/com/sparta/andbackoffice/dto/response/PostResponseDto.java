@@ -1,6 +1,7 @@
 package com.sparta.andbackoffice.dto.response;
 
 import com.sparta.andbackoffice.entity.Post;
+import com.sparta.andbackoffice.entity.TimeStamped;
 import lombok.Getter;
 
 @Getter
