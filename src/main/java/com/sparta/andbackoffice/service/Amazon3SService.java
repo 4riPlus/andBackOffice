@@ -25,6 +25,9 @@ public class Amazon3SService {
 
 	private final AmazonS3Client amazonS3Client;
 
+	/**
+	 * S3로 파일 업로드
+	 */
 	public List<S3FileDto> uploadFiles(String fileType, List<MultipartFile> multipartFiles) {
 
 		List<S3FileDto> s3files = new ArrayList<>();
@@ -45,9 +48,11 @@ public class Amazon3SService {
 
 				String keyName = uploadFilePath + "/" + uploadFileName; // ex) 구분/년/월/일/파일.확장자
 
+				// S3에 폴더 및 파일 업로드
 				amazonS3Client.putObject(
 						new PutObjectRequest(bucketName, keyName, inputStream, objectMetadata));
 
+				// S3에 업로드한 폴더 및 파일 URL
 				uploadFileUrl = amazonS3Client.getUrl(bucketName, keyName).toString();
 
 			} catch (IOException e) {
@@ -67,6 +72,9 @@ public class Amazon3SService {
 		return s3files;
 	}
 
+	/**
+	 * S3에 업로드된 파일 삭제
+	 */
 	public String deleteFile(String uploadFilePath, String uuidFileName) {
 
 		String result = "success";
@@ -86,11 +94,17 @@ public class Amazon3SService {
 		return result;
 	}
 
+	/**
+	 * UUID 파일명 반환
+	 */
 	public String getUuidFileName(String fileName) {
 		String ext = fileName.substring(fileName.indexOf(".") + 1);
 		return UUID.randomUUID().toString() + "." + ext;
 	}
 
+	/**
+	 * 년/월/일 폴더명 반환
+	 */
 	private String getFolderName() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 		Date date = new Date();
