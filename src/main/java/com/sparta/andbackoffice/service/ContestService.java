@@ -13,9 +13,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
-import java.util.List;
 
 
 @Service
@@ -84,6 +83,7 @@ public class ContestService {
 		);
 	}
 
+	@Transactional
 	@Scheduled(cron = "0 0 0 * * ?") //매일 자정에 실행됨
 	public void updateContestStatus(){
 		log.info("Service - updateStatus : 시작");
@@ -92,6 +92,7 @@ public class ContestService {
 				.forEach(contest -> {  // 반복 루프 ContestStatus메서드 호출해서 상태코드 설정
 					ContestStatus status = contestStatus(contest);
 					contest.setStatus(status); //contest 객체에 set
+					log.info("상태코드 update확인 ID {}: {}", contest.getId(), status);
 				});
 
 		log.info("Service - updateStatus : 끝");
@@ -104,13 +105,13 @@ public class ContestService {
 		LocalDateTime endDateMinus3Days = endDate.minusDays(3);
 
 		if (currentDateTime.isBefore(startDate)) {
-			return ContestStatus.UPCOMING;
-		} else if (currentDateTime.isEqual(startDate) || currentDateTime.isEqual(endDate) || currentDateTime.isBefore(endDate)) {
-			return ContestStatus.ONGOING;
+			return ContestStatus.UPCOMING;  //접수예정
+		} else if (currentDateTime.isEqual(startDate) || currentDateTime.isBefore(endDate)) {
+			return ContestStatus.ONGOING; //접수중
 		} else if (currentDateTime.isBefore(endDateMinus3Days)) {
-			return ContestStatus.CLOSING;
+			return ContestStatus.CLOSING; //마감임박
 		} else {
-			return ContestStatus.CLOSED;
+			return ContestStatus.CLOSED; //마감
 		}
 	}
 }

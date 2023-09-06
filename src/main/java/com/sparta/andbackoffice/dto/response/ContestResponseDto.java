@@ -13,7 +13,7 @@ public class ContestResponseDto {
     private String company;
     private LocalDateTime endDate;
     private LocalDateTime startDate;
-    private ContestStatus status;
+    private String status;
     private String homepage;
     private String contents;
     private Long contestViews;
@@ -24,9 +24,10 @@ public class ContestResponseDto {
         this.company = contest.getCompany();
         this.endDate = contest.getEndDate();
         this.startDate = contest.getStartDate();
-        this.status = contest.getStatus();
+        this.status = contest.getStatus().getDisplayText();
         this.homepage = contest.getHomepage();
         this.contents = contest.getContents();
         this.contestViews = contest.getContestViews();
     }
+
 }
