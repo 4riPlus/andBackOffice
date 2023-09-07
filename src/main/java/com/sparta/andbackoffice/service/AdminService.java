@@ -33,16 +33,7 @@ public class AdminService {
 	private final JwtUtil jwtUtil;
 	private final RedisTemplate<String, String> redisTemplate;
 
-	public ResponseEntity<Objects> signup(SignupRequestDto requestDto) {
-		String userId = requestDto.getAdminName();
-		String password = passwordEncoder.encode(requestDto.getAdminPassword());
-		Long number = requestDto.getCompanyNo();
 
-		Admin admin = new Admin(number, userId, password);
-		adminRepository.save(admin);
-
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
 
 	public void login(LoginRequestDto requestDto) {
 		String name = requestDto.getAdminName();

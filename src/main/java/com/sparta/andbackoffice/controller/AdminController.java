@@ -27,10 +27,6 @@ public class AdminController {
 	private final AdminService adminService;
 	private final JwtUtil jwtUtil;
 
-	@PostMapping("/signup")
-	public ResponseEntity<?> signUp(@RequestBody SignupRequestDto requestDto) {
-		return adminService.signup(requestDto);
-	}
 
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody LoginRequestDto requestDto, HttpServletResponse response) {
