@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Website</title>
+  <link rel="icon" href="https://i.postimg.cc/YqTT15xb/image.png">
+  <title>&nd, admin</title>
+<!--  <link rel="stylesheet" href="/main.css"/>-->
   <style>
     /* Reset some default styles */
     body, h1, h2, p, ul, li {
@@ -18,7 +20,7 @@
     /* Header Styles */
     .logo img {
       margin-top: 10px;
-     margin-left: 20px;
+      margin-left: 20px;
       max-width: 150px;
       height: auto;
     }
@@ -171,21 +173,18 @@
       color: white;
     }
     /* 자유게시판 CSS */
-    .post-wrap {
-      margin: 20px;
-      padding: 20px;
-      background-color: #f5f5f5;
-      border-radius: 10px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    }
+    /*.post-wrap {*/
+    /*  margin: 20px;*/
+    /*  padding: 20px;*/
+    /*}*/
 
-    .post-title {
-      margin-bottom: 20px;
-    }
+    /*.post-title {*/
+    /*  margin-bottom: 20px;*/
+    /*}*/
 
-    .post-title strong {
-      font-size: 1.3rem;
-    }
+    /*.post-title strong {*/
+    /*  font-size: 1.3rem;*/
+    /*}*/
 
     .post-title p {
       margin-top: 5px;
@@ -198,7 +197,7 @@
     }
 
     .post-list > div {
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px;
       font-size: 0;
     }
 
@@ -295,8 +294,14 @@
       border-left: 1px solid #ddd;
     }
   </style>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+          integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
   <script>
     // 자유게시판 페이징 출력
+    const pageSize = 10;
+    const pageBtnSize = 5;
     function showPosts(page, size) {
       if(page <= 0) {
         page = 1;
@@ -304,22 +309,17 @@
 
       $.ajax({
         type: 'GET',
-        url: `/api/posts?page=${page}&size=${size}`,
+        url: `/api/admin/posts?page=${page}&size=${size}`
       })
               .done(function (response, status, xhr) {
                 let pages = response['totalPages'];
-
+                console.log(pageSize);
                 if(page > pages) {
                   page = pages;
                 }
 
                 let html = `
-                    <div class="post-wrap">
-                      <div class="post-title">
-                        <strong>자유게시판</strong>
-                        <p>자유로운 정보 공유와 공모전을 위한 커뮤니티입니다.</p>
-                      </div>
-                      <div class="post-list-wrap">
+
                           <div class="post-list">
                             <div class="top">
                               <div class="num">번호</div>
@@ -375,8 +375,8 @@
                       </div>
                     </div>
                 `;
-                $(".main").empty();
-                $(".main").append(html);
+                $(".list").empty();
+                $(".list").append(html);
               })
               .fail(function(response) {
                 alert("자유게시글 조회 실패");
@@ -506,41 +506,40 @@
       alert("게시물이 삭제되었습니다."); // 임시로 경고창을 띄움
     }
   </script>
-    <script src="/js/post.js"></script>
 </head>
 <body>
 <header>
   <div class="logo">
-  <ul>
-    <img src="https://i.postimg.cc/T3KxY0gd/2.png" alt="Logo">
-    <li><a id="home" href="#">홈</a></li>
-    <li><a id="post" href="#" onclick="showPosts(1,pageSize)">최근 게시글</a></li>
-    <li><a id="report-post" href="#">신고된 게시글/댓글 관리</a></li>
-    <li><a id="contest" href="#">공지 및 공모전 관리</a></li>
-    <li><a id="category" href="#">카테고리 관리</a></li>
-    <li><a id="user" href="#">유저 관리</a></li>
-    <li><a id="etc" href="#">기타 이용약관</a></li>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="auth-buttons">
-      <span id="profile-text" href="javascript:logout()">로그아웃</span> </div>
-  </ul>
+    <ul>
+      <img src="https://i.postimg.cc/T3KxY0gd/2.png" alt="Logo">
+      <li><a id="home" href="#">홈</a></li>
+      <li><a id="post" href="#" onclick="showPosts(1,pageSize)">최근 게시글</a></li>
+      <li><a id="report-post" href="#">신고된 게시글/댓글 관리</a></li>
+      <li><a id="contest" href="#">공지 및 공모전 관리</a></li>
+      <li><a id="category" href="#">카테고리 관리</a></li>
+      <li><a id="user" href="#">유저 관리</a></li>
+      <li><a id="etc" href="#">기타 이용약관</a></li>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="auth-buttons">
+        <span id="profile-text" href="javascript:logout()">로그아웃</span> </div>
+    </ul>
   </div>
   <div class="cd1">
   </div>
@@ -551,8 +550,8 @@
     <div class="section">
       <h2 class="section-heading"><&ND> 최근 방문자 수</h2>
       <div class="section_in">
-      <h1>이게된다??</h1>
-    </div>
+        <h1>이게된다??</h1>
+      </div>
     </div>
     <div class="section">
       <h2 class="section-heading">최근 신고된 게시글 추이</h2>
@@ -569,13 +568,13 @@
       <h2 class="section-heading">최근 게시글 전체 조회</h2>
       <div class="section_in">
         <div class="search-bar">
-          <input type="text" placeholder="게시물 검색">
+          <input type="text" placeholder="게시물 검색"><br><br><br><br>
           <div class="search-icon">
             <img src="https://i.postimg.cc/MT8tf3Qy/searchmagnifierinterfacesymbol-79894.png" alt="Search Icon">
           </div>
         </div>
-        <div class="post-list">
-          <!-- 게시글 목록이 여기에 추가될 것입니다. -->
+        <div class="list">
+<!--          불러 온 게시물 노출영역-->
         </div>
         <div class="delete-button">
           <a onclick="deletePost()">삭제</a>
@@ -660,33 +659,33 @@
       <div class="section_in">
         <div id="footer" class="re_text" module="Layout_footer">
 
-                <h3>제 1장 총칙</h3>
-                <br>
-                <strong>제 1 조 (목 적)</strong><br>
-                이 약관은 주식회사 사리추가(이하 "회사"라고 합니다)가
-                주식회사 사리추가 홈페이지(이하 "사이트"라 합니다)를 통해
-                제공하는 모든 서비스의 이용조건 및 절차에 관한 사항과
-                기타 필요한 사항을 정함을 목적으로 합니다. <br>
-
-                <br>
-                <strong>제 2 조 (정 의)</strong><br>
-                이 약관에서 사용하는 용어의 정의는 다음과 같습니다.<br>
-                1. "이용자"라 함은 사이트에 접속하여 이 약관에 따라 사이트가 제공하는 서비스를 이용하는 회원을 말합니다.<br>
-                2. "회원"이라 함은 사이트에 개인정보를 제공하여 회원등록을 한 자로서, 사이트의 정보를 지속적으로 제공받으며, 사이트가 제공하는 서비스를 계속적으로 이용할 수 있는 자를 말합니다.<br>
-                3. "비회원"이라 함은 회원에 가입하지 않고 회사 사이트에서 제공하는 서비스를 이용하는 자를 말합니다.<br>
-
-                <br>
-                <strong>제 3 조 (약관의 명시와 변경)</strong><br>
-                1. 회사는 합리적인 사유가 있는 경우에 이 약관을 개정할 수 있으며, 약관이 개정된 경우에는 적용일자 및 개정사유를 명시하여 현행약관과 함께 사이트의 초기화면에 그 적용일자 7일 이전부터 적용일자 전일까지 이를 공지합니다.<br>
-                2. 회사는 약관의 규제등에 관한 법률, 전자거래 기본법, 전자서명법, 정보통신망 이용 촉진등에 관한 법률, 소비자 보호법 등 관련법을 위배하지 않는 범위에서 이 약관을 개정할 수 있습니다.
-                3. 회원은 변경된 약관 사항에 동의하지 않으면 서비스 이용을 중단하고 이용계약을 해지할 수 있습니다. <br>
-
-                <br>
-                <strong>제 4 조 (약관 외 준칙)</strong><br>
-                이 약관에 명시되지 않은 사항이 관계 법령에 규정되어 있을 경우에는 관련 법령 규정에 따릅니다.<br>
+          <h3>제 1장 총칙</h3>
           <br>
-                 <h3>제 2장 회원가입 및 서비스 이용</h3>
-                  <br>
+          <strong>제 1 조 (목 적)</strong><br>
+          이 약관은 주식회사 사리추가(이하 "회사"라고 합니다)가
+          주식회사 사리추가 홈페이지(이하 "사이트"라 합니다)를 통해
+          제공하는 모든 서비스의 이용조건 및 절차에 관한 사항과
+          기타 필요한 사항을 정함을 목적으로 합니다. <br>
+
+          <br>
+          <strong>제 2 조 (정 의)</strong><br>
+          이 약관에서 사용하는 용어의 정의는 다음과 같습니다.<br>
+          1. "이용자"라 함은 사이트에 접속하여 이 약관에 따라 사이트가 제공하는 서비스를 이용하는 회원을 말합니다.<br>
+          2. "회원"이라 함은 사이트에 개인정보를 제공하여 회원등록을 한 자로서, 사이트의 정보를 지속적으로 제공받으며, 사이트가 제공하는 서비스를 계속적으로 이용할 수 있는 자를 말합니다.<br>
+          3. "비회원"이라 함은 회원에 가입하지 않고 회사 사이트에서 제공하는 서비스를 이용하는 자를 말합니다.<br>
+
+          <br>
+          <strong>제 3 조 (약관의 명시와 변경)</strong><br>
+          1. 회사는 합리적인 사유가 있는 경우에 이 약관을 개정할 수 있으며, 약관이 개정된 경우에는 적용일자 및 개정사유를 명시하여 현행약관과 함께 사이트의 초기화면에 그 적용일자 7일 이전부터 적용일자 전일까지 이를 공지합니다.<br>
+          2. 회사는 약관의 규제등에 관한 법률, 전자거래 기본법, 전자서명법, 정보통신망 이용 촉진등에 관한 법률, 소비자 보호법 등 관련법을 위배하지 않는 범위에서 이 약관을 개정할 수 있습니다.
+          3. 회원은 변경된 약관 사항에 동의하지 않으면 서비스 이용을 중단하고 이용계약을 해지할 수 있습니다. <br>
+
+          <br>
+          <strong>제 4 조 (약관 외 준칙)</strong><br>
+          이 약관에 명시되지 않은 사항이 관계 법령에 규정되어 있을 경우에는 관련 법령 규정에 따릅니다.<br>
+          <br>
+          <h3>제 2장 회원가입 및 서비스 이용</h3>
+          <br>
           <strong>제 5 조 (서비스 이용 및 제한)</strong><br>
           1. 회원은 사이트를 회사의 업무상 또는 기술상 특별한 지장이 없는 한 연중무휴, 1일 24시간 이용할 수 있습니다.<br>
           2. 사이트에서 제공하는 서비스 중 일부는 회원에 가입하여 회사에서 인정한 ID와 비밀번호를 통해서만 서비스를 받을 수 있습니다.<br>
