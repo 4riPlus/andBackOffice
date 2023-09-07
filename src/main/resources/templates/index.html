@@ -245,16 +245,6 @@
       width: 10%;
     }
 
-    .post-btn button {
-      margin: 5px;
-      float: right;
-      border: none;
-      border-radius: 6px;
-      background-color: lightsalmon;
-      color: white;
-      cursor: pointer;
-    }
-
     .post-page {
       margin-top : 20px;
       text-align: center;
@@ -345,9 +335,6 @@
 
                 html += `
                     </div>
-                     <div class="post-btn">
-                       <button>글쓰기</button>
-                     </div>
                      <div class="post-page">
                         <a onclick="showPosts(1,pageSize)" class="bt first"><<</a>
                         <a onclick="showPosts(${page}-1,pageSize)" class="bt prev"><</a>
