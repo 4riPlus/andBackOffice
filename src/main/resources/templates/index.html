@@ -283,6 +283,18 @@
     .post-page a:first-child {
       border-left: 1px solid #ddd;
     }
+    /* Category Management Styles */
+    .category-management-container {
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+      margin-left: 200px; /* Adjust this value as needed to move it to the right */
+    }
+
+
+
   </style>
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"
@@ -492,6 +504,121 @@
       // 여기에 실제 삭제 로직을 추가하세요.
       alert("게시물이 삭제되었습니다."); // 임시로 경고창을 띄움
     }
+    function updateCategoryListTable() {
+      // Make an AJAX request to fetch the category list
+      fetch('/api/admin/category')
+              .then(response => response.json())
+              .then(data => {
+                const categoryTable = document.getElementById('categoryTable').getElementsByTagName('tbody')[0];
+                categoryTable.innerHTML = ''; // Clear the current table content
+
+                data.categoryList.forEach(category => {
+                  const row = categoryTable.insertRow();
+                  const cell1 = row.insertCell(0);
+                  const cell2 = row.insertCell(1);
+                  const cell3 = row.insertCell(2);
+
+                  cell1.innerHTML = category.id;
+                  cell2.innerHTML = category.categoryName;
+
+                  // Add buttons for update and delete actions
+                  const updateButton = document.createElement('button');
+                  updateButton.textContent = 'Update';
+                  updateButton.addEventListener('click', function () {
+                    // Handle update action here, you can use category.id to identify the category to update
+                    // Example: open a modal for updating the category
+                    document.getElementById('updateCategoryId').value = category.id;
+                    document.getElementById('updateCategoryName').value = category.categoryName;
+                  });
+
+                  const deleteButton = document.createElement('button');
+                  deleteButton.textContent = 'Delete';
+                  deleteButton.addEventListener('click', function () {
+                    // Handle delete action here, you can use category.id to identify the category to delete
+                    // Example: show a confirmation dialog and call the deleteCategory function
+                    deleteCategory(category.id);
+                  });
+
+                  cell3.appendChild(updateButton);
+                  cell3.appendChild(deleteButton);
+                });
+              })
+              .catch(error => console.error('Error fetching category list:', error));
+    }
+
+    // Function to create a category
+    // Function to create a category
+    function createCategory(categoryName) {
+      // Make an AJAX POST request to create a new category
+      fetch('/api/admin/category', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ categoryName }),
+      })
+              .then(response => response.json())
+              .then(data => {
+                alert(data.message);
+                updateCategoryListTable(); // Refresh the category list after creating a new category
+              })
+              .catch(error => console.error('Error creating category:', error));
+    }
+
+    // Add event listener for the create category form submission
+    document.getElementById('createCategoryForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const categoryName = document.getElementById('categoryName').value;
+      createCategory(categoryName);
+    });
+
+
+    // Function to update a category
+    // Function to update a category
+    function updateCategory(id, categoryName) {
+      // Make an AJAX PUT request to update the category
+      fetch(`/api/admin/category/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ categoryName }),
+      })
+              .then(response => response.json())
+              .then(data => {
+                alert(data.message);
+                updateCategoryListTable(); // Refresh the category list after updating a category
+              })
+              .catch(error => console.error('Error updating category:', error));
+    }
+
+    // Add event listener for the update category form submission
+    document.getElementById('updateCategoryForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const categoryId = document.getElementById('updateCategoryId').value;
+      const categoryName = document.getElementById('updateCategoryName').value;
+      updateCategory(categoryId, categoryName);
+    });
+
+
+    // Function to delete a category
+    // Function to delete a category
+    function deleteCategory(id) {
+      // Make an AJAX DELETE request to delete the category
+      fetch(`/api/admin/category/${id}`, {
+        method: 'DELETE',
+      })
+              .then(response => response.json())
+              .then(data => {
+                alert(data.message);
+                updateCategoryListTable(); // Refresh the category list after deleting a category
+              })
+              .catch(error => console.error('Error deleting category:', error));
+    }
+
+
+    // Call the updateCategoryListTable function initially to populate the table
+    updateCategoryListTable();
   </script>
 </head>
 <body>
@@ -561,7 +688,7 @@
           </div>
         </div>
         <div class="list">
-<!--          불러 온 게시물 노출영역-->
+          <!--          불러 온 게시물 노출영역-->
         </div>
         <div class="delete-button">
           <a onclick="deletePost()">삭제</a>
@@ -605,22 +732,62 @@
   </main>
 </div>
 
-<div class="category container" style="display: none;">
-  <main class="sections-container">
-    <div class="section">
-      <h2 class="section-heading">4</h2>
-      <div class="section_in">
-        <h1>카테고리 crud</h1>
-      </div>
-    </div>
-    <div class="section">
-      <h2 class="section-heading">4</h2>
-      <div class="section_in">
-        <h1>카테고리 crud</h1>
-      </div>
-    </div>
-  </main>
+<div class="category-management-container" style="display: none;">
+<main class="sections-container">
+  <div class="section">
+    <h2 class="section-heading">카테고리 관리</h2>
+    <div class="section_in">
+
+  <section class="category-form">
+    <h1>Create Category</h1>
+    <form id="createCategoryForm">
+      <label for="categoryName">Category Name:</label>
+      <input type="text" id="categoryName" name="categoryName" required>
+      <button type="submit">Create</button>
+    </form>
+  </section>
+
+  <!-- Category List Table -->
+  <section class="category-list">
+    <h2>Category List</h2>
+    <table id="categoryTable">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Category Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Category items will be dynamically added here -->
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Update Category Form -->
+  <section class="category-form">
+    <h2>Update Category</h2>
+    <form id="updateCategoryForm">
+      <label for="updateCategoryId">Category ID:</label>
+      <input type="text" id="updateCategoryId" name="updateCategoryId" required>
+      <label for="updateCategoryName">New Category Name:</label>
+      <input type="text" id="updateCategoryName" name="updateCategoryName" required>
+      <button type="submit">Update</button>
+    </form>
+  </section>
+
+  <!-- Delete Category Form -->
+  <section class="category-form">
+    <h2>Delete Category</h2>
+    <form id="deleteCategoryForm">
+      <label for="deleteCategoryId">Category ID:</label>
+      <input type="text" id="deleteCategoryId" name="deleteCategoryId" required>
+      <button type="submit">Delete</button>
+    </form>
+  </section>
+</main>
 </div>
+
+
 
 <div class="user container" style="display: none;">
   <main class="sections-container">
