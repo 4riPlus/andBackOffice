@@ -25,9 +25,6 @@ public class BottomCategory {
     private MiddleCategory middleCategory;
 
     @OneToMany(mappedBy = "bottomCategory", orphanRemoval = true)
-    private List<Board> boards;
-
-    @OneToMany(mappedBy = "bottomCategory", orphanRemoval = true)
     private List<Contest_BottomCategory> contestList = new ArrayList<>();
 
     public  BottomCategory (String categoryName){
