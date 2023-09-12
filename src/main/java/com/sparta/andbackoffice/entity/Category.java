@@ -20,8 +20,8 @@ public class Category {
     @Column(name = "category_name", nullable = false)
     private String categoryName;
 
-//    @OneToMany(mappedBy = "category", orphanRemoval = true)
-//    private List<MiddleCategory> middleCategories;
+    @OneToMany(mappedBy = "category", orphanRemoval = true)
+    private List<MiddleCategory> middleCategories;
 
     public Category(String categoryName) {
         this.categoryName = categoryName;

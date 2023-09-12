@@ -33,16 +33,25 @@ public class AdminService {
 	private final JwtUtil jwtUtil;
 	private final RedisTemplate<String, String> redisTemplate;
 
+	public ResponseEntity<Objects> signup(SignupRequestDto requestDto) {
+		String userId = requestDto.getAdminName();
+		String password = passwordEncoder.encode(requestDto.getAdminPassword());
+		Long number = requestDto.getCompanyNo();
 
+		Admin admin = new Admin(number, userId, password);
+		adminRepository.save(admin);
+
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 
 	public void login(LoginRequestDto requestDto) {
 		String name = requestDto.getAdminName();
 		String password = requestDto.getAdminPassword();
 
 		Admin admin = adminRepository.findByAdminName(name).orElseThrow(
-				() -> new IllegalArgumentException("회원을 찾을 수 없습니다.")
+				() -> new IllegalArgumentException("등록된 사용자가 없습니다.")
 		);
-		log.info("아이디 검증");
+		log.info("네임 검증");
 
 		if (!passwordEncoder.matches(password, admin.getAdminPassword())) {
 			log.info("비밀번호 검증");

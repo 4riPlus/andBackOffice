@@ -1,5 +1,6 @@
 package com.sparta.andbackoffice.controller;
 
+
 import com.sparta.andbackoffice.dto.request.AdminRequestDto;
 import com.sparta.andbackoffice.dto.request.LoginRequestDto;
 import com.sparta.andbackoffice.dto.request.SignupRequestDto;
@@ -27,11 +28,21 @@ public class AdminController {
 	private final AdminService adminService;
 	private final JwtUtil jwtUtil;
 
+	@PostMapping("/signup")
+	public ResponseEntity<?> signUp(@RequestBody SignupRequestDto requestDto) {
+		return adminService.signup(requestDto);
+	}
 
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody LoginRequestDto requestDto, HttpServletResponse response) {
-		adminService.login(requestDto);
+		try {
+			adminService.login(requestDto);
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.badRequest().body(new ApiResponseDto("회원을 찾을 수 없습니다.", HttpStatus.BAD_REQUEST.value()));
+		}
+
 		response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(requestDto.getAdminName()));
+
 		return ResponseEntity.ok().body(new ApiResponseDto("로그인 성공", HttpStatus.CREATED.value()));
 	}
 
