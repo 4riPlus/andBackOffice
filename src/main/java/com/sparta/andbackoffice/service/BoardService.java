@@ -5,6 +5,8 @@ import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.BoardResponseDto;
 import com.sparta.andbackoffice.entity.Board;
 
+import java.util.List;
+
 public interface BoardService {
 
 	/**
@@ -25,6 +27,12 @@ public interface BoardService {
 	 */
 	BoardResponseDto getBoard(Long categoryId, Long boardId);
 
+	/**
+	 * 게시글 전체 조회
+	 *
+	 * @return : 게시글 정보 반환
+	 */
+	List<BoardResponseDto> getAllBoards();
 	/**
 	 * 게시글 수정
 	 *

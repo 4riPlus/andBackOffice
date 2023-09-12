@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j(topic = "BoardController")
 @RestController
 @RequiredArgsConstructor
@@ -42,6 +44,13 @@ public class BoardController {
 
 		log.info("Controller - getBoard : 끝");
 		return ResponseEntity.status(HttpStatus.OK).body(result);
+	}
+
+	//글 전체조회
+	@GetMapping("/getAll")
+	public ResponseEntity<List<BoardResponseDto>> getAllBoards() {
+		List<BoardResponseDto> boards = boardService.getAllBoards();
+		return ResponseEntity.ok(boards);
 	}
 
 	// 글 수정
