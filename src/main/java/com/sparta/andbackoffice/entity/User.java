@@ -24,9 +24,6 @@ public class User {
 	@Column(name = "password", nullable = false)
 	private String userPassword;
 
-	@Column(name = "email", nullable = false, unique = true)
-	private String userEmail;
-//   private enum role;
 
 	@Column(name = "nickname", nullable = false, unique = true)
 	private String nickname;
@@ -48,7 +45,6 @@ public class User {
 	public User(String userName, String userPassword, String userEmail) {
 		this.userName = userName;
 		this.userPassword = userPassword;
-		this.userEmail = userEmail;
 	}
 	public User(Long userId) {
 		this.userId = userId;

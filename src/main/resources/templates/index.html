@@ -1,173 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="https://i.postimg.cc/YqTT15xb/image.png">
-  <title>&nd, admin</title>
-<!--  <link rel="stylesheet" href="/main.css"/>-->
-  <style>
-    /* Reset some default styles */
-    body, h1, h2, p, ul, li {
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://i.postimg.cc/YqTT15xb/image.png">
+    <title>&nd, admin</title>
+    <!--  <link rel="stylesheet" href="/main.css"/>-->
+    <style>
+        /* Reset some default styles */
+        body, h1, h2, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
 
-    body {
-      font-family: Arial, sans-serif;
-    }
+        body {
+            font-family: Arial, sans-serif;
+        }
 
-    /* Header Styles */
-    .logo img {
-      margin-top: 10px;
-      margin-left: 20px;
-      max-width: 150px;
-      height: auto;
-    }
-
-
-    #profile-text {
-      /* 추가된 스타일 */
-      display: inline-block;
-      margin-left: 40px;
-      color: #000;
-      font-weight: bold;
-    }
-    #profile-text:hover  {
-      /* 추가된 스타일 */
-      display: inline-block;
-      margin-left: 40px;
-      color: #fff;
-      font-weight: bold;
-    }
-    /* Container Styles */
-    .container {
-      display: flex;
-      margin: 20px;
-    }
-
-    main {
-      flex: 3;
-      padding: 20px;
-      background-color: #fff;
-    }
-    /* Banner Styles */
-    .banner img {
-      width: 100%;
-      height: auto;
-      margin-bottom: 20px;
-    }
-    .search-bar {
-      display: flex;
-      align-items: center;
-    }
-    .search-bar input[type="text"] {
-      padding: 10px;
-      border: 2px solid lightgray;
-      border-radius: 20px;
-      width: 500px; /* Adjust the width as needed */
-    }
-    .search-icon {
-      margin-left: -40px;
-      padding: 8px;
-      background-color: white;
-      border-radius: 50%;
-      cursor: pointer;
-      width: 17px;
-      height: 17px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .search-icon img {
-      max-width: 90%;
-      max-height: 90%;
-    }
-    /* Contest List Styles */
-    .section {
-      /* 추가된 스타일 */
-      flex: 1;
-      padding: 5px;
-    }
-    .sections-container {
-      margin-left: 150px;
-      height: 750px;
-      display: flex;
-      gap: 30px;
-      background-color: #fff;
-    }
-    .section_in{
-      height: 700px;
-    }
-    .section-heading {
-      margin-top: 1px;
-      text-align: center;
-    }
+        /* Header Styles */
+        .logo img {
+            margin-top: 10px;
+            margin-left: 20px;
+            max-width: 150px;
+            height: auto;
+        }
 
 
-    /* Responsive Styles */
-    @media screen and (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
-    }
+        #profile-text {
+            /* 추가된 스타일 */
+            display: inline-block;
+            margin-left: 40px;
+            color: #000;
+            font-weight: bold;
+        }
 
-    ul {
-      list-style-type: none;
-      padding: 0px;
-      margin: 0px;
-      width: 200px;
-      background: linen;
-      height: 100%;
-      overflow: auto;
-      position: fixed;
-    }
+        #profile-text:hover {
+            /* 추가된 스타일 */
+            display: inline-block;
+            margin-left: 40px;
+            color: #fff;
+            font-weight: bold;
+        }
 
-    li a {
-      margin-top: 20px;
-      text-decoration: none;
-      padding: 10px;
-      display: block;
-      color: #000;
-      text-align: center;
-      font-weight: bold;
-    }
+        /* Container Styles */
+        .container {
+            display: flex;
+            margin: 20px;
+        }
 
-    li a:hover {
-      background: lightsalmon;
-      color: #fff;
-    }
+        main {
+            flex: 3;
+            padding: 20px;
+            background-color: #fff;
+        }
 
-    .cd1 {
-      margin-left: 20px;
-      height: 100px;
-      background-color: linen;
-    }
+        /* Banner Styles */
+        .banner img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
 
-    .auth-buttons {
-      width: 149px;
-      height: 25px;
-      margin-left: 10px;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 20px;
-      background-color: lightsalmon;
-      color: white;
-      cursor: pointer;
-    }
-    .delete-button {
-      position: fixed; /* 요소를 화면에 고정 */
-      bottom: 50px; /* 아래 여백 조절 */
-      right: 50px; /* 오른쪽 여백 조절 */
-      z-index: 1; /* 다른 요소 위에 위치하도록 설정 */
-      background-color: lightsalmon;
-      color: black;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 10px;
+            border: 2px solid lightgray;
+            border-radius: 20px;
+            width: 500px; /* Adjust the width as needed */
+        }
+
+        .search-icon {
+            margin-left: -40px;
+            padding: 8px;
+            background-color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 17px;
+            height: 17px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-icon img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        /* Contest List Styles */
+        .section {
+            /* 추가된 스타일 */
+            flex: 1;
+            padding: 5px;
+        }
+
+        .sections-container {
+            margin-left: 200px;
+            height: 750px;
+            display: flex;
+            gap: 30px;
+            background-color: #fff;
+        }
+
+        .section_in {
+            height: 700px;
+        }
+
+        .section-heading {
+            margin-top: 1px;
+            text-align: center;
+        }
+
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0px;
+            margin: 0px;
+            width: 200px;
+            background: linen;
+            height: 100%;
+            overflow: auto;
+            position: fixed;
+        }
+
+        li a {
+            margin-top: 20px;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            color: #000;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        li a:hover {
+            background: lightsalmon;
+            color: #fff;
+        }
+
+        .cd1 {
+            margin-left: 20px;
+            height: 100px;
+            background-color: linen;
+        }
+
+        .auth-buttons {
+            width: 149px;
+            height: 25px;
+            margin-left: 10px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            background-color: lightsalmon;
+            color: white;
+            cursor: pointer;
+        }
+
+        .delete-button {
+            position: fixed; /* 요소를 화면에 고정 */
+            bottom: 50px; /* 아래 여백 조절 */
+            right: 50px; /* 오른쪽 여백 조절 */
+            z-index: 1; /* 다른 요소 위에 위치하도록 설정 */
+            background-color: lightsalmon;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
     .delete-button:hover {
       color: white;
@@ -189,123 +201,103 @@
       color: white;
     }
 
-    .post-title p {
-      margin-top: 5px;
-      font-size: 0.8rem;
-    }
+        .post-title p {
+            margin-top: 5px;
+            font-size: 0.8rem;
+        }
 
-    .post-list {
-      width: 100%;
-      border-top: 2px solid #000;
-    }
+        .post-list {
+            width: 100%;
+            border-top: 2px solid #000;
+        }
 
-    .post-list > div {
-      border-bottom: 1px;
-      font-size: 0;
-    }
+        .post-list > div {
+            border-bottom: 1px;
+            font-size: 0;
+        }
 
-    .post-list > div.top {
-      border-bottom: 1px solid #999;
-    }
+        .post-list > div.top {
+            border-bottom: 1px solid #999;
+        }
 
-    .post-list > div:last-child {
-      border-bottom: 1px solid #000;
-    }
+        .post-list > div:last-child {
+            border-bottom: 1px solid #000;
+        }
 
-    .post-list > div > div {
-      display: inline-block;
-      padding: 15px 0;
-      text-align: center;
-      font-size: 0.9rem;
-    }
+        .post-list > div > div {
+            display: inline-block;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
 
-    .post-list > div.top > div {
-      font-weight: bold;
-    }
+        .post-list > div.top > div {
+            font-weight: bold;
+        }
 
-    .post-list .num {
-      width: 10%;
-    }
+        .post-list .num {
+            width: 10%;
+        }
 
-    .post-list .title {
-      width: 50%;
-      text-align: left;
-    }
+        .post-list .title {
+            width: 50%;
+            text-align: left;
+        }
 
-    .post-list .top .title {
-      text-align: center;
-    }
+        .post-list .top .title {
+            text-align: center;
+        }
 
-    .post-list .writer {
-      width: 10%;
-    }
+        .post-list .writer {
+            width: 10%;
+        }
 
-    .post-list .date {
-      width: 20%;
-    }
+        .post-list .date {
+            width: 20%;
+        }
 
-    .post-list .count {
-      width: 10%;
-    }
+        .post-list .count {
+            width: 10%;
+        }
 
-    .post-page {
-      margin-top : 20px;
-      text-align: center;
-      font-size: 0;
-    }
+        .post-page {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0;
+        }
 
-    .post-page a {
-      display: inline-block;
-      width: 32px;
-      height: 32px;
-      box-sizing: border-box;
-      vertical-align: middle;
-      border: 1px solid #ddd;
-      border-radius: 7px;
-      border-left: 0;
-      line-height: 100%;
-    }
+        .post-page a {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            box-sizing: border-box;
+            vertical-align: middle;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+            border-left: 0;
+            line-height: 100%;
+        }
 
-    .post-page a.bt {
-      padding-top: 10px;
-      font-size: 1.0rem;
-      letter-spacing: -1px;
-    }
+        .post-page a.bt {
+            padding-top: 10px;
+            font-size: 1.0rem;
+            letter-spacing: -1px;
+        }
 
-    .post-page a.num {
-      padding-top: 9px;
-      font-size: 0.9rem;
-    }
+        .post-page a.num {
+            padding-top: 9px;
+            font-size: 0.9rem;
+        }
 
-    .post-page a.num.on {
-      border-color: #000;
-      background: #000;
-      color: #fff;
-    }
+        .post-page a.num.on {
+            border-color: #000;
+            background: #000;
+            color: #fff;
+        }
 
     .post-page a:first-child {
       border-left: 1px solid #ddd;
     }
-    /* Category Management Container Styles */
-    /*.category container {*/
-    /*  background-color: #fff;*/
-    /*  padding: 20px;*/
-    /*  border: 1px solid #ccc;*/
-    /*  border-radius: 10px;*/
-    /*  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
-    /*  margin: 20px auto;*/
-    /*  max-width: 1100px;*/
-    /*}*/
-
-    /*.category.container h2.section-heading {*/
-    /*  font-size: 24px;*/
-    /*  margin-bottom: 20px;*/
-    /*  color: #333;*/
-    /*  display: flex;*/
-    /*  flex-direction: column;*/
-    /*  justify-content: center;*/
-    /*  align-items: center;*/
-    /*}*/
 
     /* Center the content within the container */
     .section_in {
@@ -531,27 +523,28 @@
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"
           integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
-  <script>
-    // 자유게시판 페이징 출력
-    const pageSize = 10;
-    const pageBtnSize = 5;
-    function showPosts(page, size) {
-      if(page <= 0) {
-        page = 1;
-      }
+    <script>
+        // 자유게시판 페이징 출력
+        const pageSize = 10;
+        const pageBtnSize = 5;
 
-      $.ajax({
-        type: 'GET',
-        url: `/api/admin/posts?page=${page}&size=${size}`
-      })
-              .done(function (response, status, xhr) {
-                let pages = response['totalPages'];
-                console.log(pageSize);
-                if(page > pages) {
-                  page = pages;
-                }
+        function showPosts(page, size) {
+            if (page <= 0) {
+                page = 1;
+            }
 
-                let html = `
+            $.ajax({
+                type: 'GET',
+                url: `/api/admin/posts?page=${page}&size=${size}`
+            })
+                .done(function (response, status, xhr) {
+                    let pages = response['totalPages'];
+                    console.log(pageSize);
+                    if (page > pages) {
+                        page = pages;
+                    }
+
+                    let html = `
 
                           <div class="post-list">
                             <div class="top">
@@ -562,10 +555,10 @@
                               <div class="count">조회수</div>
                             </div>`;
 
-                let startNum = (page-1) * pageSize;
-                response['content'].forEach((post) => {
-                  startNum += 1;
-                  html += `
+                    let startNum = (page - 1) * pageSize;
+                    response['content'].forEach((post) => {
+                        startNum += 1;
+                        html += `
                         <div>
                           <div class="num">${startNum}</div>
                           <div class="title"><a href="#">${post.title}</a></div>
@@ -574,31 +567,31 @@
                           <div class="count">${post.communityPostViews}</div>
                         </div>
                     `;
-                });
+                    });
 
-                html += `
+                    html += `
                     </div>
                      <div class="post-page">
                         <a onclick="showPosts(1,pageSize)" class="bt first"><<</a>
                         <a onclick="showPosts(${page}-1,pageSize)" class="bt prev"><</a>
                 `;
 
-                let startPage = (Math.floor(page / pageBtnSize) * pageBtnSize) + 1;
-                let endPage = (startPage + pageBtnSize) <= pages ? (startPage + pageBtnSize) : pages;
+                    let startPage = (Math.floor(page / pageBtnSize) * pageBtnSize) + 1;
+                    let endPage = (startPage + pageBtnSize) <= pages ? (startPage + pageBtnSize) : pages;
 
-                for(let i=startPage;i<=endPage;i++) {
-                  if(page === i) {
-                    html += `
+                    for (let i = startPage; i <= endPage; i++) {
+                        if (page === i) {
+                            html += `
                             <a onclick="showPosts(${i},pageSize)" class="num on">${i}</a>
                         `;
-                  } else {
-                    html += `
+                        } else {
+                            html += `
                             <a onclick="showPosts(${i},pageSize)" class="num">${i}</a>
                         `;
-                  }
-                }
+                        }
+                    }
 
-                html += `
+                    html += `
                             <a onclick="showPosts(${page}+1,pageSize)" class="bt first">></a>
                             <a onclick="showPosts(${pages},pageSize)" class="bt prev">>></a>
                           </div>
@@ -739,105 +732,106 @@
         contentType: false,
         success: function (response) {
 
-          Cookies.remove('Authorization', {path: '/'}); // 쿠키삭제
-          // Cookies.set('Authorization', token, {path: '/', expires: expirationDate});
-          // 요청 성공 시 처리할
-          alert("로그아웃 성공 !");
-          window.location.href = host + '/api/view/user/login';
-        },
-        error: function (xhr, status, error) {
-          console.log(xhr);
-          alert("로그아웃 실패 !");
+                    Cookies.remove('Authorization', {path: '/'}); // 쿠키삭제
+                    // Cookies.set('Authorization', token, {path: '/', expires: expirationDate});
+                    // 요청 성공 시 처리할
+                    alert("로그아웃 성공 !");
+                    window.location.href = host + '/api/view/user/login';
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr);
+                    alert("로그아웃 실패 !");
+                }
+            });
         }
-      });
-    }
-    document.addEventListener('DOMContentLoaded', function () {
-      const postMenu = document.querySelector('#post');
-      const homeMenu = document.querySelector('#home');
-      const reportMenu = document.querySelector('#report-post');
-      const contestMenu = document.querySelector('#contest');
-      const categoryMenu = document.querySelector('#category');
-      const userMenu = document.querySelector('#user');
-      const etcMenu = document.querySelector('#etc');
 
-      const homeContainer = document.querySelector('.home.container');
-      const postContainer = document.querySelector('.post.container');
-      const reportContainer = document.querySelector('.report.container');
-      const contestContainer = document.querySelector('.contest.container');
-      const categoryContainer = document.querySelector('.category.container');
-      const userContainer = document.querySelector('.user.container');
-      const etcContainer = document.querySelector('.etc.container');
+        document.addEventListener('DOMContentLoaded', function () {
+            const postMenu = document.querySelector('#post');
+            const homeMenu = document.querySelector('#home');
+            const reportMenu = document.querySelector('#report-post');
+            const contestMenu = document.querySelector('#contest');
+            const categoryMenu = document.querySelector('#category');
+            const userMenu = document.querySelector('#user');
+            const etcMenu = document.querySelector('#etc');
 
-      postMenu.addEventListener('click', function () {
-        homeContainer.style.display = 'none';
-        postContainer.style.display = 'block';
-        reportContainer.style.display = 'none';
-        contestContainer.style.display = 'none';
-        categoryContainer.style.display = 'none';
-        userContainer.style.display = 'none';
-        etcContainer.style.display = 'none';
-      });
+            const homeContainer = document.querySelector('.home.container');
+            const postContainer = document.querySelector('.post.container');
+            const reportContainer = document.querySelector('.report.container');
+            const contestContainer = document.querySelector('.contest.container');
+            const categoryContainer = document.querySelector('.category.container');
+            const userContainer = document.querySelector('.user.container');
+            const etcContainer = document.querySelector('.etc.container');
 
-      homeMenu.addEventListener('click', function () {
-        homeContainer.style.display = 'block';
-        postContainer.style.display = 'none';
-        reportContainer.style.display = 'none';
-        contestContainer.style.display = 'none';
-        categoryContainer.style.display = 'none';
-        userContainer.style.display = 'none';
-        etcContainer.style.display = 'none';
-      });
+            postMenu.addEventListener('click', function () {
+                homeContainer.style.display = 'none';
+                postContainer.style.display = 'block';
+                reportContainer.style.display = 'none';
+                contestContainer.style.display = 'none';
+                categoryContainer.style.display = 'none';
+                userContainer.style.display = 'none';
+                etcContainer.style.display = 'none';
+            });
 
-      reportMenu.addEventListener('click', function () {
-        homeContainer.style.display = 'none';
-        postContainer.style.display = 'none';
-        reportContainer.style.display = 'block';
-        contestContainer.style.display = 'none';
-        categoryContainer.style.display = 'none'; // 다른 컨테이너 숨기기
-        userContainer.style.display = 'none';
-        etcContainer.style.display = 'none';
-      });
+            homeMenu.addEventListener('click', function () {
+                homeContainer.style.display = 'block';
+                postContainer.style.display = 'none';
+                reportContainer.style.display = 'none';
+                contestContainer.style.display = 'none';
+                categoryContainer.style.display = 'none';
+                userContainer.style.display = 'none';
+                etcContainer.style.display = 'none';
+            });
 
-      contestMenu.addEventListener('click', function () {
-        homeContainer.style.display = 'none';
-        postContainer.style.display = 'none';
-        reportContainer.style.display = 'none';
-        contestContainer.style.display = 'block';
-        categoryContainer.style.display = 'none'; // 다른 컨테이너 숨기기
-        userContainer.style.display = 'none';
-        etcContainer.style.display = 'none';
-      });
+            reportMenu.addEventListener('click', function () {
+                homeContainer.style.display = 'none';
+                postContainer.style.display = 'none';
+                reportContainer.style.display = 'block';
+                contestContainer.style.display = 'none';
+                categoryContainer.style.display = 'none'; // 다른 컨테이너 숨기기
+                userContainer.style.display = 'none';
+                etcContainer.style.display = 'none';
+            });
 
-      categoryMenu.addEventListener('click', function () {
-        homeContainer.style.display = 'none';
-        postContainer.style.display = 'none';
-        reportContainer.style.display = 'none';
-        contestContainer.style.display = 'none';
-        categoryContainer.style.display = 'block';
-        userContainer.style.display = 'none';
-        etcContainer.style.display = 'none';
-      });
+            contestMenu.addEventListener('click', function () {
+                homeContainer.style.display = 'none';
+                postContainer.style.display = 'none';
+                reportContainer.style.display = 'none';
+                contestContainer.style.display = 'block';
+                categoryContainer.style.display = 'none'; // 다른 컨테이너 숨기기
+                userContainer.style.display = 'none';
+                etcContainer.style.display = 'none';
+            });
 
-      userMenu.addEventListener('click', function () {
-        homeContainer.style.display = 'none';
-        postContainer.style.display = 'none';
-        reportContainer.style.display = 'none';
-        contestContainer.style.display = 'none';
-        categoryContainer.style.display = 'none';
-        userContainer.style.display = 'block';
-        etcContainer.style.display = 'none';
-      });
+            categoryMenu.addEventListener('click', function () {
+                homeContainer.style.display = 'none';
+                postContainer.style.display = 'none';
+                reportContainer.style.display = 'none';
+                contestContainer.style.display = 'none';
+                categoryContainer.style.display = 'block';
+                userContainer.style.display = 'none';
+                etcContainer.style.display = 'none';
+            });
 
-      etcMenu.addEventListener('click', function () {
-        homeContainer.style.display = 'none';
-        postContainer.style.display = 'none';
-        reportContainer.style.display = 'none';
-        contestContainer.style.display = 'none';
-        categoryContainer.style.display = 'none';
-        userContainer.style.display = 'none';
-        etcContainer.style.display = 'block';
-      });
-    });
+            userMenu.addEventListener('click', function () {
+                homeContainer.style.display = 'none';
+                postContainer.style.display = 'none';
+                reportContainer.style.display = 'none';
+                contestContainer.style.display = 'none';
+                categoryContainer.style.display = 'none';
+                userContainer.style.display = 'block';
+                etcContainer.style.display = 'none';
+            });
+
+            etcMenu.addEventListener('click', function () {
+                homeContainer.style.display = 'none';
+                postContainer.style.display = 'none';
+                reportContainer.style.display = 'none';
+                contestContainer.style.display = 'none';
+                categoryContainer.style.display = 'none';
+                userContainer.style.display = 'none';
+                etcContainer.style.display = 'block';
+            });
+        });
 
 
     //관리자 관리
@@ -1032,77 +1026,78 @@
   </div>
 </header>
 
-<div class="home container"style="display: block;">
-  <main class="sections-container">
-    <div class="section">
-      <h2 class="section-heading"><&ND> 최근 방문자 수</h2>
-      <div class="section_in">
-        <h1>이게된다??</h1>
-      </div>
-    </div>
-    <div class="section">
-      <h2 class="section-heading">최근 신고된 게시글 추이</h2>
-      <div class="section_in">
-        <h1>이게된다??</h1>
-      </div>
-    </div>
-  </main>
+<div class="home container" style="display: block;">
+    <main class="sections-container">
+        <div class="section">
+            <h2 class="section-heading"><&ND> 최근 방문자 수</h2>
+            <div class="section_in">
+                <h1>이게된다??</h1>
+            </div>
+        </div>
+        <div class="section">
+            <h2 class="section-heading">최근 신고된 게시글 추이</h2>
+            <div class="section_in">
+                <h1>이게된다??</h1>
+            </div>
+        </div>
+    </main>
 </div>
 
 <div class="post container" style="display: none;">
-  <main class="sections-container">
-    <div class="section">
-      <h2 class="section-heading">최근 게시글 전체 조회</h2>
-      <div class="section_in">
-        <div class="search-bar">
-          <input type="text" placeholder="게시물 검색"><br><br><br><br>
-          <div class="search-icon">
-            <img src="https://i.postimg.cc/MT8tf3Qy/searchmagnifierinterfacesymbol-79894.png" alt="Search Icon">
-          </div>
+    <main class="sections-container">
+        <div class="section">
+            <h2 class="section-heading">최근 게시글 전체 조회</h2>
+            <div class="section_in">
+                <div class="search-bar">
+                    <input type="text" placeholder="게시물 검색"><br><br><br><br>
+                    <div class="search-icon">
+                        <img src="https://i.postimg.cc/MT8tf3Qy/searchmagnifierinterfacesymbol-79894.png"
+                             alt="Search Icon">
+                    </div>
+                </div>
+                <div class="list">
+                    <!--          불러 온 게시물 노출영역-->
+                </div>
+                <div class="delete-button">
+                    <a onclick="deletePost()">삭제</a>
+                </div>
+            </div>
         </div>
-        <div class="list">
-<!--          불러 온 게시물 노출영역-->
-        </div>
-        <div class="delete-button">
-          <a onclick="deletePost()">삭제</a>
-        </div>
-      </div>
-    </div>
-  </main>
+    </main>
 </div>
 
 <div class="report container" style="display: none;">
-  <main class="sections-container">
-    <div class="section">
-      <h2 class="section-heading">2</h2>
-      <div class="section_in">
-        <h1>야호!!</h1>
-      </div>
-    </div>
-    <div class="section">
-      <h2 class="section-heading">2</h2>
-      <div class="section_in">
-        <h1>야호!!</h1>
-      </div>
-    </div>
-  </main>
+    <main class="sections-container">
+        <div class="section">
+            <h2 class="section-heading">2</h2>
+            <div class="section_in">
+                <h1>야호!!</h1>
+            </div>
+        </div>
+        <div class="section">
+            <h2 class="section-heading">2</h2>
+            <div class="section_in">
+                <h1>야호!!</h1>
+            </div>
+        </div>
+    </main>
 </div>
 
 <div class="contest container" style="display: none;">
-  <main class="sections-container">
-    <div class="section">
-      <h2 class="section-heading">3</h2>
-      <div class="section_in">
-        <h1>야호~~~~~~~~~~!!</h1>
-      </div>
-    </div>
-    <div class="section">
-      <h2 class="section-heading">3</h2>
-      <div class="section_in">
-        <h1>야호~~~~~~~~~~!!!!</h1>
-      </div>
-    </div>
-  </main>
+    <main class="sections-container">
+        <div class="section">
+            <h2 class="section-heading">3</h2>
+            <div class="section_in">
+                <h1>야호~~~~~~~~~~!!</h1>
+            </div>
+        </div>
+        <div class="section">
+            <h2 class="section-heading">3</h2>
+            <div class="section_in">
+                <h1>야호~~~~~~~~~~!!!!</h1>
+            </div>
+        </div>
+    </main>
 </div>
 
 <div class="category container" style="display: none;">
@@ -1138,6 +1133,8 @@
   </div>
 
 </div>
+
+
 
 <div class="user container" style="display: none;">
   <main class="sections-container">
@@ -1186,7 +1183,7 @@
           </form>
       </div>
         <div class="read-blacklist">
-          <h3>관리자 현황</h3>
+          <h3>유저 블랙리스트 현황</h3>
           <table id="blacklistTable">
             <thead>
             <tr>
@@ -1283,9 +1280,7 @@
           <br>
           <br>
         </div>
-      </div>
-    </div>
-  </main>
+    </main>
 </div>
 
 </body>
