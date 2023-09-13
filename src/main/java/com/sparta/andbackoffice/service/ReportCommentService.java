@@ -5,13 +5,15 @@ import com.sparta.andbackoffice.dto.response.ReportCommentResponseDto;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 public interface ReportCommentService {
 
 
 	/**
 	 * 신고 댓글 조회
 	 */
-	List<ReportCommentResponseDto> getReportComments();
+	Page<ReportCommentResponseDto> getReportComments(int page, int size);
 
 	List<ReportCommentCountResponseDto> getReportCommentCounts();
 }
