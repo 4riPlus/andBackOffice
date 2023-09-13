@@ -6,7 +6,6 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
             integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
@@ -14,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Login Page</title>
+
     <style>
         body {
             font-family: 'Arial Black', sans-serif;
@@ -93,17 +93,51 @@
     <img src="https://i.postimg.cc/fRPH99gf/2.png">
     <br>
     <h3>ADMIN LOGIN</h3>
-        <div>
-            <div class="form-group">
-                <label for="adminid">Admin Id</label>
-                <input type="text" id="adminid" name="adminid" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" onclick="onLogin()">Login</button>
+    <div>
+        <div class="form-group">
+            <label for="adminid">Admin Id</label>
+            <input type="text" id="adminid" name="adminid" required>
         </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" onclick="onLogin()">Login</button>
+    </div>
 </div>
+
+<script>
+    function onLogin() {
+        const adminName = document.getElementById("adminid").value;
+        const adminPassword = document.getElementById("password").value;
+
+
+        const loginData = {
+            "adminName": adminName,
+            "adminPassword": adminPassword
+        };
+
+        fetch("/api/admin/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(loginData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Redirect to the main page upon successful login
+                    window.location.href = "/api/admin/view/main"; // Replace with your actual main page URL
+                } else {
+                    // Handle login failure (e.g., display an error message)
+                    alert("로그인 실패, 아이디와 비밀번호를 확인해주세요");
+                }
+            })
+            .catch(error => {
+                console.error("Login error:", error);
+            });
+    }
+
+</script>
 </body>
 </html>

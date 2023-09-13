@@ -90,7 +90,7 @@
       padding: 5px;
     }
     .sections-container {
-      margin-left: 200px;
+      margin-left: 150px;
       height: 750px;
       display: flex;
       gap: 30px;
@@ -172,19 +172,22 @@
     .delete-button:hover {
       color: white;
     }
-    /* 자유게시판 CSS */
-    /*.post-wrap {*/
-    /*  margin: 20px;*/
-    /*  padding: 20px;*/
-    /*}*/
-
-    /*.post-title {*/
-    /*  margin-bottom: 20px;*/
-    /*}*/
-
-    /*.post-title strong {*/
-    /*  font-size: 1.3rem;*/
-    /*}*/
+    .registerAmin-button {
+      position: fixed; /* 요소를 화면에 고정 */
+      background-color: lightsalmon;
+      color: black;
+      z-index: 1; /* 다른 요소 위에 위치하도록 설정 */
+      padding: 10px 20px;
+      margin-left: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .registerAmin-button:hover {
+      color: white;
+    }
 
     .post-title p {
       margin-top: 5px;
@@ -283,6 +286,246 @@
     .post-page a:first-child {
       border-left: 1px solid #ddd;
     }
+    /* Category Management Container Styles */
+    /*.category container {*/
+    /*  background-color: #fff;*/
+    /*  padding: 20px;*/
+    /*  border: 1px solid #ccc;*/
+    /*  border-radius: 10px;*/
+    /*  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+    /*  margin: 20px auto;*/
+    /*  max-width: 1100px;*/
+    /*}*/
+
+    /*.category.container h2.section-heading {*/
+    /*  font-size: 24px;*/
+    /*  margin-bottom: 20px;*/
+    /*  color: #333;*/
+    /*  display: flex;*/
+    /*  flex-direction: column;*/
+    /*  justify-content: center;*/
+    /*  align-items: center;*/
+    /*}*/
+
+    /* Center the content within the container */
+    .section_in {
+      text-align: center;
+      width: 100%;
+    }
+
+    /* Category Management Container Styles */
+    .category.container {
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 50px 300px;
+      margin-right: 70px;
+      max-width: 2000px;
+    }
+
+    .category.container h2.section-heading {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .create-category, .read-categories {
+      margin-bottom: 20px;
+    }
+
+    .create-category h3, .read-categories h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #444;
+    }
+
+    #createCategoryForm input[type="text"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    #createCategoryForm button {
+      padding: 10px 20px;
+      background-color: lightsalmon;
+      color: #000;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #createCategoryForm button:hover {
+      background-color: lightsalmon;
+      color: white;
+    }
+
+    #categoryTable {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #categoryTable th {
+      background-color: lightsalmon;
+      color: #000;
+      padding: 10px;
+      text-align: center;
+    }
+
+    #categoryTable td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    #categoryTable td:last-child {
+      text-align: center;
+    }
+
+    /* Update and Delete buttons */
+    #categoryTable button {
+      padding: 6px 12px;
+      background-color: lightsalmon;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    #categoryTable button:hover {
+      background-color: lightsalmon;
+      color: #fff;
+    }
+
+    /*관리자 관리*/
+    .user-section {
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 20px 50px 10px;
+    }
+
+    .category.container h2.section-heading {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .create-category, .read-categories {
+      margin-bottom: 20px;
+    }
+
+    .create-category h3, .read-categories h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #444;
+    }
+    #createAdminForm input[type="text"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    #createAdminForm button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: lightsalmon;
+      color: #000;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #createAdminForm button:hover {
+      background-color: lightsalmon;
+      color: white;
+    }
+    #adminTable {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #adminTable th {
+      background-color: lightsalmon;
+      color: #000;
+      padding: 10px;
+      text-align: center;
+    }
+
+    #adminTable td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    #adminTable td:last-child {
+      text-align: center;
+    }
+
+    /* Update and Delete buttons */
+    #adminTable button {
+      padding: 6px 12px;
+      background-color: lightsalmon;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    #adminTable button:hover {
+      background-color: lightsalmon;
+    }
+
+    /*유저 관리*/
+    #createBlacklistForm input[type="text"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    #createBlacklistForm button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: lightsalmon;
+      color: #000;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #createBlacklistForm button:hover {
+      background-color: lightsalmon;
+      color: white;
+    }
+    #blacklistTable {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #blacklistTable th {
+      background-color: lightsalmon;
+      color: #000;
+      padding: 10px;
+      text-align: center;
+    }
+
+    #blacklistTable td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    #blacklistTable td:last-child {
+      text-align: center;
+    }
   </style>
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"
@@ -370,6 +613,119 @@
                 console.log(response.responseJSON.msg);
               });
     }
+
+    // Function to create a new category
+    function createCategory() {
+      const categoryName = document.getElementById('categoryName').value;
+
+      // Prepare the data to send in the request body
+      const categoryData = {
+        categoryName: categoryName,
+      };
+
+      // Perform AJAX POST request to create a new category on the server
+      $.ajax({
+        type: 'POST',
+        url: '/api/admin/category',
+        contentType: 'application/json',
+        data: JSON.stringify(categoryData),
+        success: function (response) {
+          // Update the table with the newly created category
+          readCategories();
+          alert(response.message); // Display a success message
+        },
+        error: function (xhr) {
+          alert('카테고리생성실패: ' + xhr.statusText);
+        },
+      });
+    }
+
+    // Function to read categories and populate the table
+    function readCategories() {
+      // Perform AJAX GET request to retrieve all categories from the server
+      $.ajax({
+        type: 'GET',
+        url: '/api/admin/category',
+        success: function (response) {
+          const categoryTable = document.getElementById('categoryTable');
+          const tbody = categoryTable.getElementsByTagName('tbody')[0];
+          tbody.innerHTML = ''; // Clear existing table rows
+
+          response.categoryList.forEach(function (category) {
+            const newRow = tbody.insertRow();
+            newRow.id = `categoryRow_${category.id}`; // Assign a unique id
+            newRow.innerHTML = `
+        <td>${category.id}</td>
+        <td>${category.categoryName}</td>
+        <td>
+            <button onclick="updateCategory(${category.id})">Update</button>
+            <button onclick="deleteCategory(${category.id})">Delete</button>
+        </td>
+    `;
+          });
+        },
+        error: function (error) {
+          console.error('카테고리 조회 실패:', error);
+        }
+      });
+    }
+
+    // Call readCategories() to populate the table when the page loads
+    readCategories();
+
+    // Function to update a category
+    function updateCategory(categoryId) {
+      const updatedName = prompt('변경하고자 하는 카테고리 이름을 적어주세요:');
+      if (updatedName) {
+        // Prepare the data to send in the request body
+        const categoryData = {
+          categoryName: updatedName,
+        };
+
+        // Perform AJAX PUT request to update the category on the server
+        $.ajax({
+          type: 'PUT',
+          url: `/api/admin/category/${categoryId}`,
+          contentType: 'application/json',
+          data: JSON.stringify(categoryData),
+          success: function () {
+            // Update the table with the updated category
+            readCategories();
+            alert('카테고리수정완료');
+          },
+          error: function (xhr) {
+            alert('카테고리수정실패: ' + xhr.statusText);
+          },
+        });
+      }
+    }
+
+    // Function to delete a category
+    function deleteCategory(categoryId) {
+      // Confirm deletion with the user
+      const confirmDelete = confirm('카테고리를 삭제하시겠습니까?');
+      if (confirmDelete) {
+        // Perform AJAX DELETE request to delete the category on the server
+        $.ajax({
+          type: 'DELETE',
+          url: `/api/admin/category/${categoryId}`,
+          success: function () {
+            // Remove the category row from the table
+            const row = document.getElementById(`categoryRow_${categoryId}`);
+            if (row) {
+              row.remove();
+            }
+            alert('카테고리 삭제완료.');
+          },
+          error: function (xhr) {
+            alert('카테고리 삭제실패: ' + xhr.statusText);
+          },
+        });
+      }
+    }
+    // Call readCategories function to initially populate the table
+    readCategories();
+
     function logout() {
       let authCookie = getCookie('Authorization');
       console.log(authCookie);
@@ -381,7 +737,7 @@
         },
         processData: false,
         contentType: false,
-        success: function(response) {
+        success: function (response) {
 
           Cookies.remove('Authorization', {path: '/'}); // 쿠키삭제
           // Cookies.set('Authorization', token, {path: '/', expires: expirationDate});
@@ -389,7 +745,7 @@
           alert("로그아웃 성공 !");
           window.location.href = host + '/api/view/user/login';
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
           console.log(xhr);
           alert("로그아웃 실패 !");
         }
@@ -483,15 +839,158 @@
       });
     });
 
-    // 삭제 버튼을 클릭했을 때 실행될 함수
-    function deletePost() {
-      // 이 부분에 게시물 삭제 로직을 추가하세요.
-      // 예를 들어, 선택된 게시물을 삭제하는 AJAX 요청 등을 수행할 수 있습니다.
-      // 필요한 경우 서버와 통신하여 삭제 작업을 수행하세요.
 
-      // 여기에 실제 삭제 로직을 추가하세요.
-      alert("게시물이 삭제되었습니다."); // 임시로 경고창을 띄움
+    //관리자 관리
+    // 관리자 생성
+    function createAdmin() {
+      // HTML 폼에서 입력된 데이터 가져오기
+      const companyNo = document.getElementById('companyNo').value;
+      const adminName = document.getElementById('adminName').value;
+      const adminPassword = document.getElementById('adminPassword').value;
+      // 데이터 유효성 검사
+      if (!companyNo || !adminName || !adminPassword) {
+        alert("빈칸 없이 모두 입력해야 합니다.");
+        return;
+      }
+
+      // 관리자 데이터 생성
+      const adminData = {
+        companyNo: companyNo,
+        adminName: adminName,
+        adminPassword:adminPassword
+      };
+      // 서버에 관리자 데이터 전송 (AJAX 요청)
+      $.ajax({
+        type: 'POST',
+        url: '/api/admin/create',
+        data: JSON.stringify(adminData),
+        contentType: 'application/json',
+        success: function (response) {
+          alert('관리자 등록 성공');
+          readAdmin();
+        },
+        error: function (xhr) {
+          alert('관리자 등록 실패: ' + xhr.statusText);
+        },
+      });
     }
+   //관리자 리스트 조회
+    $(document).ready(function () {
+      // 페이지 로드 시 자동으로 관리자 리스트 불러오기
+      readAdmin();
+    });
+    function readAdmin() {
+      $.ajax({
+        type: 'GET',
+        url: '/api/admin/get',
+        success: function (response) {
+          // 관리자 목록을 표시할 HTML 테이블 업데이트
+          const adminTable = document.getElementById('adminTable');
+          const tbody = adminTable.getElementsByTagName('tbody')[0];
+          tbody.innerHTML = '';
+
+          response.adminList.forEach(function (admin) {
+            const newRow = tbody.insertRow();
+            newRow.id = `adminRow_${admin.id}`;
+            newRow.innerHTML = `
+          <td>${admin.id}</td>
+          <td>${admin.companyNo}</td>
+          <td>${admin.adminName}</td>
+          <td>
+              ${admin.id === 1 ? '' : `<button onclick="deleteAdmin(${admin.id})">Delete</button>`}
+          </td>
+        `;
+          });
+        },
+        error: function (error) {
+          console.error('관리자 리스트 조회 실패', error);
+        }
+      });
+    }
+    // 관리자 삭제
+    function deleteAdmin(adminId, loggedInAdminId) {
+      const confirmDelete = confirm("정말로 삭제하시겠습니까?");
+      if (confirmDelete) {
+        $.ajax({
+          type: 'DELETE',
+          url: `/api/admin/delete/${adminId}`, // Use the correct URL
+          data: JSON.stringify({ loggedInAdminId }), // Include the loggedInAdminId
+          contentType: 'application/json',
+          success: function () {
+            alert('관리자 삭제 완료.');
+            const row = document.getElementById(`adminRow_${adminId}`);
+            if (row) {
+              row.remove();
+            }
+          },
+          error: function (xhr) {
+            alert('관리자 삭제 실패: ' + xhr.statusText);
+          },
+        });
+      }
+    }
+
+    // 유저 블랙리스트 등록
+    function createBlackList() {
+      // HTML 폼에서 입력된 데이터 가져오기
+      const userName = document.getElementById('userName').value;
+
+      // 블랙리스트 데이터 생성
+      const blackListData = {
+        userName: userName
+      };
+
+      // 서버에 블랙리스트 데이터 전송 (AJAX 요청)
+      $.ajax({
+        type: 'POST',
+        url: '/api/user/blacklist/register',
+        data: JSON.stringify(blackListData),
+        contentType: 'application/json',
+        success: function (response) {
+          alert('유저 블랙리스트 등록 성공');
+          readBlackList(); // 블랙리스트 다시 조회
+        },
+        error: function (xhr) {
+          alert('유저 블랙리스트 등록 실패: ' + xhr.statusText);
+        },
+      });
+    }
+
+    // 블랙리스트 리스트 조회
+    $(document).ready(function () {
+      // 페이지 로드 시 자동으로 블랙리스트 리스트 불러오기
+      readBlackList();
+    });
+
+    function readBlackList() {
+      $.ajax({
+        type: 'GET',
+        url: '/api/user/blacklist', // 수정된 URL
+        success: function (response) {
+          // 블랙리스트 목록을 표시할 HTML 테이블 업데이트
+          const blackListTable = document.getElementById('blackListTable');
+          const tbody = blackListTable.getElementsByTagName('tbody')[0];
+          tbody.innerHTML = '';
+
+          response.forEach(function (user) {
+            const newRow = tbody.insertRow();
+            newRow.id = `blackListRow_${user.blackListId}`;
+            newRow.innerHTML = `
+          <td>${user.blackListId}</td>
+          <td>${user.userName}</td>
+          <td>
+              <button onclick="deleteFromBlackList(${user.blackListId})">Delete</button>
+          </td>
+        `;
+          });
+        },
+        error: function (error) {
+          console.error('블랙리스트 조회 실패', error);
+        }
+      });
+    }
+
+
   </script>
 </head>
 <body>
@@ -502,9 +1001,10 @@
       <li><a id="home" href="#">홈</a></li>
       <li><a id="post" href="#" onclick="showPosts(1,pageSize)">최근 게시글</a></li>
       <li><a id="report-post" href="#">신고된 게시글/댓글 관리</a></li>
-      <li><a id="contest" href="#">공지 및 공모전 관리</a></li>
+      <li><a id="contest" href="#">공모전 관리</a></li>
       <li><a id="category" href="#">카테고리 관리</a></li>
-      <li><a id="user" href="#">유저 관리</a></li>
+      <li><a id="board" href="#">공지사항 관리</a></li>
+      <li><a id="user" href="#">관리자/유저 관리</a></li>
       <li><a id="etc" href="#">기타 이용약관</a></li>
       <br>
       <br>
@@ -606,34 +1106,99 @@
 </div>
 
 <div class="category container" style="display: none;">
-  <main class="sections-container">
-    <div class="section">
-      <h2 class="section-heading">4</h2>
-      <div class="section_in">
-        <h1>카테고리 crud</h1>
-      </div>
+
+  <div class="category contents">
+    <h2 class="section-heading">카테고리 관리페이지</h2>
+
+    <div class="create-category">
+      <h3>카테고리 생성하기</h3>
+      <form id="createCategoryForm">
+        <input type="text" id="categoryName" placeholder="Category Name">
+        <button type="button" onclick="createCategory()">Create</button>
+      </form>
     </div>
-    <div class="section">
-      <h2 class="section-heading">4</h2>
-      <div class="section_in">
-        <h1>카테고리 crud</h1>
-      </div>
+
+    <!-- Read Categories Table -->
+    <div class="read-categories">
+      <h3>카테고리 목록</h3>
+      <table id="categoryTable">
+        <!-- Table headers here -->
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>카테고리이름</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Category rows will be populated here by JavaScript -->
+        </tbody>
+      </table>
     </div>
-  </main>
+  </div>
+
 </div>
 
 <div class="user container" style="display: none;">
   <main class="sections-container">
-    <div class="section">
-      <h2 class="section-heading">5</h2>
+    <div class="user-section">
+      <h2 class="section-heading">관리자 등록/삭제</h2>
       <div class="section_in">
-        <h1>유저 crud</h1>
+        <div class="create-admin">
+          <h3>관리자 생성</h3>
+          <form id="createAdminForm">
+            <input type="text" id="companyNo" placeholder="COMPANY NO">
+            <input type="text" id="adminName" placeholder="ADMIN NAME">
+            <input type="text" id="adminPassword" placeholder="ADMIN PASSWORD">
+            <br>
+            <button type="button" onclick="createAdmin()">등록</button>
+          </form>
+        </div>
+        <br>
+        <!-- Read Admin Table -->
+        <div class="read-Admin">
+          <h3>관리자 현황</h3>
+          <table id="adminTable">
+            <thead>
+            <tr>
+              <th>AMIND ID</th>
+              <th>COMPANY NO</th>
+              <th>ADMIN NAME</th>
+              <th>ACTION</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Category rows will be populated here by JavaScript -->
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    <div class="section">
-      <h2 class="section-heading">5</h2>
+    <div class="user-section">
+      <h2 class="section-heading">유저 블랙리스트 등록/삭제</h2>
       <div class="section_in">
-        <h1>유저 crud</h1>
+        <div class="create-blacklist">
+          <h3>유저 블랙리스트 등록</h3>
+          <form id="createBlacklistForm">
+            <input type="text" id="userName" placeholder="userName">
+            <br>
+            <button type="button" onclick="createAdmin()">등록</button>
+          </form>
+      </div>
+        <div class="read-blacklist">
+          <h3>관리자 현황</h3>
+          <table id="blacklistTable">
+            <thead>
+            <tr>
+              <th>BLACKLIST ID</th>
+              <th>USER NAME</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Category rows will be populated here by JavaScript -->
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </main>
