@@ -312,9 +312,10 @@
       border: 1px solid #ccc;
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin: 50px 300px;
-      margin-right: 70px;
-      max-width: 2000px;
+      margin: 50px 280px;
+      margin-right: 68px;
+      width: 1500px;
+
     }
 
     .category.container h2.section-heading {
@@ -392,133 +393,91 @@
       color: #fff;
     }
 
-    /*관리자 관리*/
-    .user-section {
-      background-color: #fff;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin: 20px 50px 10px;
-        width: 800px;
-    }
+        /*관리자 관리*/
+        .user-section {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 10px auto 10px; /* 가운데 정렬을 위해 auto 설정 */
+            max-width: 1500px; /* 최대 너비 설정 */
+            width: 100%; /* 너비 100%로 설정하여 화면 크기에 맞게 조절 */
+        }
 
-    .category.container h2.section-heading {
-      font-size: 24px;
-      margin-bottom: 20px;
-      color: #333;
-    }
+        .user.container h2.section-heading {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
 
-    .create-category, .read-categories {
-      margin-bottom: 20px;
-    }
+        .create-admin, .read-Admin {
+            margin-bottom: 20px;
+        }
 
-    .create-category h3, .read-categories h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
-      color: #444;
-    }
-    #createAdminForm input[type="text"] {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-right: 10px;
-    }
+        .create-admin h3, .read-Admin h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+        #createAdminForm input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
 
-    #createAdminForm button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: lightsalmon;
-      color: #000;
-      border: none;
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+        #createAdminForm button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: lightsalmon;
+            color: #000;
+            border: none;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-    #createAdminForm button:hover {
-      background-color: lightsalmon;
-      color: white;
-    }
-    #adminTable {
-      width: 100%;
-      border-collapse: collapse;
-    }
+        #createAdminForm button:hover {
+            background-color: lightsalmon;
+            color: white;
+        }
+        #adminTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-    #adminTable th {
-      background-color: lightsalmon;
-      color: #000;
-      padding: 10px;
-      text-align: center;
-    }
+        #adminTable th {
+            background-color: lightsalmon;
+            color: #000;
+            padding: 10px;
+            text-align: center;
+        }
 
-    #adminTable td {
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-    }
+        #adminTable td {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
 
-    #adminTable td:last-child {
-      text-align: center;
-    }
+        #adminTable td:last-child {
+            text-align: center;
+        }
 
-    /* Update and Delete buttons */
-    #adminTable button {
-      padding: 6px 12px;
-      background-color: lightsalmon;
-      color: #000;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-right: 5px;
-    }
+        /* Update and Delete buttons */
+        #adminTable button {
+            padding: 6px 12px;
+            background-color: lightsalmon;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
 
-    #adminTable button:hover {
-      background-color: lightsalmon;
-    }
+        #adminTable button:hover {
+            background-color: lightsalmon;
+        }
 
-    /*유저 관리*/
-    #createBlacklistForm input[type="text"] {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-right: 10px;
-    }
-
-    #createBlacklistForm button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: lightsalmon;
-      color: #000;
-      border: none;
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    #createBlacklistForm button:hover {
-      background-color: lightsalmon;
-      color: white;
-    }
-    #blacklistTable {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    #blacklistTable th {
-      background-color: lightsalmon;
-      color: #000;
-      padding: 10px;
-      text-align: center;
-    }
-
-    #blacklistTable td {
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-    }
-
-    #blacklistTable td:last-child {
-      text-align: center;
-    }
   </style>
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"
@@ -924,68 +883,6 @@
         });
       }
     }
-
-    // 유저 블랙리스트 등록
-    function createBlackList() {
-      // HTML 폼에서 입력된 데이터 가져오기
-      const userName = document.getElementById('userName').value;
-
-      // 블랙리스트 데이터 생성
-      const blackListData = {
-        userName: userName
-      };
-
-      // 서버에 블랙리스트 데이터 전송 (AJAX 요청)
-      $.ajax({
-        type: 'POST',
-        url: '/api/user/blacklist/register',
-        data: JSON.stringify(blackListData),
-        contentType: 'application/json',
-        success: function (response) {
-          alert('유저 블랙리스트 등록 성공');
-          readBlackList(); // 블랙리스트 다시 조회
-        },
-        error: function (xhr) {
-          alert('유저 블랙리스트 등록 실패: ' + xhr.statusText);
-        },
-      });
-    }
-
-    // 블랙리스트 리스트 조회
-    $(document).ready(function () {
-      // 페이지 로드 시 자동으로 블랙리스트 리스트 불러오기
-      readBlackList();
-    });
-
-    function readBlackList() {
-      $.ajax({
-        type: 'GET',
-        url: '/api/user/blacklist', // 수정된 URL
-        success: function (response) {
-          // 블랙리스트 목록을 표시할 HTML 테이블 업데이트
-          const blackListTable = document.getElementById('blackListTable');
-          const tbody = blackListTable.getElementsByTagName('tbody')[0];
-          tbody.innerHTML = '';
-
-          response.forEach(function (user) {
-            const newRow = tbody.insertRow();
-            newRow.id = `blackListRow_${user.blackListId}`;
-            newRow.innerHTML = `
-          <td>${user.blackListId}</td>
-          <td>${user.userName}</td>
-          <td>
-              <button onclick="deleteFromBlackList(${user.blackListId})">Delete</button>
-          </td>
-        `;
-          });
-        },
-        error: function (error) {
-          console.error('블랙리스트 조회 실패', error);
-        }
-      });
-    }
-
-
   </script>
 </head>
 <body>
@@ -1102,15 +999,14 @@
 </div>
 
 <div class="category container" style="display: none;">
-
   <div class="category contents">
     <h2 class="section-heading">카테고리 관리페이지</h2>
 
     <div class="create-category">
-      <h3>카테고리 생성하기</h3>
+      <h3>카테고리 생성</h3>
       <form id="createCategoryForm">
-        <input type="text" id="categoryName" placeholder="Category Name">
-        <button type="button" onclick="createCategory()">Create</button>
+        <input type="text" id="categoryName" placeholder="CATEGORY NAME">
+        <button type="button" onclick="createCategory()">등록</button>
       </form>
     </div>
 
@@ -1122,8 +1018,8 @@
         <thead>
         <tr>
           <th>ID</th>
-          <th>카테고리이름</th>
-          <th>Action</th>
+          <th>CATEGORY NAME</th>
+          <th>ACTION</th>
         </tr>
         </thead>
         <tbody>
@@ -1136,72 +1032,39 @@
 </div>
 
 
-
 <div class="user container" style="display: none;">
-  <main class="sections-container">
-    <div class="user-section">
-      <h2 class="section-heading">관리자 등록/삭제</h2>
-      <div class="section_in">
-        <div class="create-admin">
-          <h3>관리자 생성</h3>
-          <form id="createAdminForm">
-            <input type="text" id="companyNo" placeholder="COMPANY NO">
-            <input type="text" id="adminName" placeholder="ADMIN NAME">
-            <input type="text" id="adminPassword" placeholder="ADMIN PASSWORD">
-            <br>
-            <button type="button" onclick="createAdmin()">등록</button>
-          </form>
+    <main class="sections-container">
+        <div class="user-section">
+            <h2 class="section-heading">관리자 등록/삭제</h2>
+                <div class="create-admin">
+                    <h3>관리자 생성</h3>
+                    <form id="createAdminForm">
+                        <input type="text" id="companyNo" placeholder="COMPANY NO">
+                        <input type="text" id="adminName" placeholder="ADMIN NAME">
+                        <input type="text" id="adminPassword" placeholder="ADMIN PASSWORD">
+                        <button type="button" onclick="createAdmin()">등록</button>
+                    </form>
+                </div>
+                <!-- Read Admin Table -->
+                <div class="read-Admin">
+                    <h3>관리자 현황</h3>
+                    <table id="adminTable">
+                        <thead>
+                        <tr>
+                            <th>AMIND ID</th>
+                            <th>COMPANY NO</th>
+                            <th>ADMIN NAME</th>
+                            <th>ACTION</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Category rows will be populated here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
         </div>
-        <br>
-        <!-- Read Admin Table -->
-        <div class="read-Admin">
-          <h3>관리자 현황</h3>
-          <table id="adminTable">
-            <thead>
-            <tr>
-              <th>AMIND ID</th>
-              <th>COMPANY NO</th>
-              <th>ADMIN NAME</th>
-              <th>ACTION</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- Category rows will be populated here by JavaScript -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="user-section">
-      <h2 class="section-heading">유저 블랙리스트 등록/삭제</h2>
-      <div class="section_in">
-        <div class="create-blacklist">
-          <h3>유저 블랙리스트 등록</h3>
-          <form id="createBlacklistForm">
-            <input type="text" id="userName" placeholder="userName">
-            <br>
-            <button type="button" onclick="createBlackList()">등록</button>
-          </form>
-      </div>
-        <div class="read-blacklist">
-          <h3>유저 블랙리스트 현황</h3>
-          <table id="blacklistTable">
-            <thead>
-            <tr>
-              <th>BLACKLIST ID</th>
-              <th>USER NAME</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- Category rows will be populated here by JavaScript -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </main>
+    </main>
 </div>
-
 <div class="etc container" style="display: none;">
   <main class="sections-container">
     <div class="section">
@@ -1281,8 +1144,9 @@
           <br>
           <br>
         </div>
+      </div>
+    </div>
     </main>
 </div>
-
 </body>
 </html>
