@@ -35,12 +35,7 @@ public interface BoardService {
 	 * @return : 수정된 게시글 내용 반환
 	 */
 	BoardResponseDto modifyBoard(Long categoryId, Long boardId, BoardRequestDto requestDto);
-	/**
-	 * 게시글 전체 조회
-	 *
-	 * @return : 게시글 정보 반환
-	 */
-	List<BoardResponseDto> getAllBoards();
+
 
 
 	/**

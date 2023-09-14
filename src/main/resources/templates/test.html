@@ -1,0 +1,131 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+
+  <!-- Summernote CSS and JavaScript -->
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+  <title>Create Contest</title>
+
+  <style>
+    body {
+      padding-top: 70px;
+      padding-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body>
+<article>
+  <div class="container" role="main">
+    <h2>Create Contest</h2>
+    <form name="form" id="form" role="form" method="post"
+          action="${pageContext.request.contextPath}/api/admin/contest">
+
+      <div class="mb-3">
+        <label for="title">공모전 제목:</label>
+        <input type="text" class="form-control" name="title" id="title" placeholder="Title" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="company">주최사:</label>
+        <input type="text" class="form-control" name="company" id="company" placeholder="Company"
+               required>
+      </div>
+
+      <div class="mb-3">
+        <label for="homepage">홈페이지:</label>
+        <input type="text" class="form-control" name="homepage" id="homepage" placeholder="homepage" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="endDate">End Date:</label>
+        <input type="datetime-local" class="form-control" name="endDate" id="endDate" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="startDate">Start Date:</label>
+        <input type="datetime-local" class="form-control" name="startDate" id="startDate">
+      </div>
+
+      <div class="mb-3">
+        <label for="target">응모대상:</label>
+        <input type="text" class="form-control" name="homepage" id="target" placeholder="Target"
+               required>
+      </div>
+
+      <div class="mb-3">
+        <label for="prize">상금:</label>
+        <input type="text" class="form-control" name="prize" id="prize" placeholder="prize"
+               required>
+      </div>
+
+
+
+
+      <div class="mb-3">
+        <label for="contents">Contents:</label>
+        <textarea class="form-control" rows="5" name="contents" id="contents"
+                  placeholder="Enter contest contents here..." required></textarea>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="category">Category:</label>
+        <select class="form-control" name="category" id="category">
+          <!-- Add category options here -->
+        </select>
+      </div>
+    </form>
+
+    <div>
+      <button type="button" class="btn btn-sm btn-primary" id="btnSave">Save</button>
+      <button type="button" class="btn btn-sm btn-primary" id="btnList">List</button>
+    </div>
+  </div>
+</article>
+
+<script>
+  // Initialize Summernote
+  $(document).ready(function () {
+    $('#contents').summernote({
+      height: 300,
+      placeholder: 'Enter contest contents here...',
+    });
+  });
+
+  $(document).on('click', '#btnSave', function (e) {
+    // Prevent form submission
+    e.preventDefault();
+
+    // Get the HTML content from Summernote
+    const contentsHtml = $('#contents').summernote('code');
+    // Set the HTML content in the hidden input field
+    $('#contents').html(contentsHtml);
+
+    // Submit the form
+    $("#form").submit();
+  });
+
+  $(document).on('click', '#btnList', function (e) {
+    e.preventDefault();
+    location.href = "${pageContext.request.contextPath}/board/getBoardList";
+  });
+</script>
+</body>
+
+</html>

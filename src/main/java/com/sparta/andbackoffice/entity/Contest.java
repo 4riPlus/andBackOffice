@@ -26,8 +26,8 @@ public class Contest extends TimeStamped {
 	@Column(name = "category")
 	private Long category;
 
-	@Column(name = "author", nullable = false)
-	private String author;
+	@Column(name = "target", nullable = false)
+	private String target;
 
 	@Column(name = "title", nullable = false)
 	private String title;
@@ -54,17 +54,21 @@ public class Contest extends TimeStamped {
 	@Column(name = "contestViews")
 	private Long contestViews = 0L;
 
+	@Column(name="prize")
+	private String prize;
+
 	@OneToMany(mappedBy = "contest")
 	private List<Contest_BottomCategory> bottomCategories = new ArrayList<>();
 
 	public Contest(ContestRequestDto requestDto) {
-		this.author = requestDto.getAuthor();
+		this.target = requestDto.getTarget();
 		this.title = requestDto.getTitle();
 		this.company = requestDto.getCompany();
 		this.endDate = requestDto.getEndDate();
 		this.startDate = requestDto.getStartDate();
 		this.homepage = requestDto.getHomepage();
 		this.contents = requestDto.getContents();
+		this.prize = requestDto.getPrize();
 	}
 
 	// 값 입력이 없다면 default => 1번

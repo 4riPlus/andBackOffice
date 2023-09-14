@@ -81,11 +81,6 @@ public class BoardServiceImpl implements BoardService {
 				() -> new IllegalArgumentException("존재하지 않는 카테고리입니다.")
 		);
 	}
-	@Override
-	public List<BoardResponseDto> getAllBoards() {
-		List<Board> boards = boardRepository.findAll();
-		return boards.stream().map(BoardResponseDto::new).collect(Collectors.toList());
-	}
 
 	@Override
 	public Board findBoard(Long boardId) {

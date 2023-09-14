@@ -13,7 +13,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -56,7 +55,7 @@ public class ContestService {
 		Contest contest = findContest(contestId);
 
 		// Dto -> List 받아서 반복문 돌리게 하고 싶지만...
-		contest.setAuthor(requestDto.getAuthor());
+		contest.setTarget(requestDto.getTarget());
 		contest.setTitle(requestDto.getTitle());
 		contest.setCompany(requestDto.getCompany());
 		contest.setEndDate(requestDto.getEndDate());
