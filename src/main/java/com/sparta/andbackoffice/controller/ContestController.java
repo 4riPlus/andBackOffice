@@ -6,9 +6,14 @@ import com.sparta.andbackoffice.dto.response.ContestResponseDto;
 import com.sparta.andbackoffice.service.ContestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 import java.util.List;
 
@@ -22,7 +27,7 @@ public class ContestController {
 
 	// 글 작성
 	@PostMapping
-	public ResponseEntity<?> createContest(@RequestBody ContestRequestDto requestDto) {
+	public ResponseEntity<?> createContest(@ModelAttribute ContestRequestDto requestDto) {
 		log.info("Controller - createContest : 시작");
 
 		ContestResponseDto result = contestService.createContest(requestDto);

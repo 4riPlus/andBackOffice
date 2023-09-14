@@ -57,8 +57,12 @@ public class Contest extends TimeStamped {
 	@Column(name="prize")
 	private String prize;
 
-	@OneToMany(mappedBy = "contest")
-	private List<Contest_BottomCategory> bottomCategories = new ArrayList<>();
+	@Column(name = "S3Files")
+	@OneToMany(mappedBy = "contest", cascade = CascadeType.REMOVE)
+	private List<S3File> S3Files = new ArrayList<>();
+
+	/*@OneToMany(mappedBy = "contest")
+	private List<Contest_BottomCategory> bottomCategories = new ArrayList<>();*/
 
 	public Contest(ContestRequestDto requestDto) {
 		this.target = requestDto.getTarget();
@@ -69,6 +73,10 @@ public class Contest extends TimeStamped {
 		this.homepage = requestDto.getHomepage();
 		this.contents = requestDto.getContents();
 		this.prize = requestDto.getPrize();
+	}
+
+	public void setS3Files(S3File s3File) {
+		this.S3Files.add(s3File);
 	}
 
 	// 값 입력이 없다면 default => 1번

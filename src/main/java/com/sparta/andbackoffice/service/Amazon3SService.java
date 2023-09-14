@@ -4,6 +4,8 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.sparta.andbackoffice.dto.request.S3FileDto;
+import com.sparta.andbackoffice.dto.response.ApiResponseDto;
+import com.sparta.andbackoffice.repository.AmazonS3Repository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -84,6 +86,7 @@ public class Amazon3SService {
 			boolean isObjectExist = amazonS3Client.doesObjectExist(bucketName, keyName);
 			if (isObjectExist) {
 				amazonS3Client.deleteObject(bucketName, keyName);
+
 			} else {
 				result = "file not found";
 			}

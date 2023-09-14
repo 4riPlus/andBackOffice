@@ -1,10 +1,13 @@
 package com.sparta.andbackoffice.service;
 
 import com.sparta.andbackoffice.dto.request.ContestRequestDto;
+import com.sparta.andbackoffice.dto.request.S3FileDto;
 import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.ContestResponseDto;
 import com.sparta.andbackoffice.entity.Contest;
 import com.sparta.andbackoffice.entity.ContestStatus;
+import com.sparta.andbackoffice.entity.S3File;
+import com.sparta.andbackoffice.repository.AmazonS3Repository;
 import com.sparta.andbackoffice.repository.ContestRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +18,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Service
 @EnableScheduling
@@ -23,6 +29,8 @@ import java.util.List;
 public class ContestService {
 
 	private final ContestRepository contestRepository;
+	private final Amazon3SService amazon3SService;
+	private final AmazonS3Repository amazonS3Repository;
 
 	public ContestResponseDto createContest(ContestRequestDto requestDto) {
 		log.info("Service - createContest : 시작");
@@ -30,6 +38,17 @@ public class ContestService {
 		Contest contest = new Contest(requestDto);
 		contest.setStatus((contestStatus(contest))); // 마감기한 코드 넣기
 		contest = contestRepository.save(contest);
+
+		List<S3File> filePaths = amazon3SService.uploadFiles("contest",requestDto.getFiles())
+				.stream()
+				.map(S3File::new)
+				.toList();
+
+		for(S3File s3file : filePaths) {
+			s3file.setContest(contest);
+			S3File file = amazonS3Repository.save(s3file);
+			contest.setS3Files(file);
+		}
 
 		log.info("Service - createContest : 끝");
 		return new ContestResponseDto(contest);
@@ -74,6 +93,11 @@ public class ContestService {
 		log.info("Service - deleteContest : 시작");
 
 		Contest contest = findContest(contestId);
+
+		contest.getS3Files().forEach((file) -> {
+			amazon3SService.deleteFile(file.getUploadFilePath(),file.getUploadFileName());
+		});
+
 		contestRepository.delete(contest);
 
 		log.info("Service - deleteContest : 끝");

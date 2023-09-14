@@ -3,9 +3,11 @@ package com.sparta.andbackoffice.dto.request;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,4 +26,6 @@ public class ContestRequestDto {
 
 	private String homepage;
 	private String contents;
+	private String category;
+	private List<MultipartFile> files;
 }

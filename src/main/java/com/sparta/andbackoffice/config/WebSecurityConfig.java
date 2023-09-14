@@ -58,7 +58,9 @@ public class WebSecurityConfig {
 						.requestMatchers("/api/admin/signup").permitAll() // '/admin/signup' 으로 시작하는 요청 접근 허가
 						.requestMatchers("/api/admin/file/**").permitAll() //
 						.requestMatchers("/api/admin/login").permitAll() // '/admin/login' 으로 시작하는 요청 모두 접근 허가
-						.requestMatchers("/api/admin/**").authenticated()
+						.requestMatchers("/api/admin/view/**").permitAll()	// '/admin/view' 으로 시작하는 요총 모두 접근 허가
+						.requestMatchers("/api/admin/contest/**").permitAll()
+						//.requestMatchers("/api/admin/**").authenticated()
 						.anyRequest().authenticated() //
 		);
 

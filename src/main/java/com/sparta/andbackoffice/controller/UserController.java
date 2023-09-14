@@ -1,3 +1,4 @@
+/*
 package com.sparta.andbackoffice.controller;
 
 import com.sparta.andbackoffice.dto.request.UserBlackListRequestDto;
@@ -31,3 +32,4 @@ public class UserController {
         return ResponseEntity.ok().body(responseDto);
     }
 }
+*/

@@ -3,7 +3,7 @@ package com.sparta.andbackoffice.service;
 import com.sparta.andbackoffice.dto.request.UserBlackListRequestDto;
 import com.sparta.andbackoffice.dto.response.AdminListResponseDto;
 import com.sparta.andbackoffice.dto.response.AdminResponseDto;
-import com.sparta.andbackoffice.dto.response.BlackListResponseDto;
+//import com.sparta.andbackoffice.dto.response.BlackListResponseDto;
 import com.sparta.andbackoffice.dto.response.UserBlackListResponseDto;
 import com.sparta.andbackoffice.entity.User;
 import com.sparta.andbackoffice.entity.UserBlackList;
@@ -24,13 +24,13 @@ public class UserService {
 	private final UserBlackListRepository userBlackListRepository;
 	private final UserRepository userRepository;
 
-	//블랙리스트 전체 조회
+	/*//블랙리스트 전체 조회
 	public BlackListResponseDto getBlacklist() {
 		List<UserBlackListResponseDto> adminList = userBlackListRepository.findAll().stream()
 				.map(UserBlackListResponseDto::new)
 				.collect(Collectors.toList());
 		return new BlackListResponseDto(adminList);
-	}
+	}*/
 
 	// 유저 블랙리스트로 등록
 	public UserBlackListResponseDto registerUser(UserBlackListRequestDto userBlackListRequestDto) {

@@ -523,6 +523,32 @@
             background-color: lightsalmon;
         }
 
+        /* contest CSS */
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-container button {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .card-lists {
+            overflow: hidden;
+            overflow-y: auto;
+        }
+
+        .card-lists .card-item {
+            width: 200px;
+            height: 250px;
+        }
+
+        .card-lists .card-item img {
+            width: 100%;
+            height: 200px;
+        }
   </style>
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"
@@ -534,195 +560,195 @@
         const pageBtnSize = 5;
 
         function showPosts(page, size) {
-            if (page <= 0) {
-                page = 1;
-            }
+                if (page <= 0) {
+                    page = 1;
+                }
 
-            $.ajax({
-                type: 'GET',
-                url: `/api/admin/posts?page=${page}&size=${size}`
-            })
-                .done(function (response, status, xhr) {
-                    let pages = response['totalPages'];
-                    console.log(pageSize);
-                    if (page > pages) {
-                        page = pages;
-                    }
+                $.ajax({
+                    type: 'GET',
+                    url: `/api/admin/posts?page=${page}&size=${size}`
+                })
+                    .done(function (response, status, xhr) {
+                        let pages = response['totalPages'];
+                        console.log(pageSize);
+                        if (page > pages) {
+                            page = pages;
+                        }
 
-                    let html = `
+                        let html = `
 
-                          <div class="post-list">
-                            <div class="top">
-                              <div class="num">번호</div>
-                              <div class="title">제목</div>
-                              <div class="writer">작성자</div>
-                              <div class="date">작성일</div>
-                              <div class="count">조회수</div>
-                            </div>`;
+                              <div class="post-list">
+                                <div class="top">
+                                  <div class="num">번호</div>
+                                  <div class="title">제목</div>
+                                  <div class="writer">작성자</div>
+                                  <div class="date">작성일</div>
+                                  <div class="count">조회수</div>
+                                </div>`;
 
-                    let startNum = (page - 1) * pageSize;
-                    response['content'].forEach((post) => {
-                        startNum += 1;
+                        let startNum = (page - 1) * pageSize;
+                        response['content'].forEach((post) => {
+                            startNum += 1;
+                            html += `
+                            <div>
+                              <div class="num">${startNum}</div>
+                              <div class="title"><a href="#">${post.title}</a></div>
+                              <div class="writer">${post.writer}</div>
+                              <div class="date">${post.modifiedDate}</div>
+                              <div class="count">${post.communityPostViews}</div>
+                            </div>
+                        `;
+                        });
+
                         html += `
-                        <div>
-                          <div class="num">${startNum}</div>
-                          <div class="title"><a href="#">${post.title}</a></div>
-                          <div class="writer">${post.writer}</div>
-                          <div class="date">${post.modifiedDate}</div>
-                          <div class="count">${post.communityPostViews}</div>
+                        </div>
+                         <div class="post-page">
+                            <a onclick="showPosts(1,pageSize)" class="bt first"><<</a>
+                            <a onclick="showPosts(${page}-1,pageSize)" class="bt prev"><</a>
+                    `;
+
+                        let startPage = (Math.floor(page / pageBtnSize) * pageBtnSize) + 1;
+                        let endPage = (startPage + pageBtnSize) <= pages ? (startPage + pageBtnSize) : pages;
+
+                        for (let i = startPage; i <= endPage; i++) {
+                            if (page === i) {
+                                html += `
+                                <a onclick="showPosts(${i},pageSize)" class="num on">${i}</a>
+                            `;
+                            } else {
+                                html += `
+                                <a onclick="showPosts(${i},pageSize)" class="num">${i}</a>
+                            `;
+                            }
+                        }
+
+                        html += `
+                                <a onclick="showPosts(${page}+1,pageSize)" class="bt first">></a>
+                                <a onclick="showPosts(${pages},pageSize)" class="bt prev">>></a>
+                              </div>
+                          </div>
                         </div>
                     `;
+                        $(".list").empty();
+                        $(".list").append(html);
+                    })
+                    .fail(function (response) {
+                        alert("자유게시글 조회 실패");
+                        console.log(response.responseJSON.msg);
                     });
-
-                    html += `
-                    </div>
-                     <div class="post-page">
-                        <a onclick="showPosts(1,pageSize)" class="bt first"><<</a>
-                        <a onclick="showPosts(${page}-1,pageSize)" class="bt prev"><</a>
-                `;
-
-                    let startPage = (Math.floor(page / pageBtnSize) * pageBtnSize) + 1;
-                    let endPage = (startPage + pageBtnSize) <= pages ? (startPage + pageBtnSize) : pages;
-
-                    for (let i = startPage; i <= endPage; i++) {
-                        if (page === i) {
-                            html += `
-                            <a onclick="showPosts(${i},pageSize)" class="num on">${i}</a>
-                        `;
-                        } else {
-                            html += `
-                            <a onclick="showPosts(${i},pageSize)" class="num">${i}</a>
-                        `;
-                        }
-                    }
-
-                    html += `
-                            <a onclick="showPosts(${page}+1,pageSize)" class="bt first">></a>
-                            <a onclick="showPosts(${pages},pageSize)" class="bt prev">>></a>
-                          </div>
-                      </div>
-                    </div>
-                `;
-                    $(".list").empty();
-                    $(".list").append(html);
-                })
-                .fail(function (response) {
-                    alert("자유게시글 조회 실패");
-                    console.log(response.responseJSON.msg);
-                });
-        }
-
-    // Function to create a new category
-    function createCategory() {
-      const categoryName = document.getElementById('categoryName').value;
-
-      // Prepare the data to send in the request body
-      const categoryData = {
-        categoryName: categoryName,
-      };
-
-      // Perform AJAX POST request to create a new category on the server
-      $.ajax({
-        type: 'POST',
-        url: '/api/admin/category',
-        contentType: 'application/json',
-        data: JSON.stringify(categoryData),
-        success: function (response) {
-          // Update the table with the newly created category
-          readCategories();
-          alert(response.message); // Display a success message
-        },
-        error: function (xhr) {
-          alert('카테고리생성실패: ' + xhr.statusText);
-        },
-      });
-    }
-
-    // Function to read categories and populate the table
-    function readCategories() {
-      // Perform AJAX GET request to retrieve all categories from the server
-      $.ajax({
-        type: 'GET',
-        url: '/api/admin/category',
-        success: function (response) {
-          const categoryTable = document.getElementById('categoryTable');
-          const tbody = categoryTable.getElementsByTagName('tbody')[0];
-          tbody.innerHTML = ''; // Clear existing table rows
-
-          response.categoryList.forEach(function (category) {
-            const newRow = tbody.insertRow();
-            newRow.id = `categoryRow_${category.id}`; // Assign a unique id
-            newRow.innerHTML = `
-        <td>${category.id}</td>
-        <td>${category.categoryName}</td>
-        <td>
-            <button onclick="updateCategory(${category.id})">Update</button>
-            <button onclick="deleteCategory(${category.id})">Delete</button>
-        </td>
-    `;
-          });
-        },
-        error: function (error) {
-          console.error('카테고리 조회 실패:', error);
-        }
-      });
-    }
-
-    // Call readCategories() to populate the table when the page loads
-    readCategories();
-
-    // Function to update a category
-    function updateCategory(categoryId) {
-      const updatedName = prompt('변경하고자 하는 카테고리 이름을 적어주세요:');
-      if (updatedName) {
-        // Prepare the data to send in the request body
-        const categoryData = {
-          categoryName: updatedName,
-        };
-
-        // Perform AJAX PUT request to update the category on the server
-        $.ajax({
-          type: 'PUT',
-          url: `/api/admin/category/${categoryId}`,
-          contentType: 'application/json',
-          data: JSON.stringify(categoryData),
-          success: function () {
-            // Update the table with the updated category
-            readCategories();
-            alert('카테고리수정완료');
-          },
-          error: function (xhr) {
-            alert('카테고리수정실패: ' + xhr.statusText);
-          },
-        });
-      }
-    }
-
-    // Function to delete a category
-    function deleteCategory(categoryId) {
-      // Confirm deletion with the user
-      const confirmDelete = confirm('카테고리를 삭제하시겠습니까?');
-      if (confirmDelete) {
-        // Perform AJAX DELETE request to delete the category on the server
-        $.ajax({
-          type: 'DELETE',
-          url: `/api/admin/category/${categoryId}`,
-          success: function () {
-            // Remove the category row from the table
-            const row = document.getElementById(`categoryRow_${categoryId}`);
-            if (row) {
-              row.remove();
             }
-            alert('카테고리 삭제완료.');
-          },
-          error: function (xhr) {
-            alert('카테고리 삭제실패: ' + xhr.statusText);
-          },
-        });
-      }
-    }
-    // Call readCategories function to initially populate the table
-    readCategories();
+
+        // Function to create a new category
+        function createCategory() {
+          const categoryName = document.getElementById('categoryName').value;
+
+          // Prepare the data to send in the request body
+          const categoryData = {
+            categoryName: categoryName,
+          };
+
+          // Perform AJAX POST request to create a new category on the server
+          $.ajax({
+            type: 'POST',
+            url: '/api/admin/category',
+            contentType: 'application/json',
+            data: JSON.stringify(categoryData),
+            success: function (response) {
+              // Update the table with the newly created category
+              readCategories();
+              alert(response.message); // Display a success message
+            },
+            error: function (xhr) {
+              alert('카테고리생성실패: ' + xhr.statusText);
+            },
+          });
+        }
+
+        // Function to read categories and populate the table
+        function readCategories() {
+          // Perform AJAX GET request to retrieve all categories from the server
+          $.ajax({
+            type: 'GET',
+            url: '/api/admin/category',
+            success: function (response) {
+              const categoryTable = document.getElementById('categoryTable');
+              const tbody = categoryTable.getElementsByTagName('tbody')[0];
+              tbody.innerHTML = ''; // Clear existing table rows
+
+              response.categoryList.forEach(function (category) {
+                const newRow = tbody.insertRow();
+                newRow.id = `categoryRow_${category.id}`; // Assign a unique id
+                newRow.innerHTML = `
+            <td>${category.id}</td>
+            <td>${category.categoryName}</td>
+            <td>
+                <button onclick="updateCategory(${category.id})">Update</button>
+                <button onclick="deleteCategory(${category.id})">Delete</button>
+            </td>
+        `;
+              });
+            },
+            error: function (error) {
+              console.error('카테고리 조회 실패:', error);
+            }
+          });
+        }
+
+        // Call readCategories() to populate the table when the page loads
+        readCategories();
+
+        // Function to update a category
+        function updateCategory(categoryId) {
+          const updatedName = prompt('변경하고자 하는 카테고리 이름을 적어주세요:');
+          if (updatedName) {
+            // Prepare the data to send in the request body
+            const categoryData = {
+              categoryName: updatedName,
+            };
+
+            // Perform AJAX PUT request to update the category on the server
+            $.ajax({
+              type: 'PUT',
+              url: `/api/admin/category/${categoryId}`,
+              contentType: 'application/json',
+              data: JSON.stringify(categoryData),
+              success: function () {
+                // Update the table with the updated category
+                readCategories();
+                alert('카테고리수정완료');
+              },
+              error: function (xhr) {
+                alert('카테고리수정실패: ' + xhr.statusText);
+              },
+            });
+          }
+        }
+
+        // Function to delete a category
+        function deleteCategory(categoryId) {
+          // Confirm deletion with the user
+          const confirmDelete = confirm('카테고리를 삭제하시겠습니까?');
+          if (confirmDelete) {
+            // Perform AJAX DELETE request to delete the category on the server
+            $.ajax({
+              type: 'DELETE',
+              url: `/api/admin/category/${categoryId}`,
+              success: function () {
+                // Remove the category row from the table
+                const row = document.getElementById(`categoryRow_${categoryId}`);
+                if (row) {
+                  row.remove();
+                }
+                alert('카테고리 삭제완료.');
+              },
+              error: function (xhr) {
+                alert('카테고리 삭제실패: ' + xhr.statusText);
+              },
+            });
+          }
+        }
+        // Call readCategories function to initially populate the table
+        readCategories();
 
 
 
@@ -910,6 +936,8 @@
             const boardContainer = document.querySelector('.board.container');
             const etcContainer = document.querySelector('.etc.container');
 
+            const applyContestBtn = document.querySelector('#apply-contest');
+
             postMenu.addEventListener('click', function () {
                 homeContainer.style.display = 'none';
                 postContainer.style.display = 'block';
@@ -965,7 +993,7 @@
                 etcContainer.style.display = 'none';
             });
 
-           boardMenu.addEventListener('click', function () {
+            boardMenu.addEventListener('click', function () {
                 homeContainer.style.display = 'none';
                 postContainer.style.display = 'none';
                 reportContainer.style.display = 'none';
@@ -996,6 +1024,10 @@
                 userContainer.style.display = 'none';
                 etcContainer.style.display = 'block';
             });
+
+            applyContestBtn.addEventListener('click', function () {
+                window.location.href = "/api/admin/view/applyContest";
+            })
         });
 
         //관리자 관리
@@ -1087,6 +1119,7 @@
                 });
             }
         }
+
     </script>
 </head>
 <body>
@@ -1176,16 +1209,18 @@
 <div class="contest container" style="display: none;">
     <main class="sections-container">
         <div class="section">
-            <h2 class="section-heading">3</h2>
+            <h2 class="section-heading">전체 공모전 목록</h2>
             <div class="section_in">
-                <h1>야호~~~~~~~~~~!!</h1>
+                <div class="card-lists">
+                    <div class="card-item" style="border: 2px solid black;">
+                        <img src="https://i.namu.wiki/i/x50E-9mjfhfye9no6JHqDo9cwMW6B1YXFmS6a6fmwtYa9r1bEzzCEHwbWiCPYO3f6XDvlsWYzbppFhylX6o91_jkLQsgftBZP_ezngdku3kE7kHcrj2WMVZNLWgsRPGgQvlxZqUvGmeH4dyZITpx_Q.webp"></img>
+                        <p>공모전 제목</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="section">
-            <h2 class="section-heading">3</h2>
-            <div class="section_in">
-                <h1>야호~~~~~~~~~~!!!!</h1>
-            </div>
+        <div class="menu-container">
+            <button id="apply-contest">공모전 등록</button>
         </div>
     </main>
 </div>
@@ -1282,6 +1317,7 @@
         </div>
     </main>
 </div>
+
 <div class="etc container" style="display: none;">
   <main class="sections-container">
     <div class="section">
