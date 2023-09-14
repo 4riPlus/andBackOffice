@@ -21,6 +21,12 @@ public interface BoardService {
 
 
 	/**
+	 * 게시글 전체 조회
+	 *
+	 * @return : 게시글 정보 반환
+	 */
+	List<BoardResponseDto> getAllBoards();
+	/**
 	 * 게시글 수정
 	 *
 	 * @param categoryId : 카테고리

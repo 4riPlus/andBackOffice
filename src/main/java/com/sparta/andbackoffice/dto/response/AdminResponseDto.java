@@ -15,7 +15,7 @@ public class AdminResponseDto {
 
 	public AdminResponseDto(Admin admin) {
 		this.id = admin.getId();
-		this.companyNo = admin.getCompanyNo();
+		this.companyNo=admin.getCompanyNo();
 		this.adminName = admin.getAdminName();
 	}
 }

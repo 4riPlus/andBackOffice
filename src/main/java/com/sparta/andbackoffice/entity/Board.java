@@ -26,6 +26,7 @@ public class Board extends TimeStamped {
     @Column(name = "contents")
     private String contents;
 
+
     public void setContents(String contents) {
         this.contents = contents;
     }

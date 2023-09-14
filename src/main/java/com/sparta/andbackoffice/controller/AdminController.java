@@ -58,11 +58,25 @@ public class AdminController {
 		return ResponseEntity.ok().body(getAdmin);
 	}
 
+	//관리자 생성
+//	@PostMapping("/create")
+//	public ResponseEntity<AdminResponseDto> createAdmin(@PathVariable Long id, @RequestBody AdminRequestDto adminRequestDto) {
+//
+//		AdminResponseDto createAdmin = adminService.createAdmin(id, adminRequestDto);
+//		return ResponseEntity.status(HttpStatus.CREATED).body(createAdmin);
+//	}
 	@PostMapping("/create")
 	public ResponseEntity<AdminResponseDto> createAdmin(@RequestBody AdminRequestDto adminRequestDto) {
 		AdminResponseDto createAdmin = adminService.createAdmin(adminRequestDto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(createAdmin);
 	}
+
+//	//관리자 수정
+//	@PutMapping("/{id}")
+//	public ResponseEntity<AdminResponseDto> updateAdmin(@PathVariable Long id, @RequestBody AdminRequestDto adminRequestDto) {
+//		AdminResponseDto updateAdmin = adminService.updateAdmin(id, adminRequestDto);
+//		return ResponseEntity.ok().body(updateAdmin);
+//	}
 
 	//관리자 삭제
 	@DeleteMapping("/delete/{id}")

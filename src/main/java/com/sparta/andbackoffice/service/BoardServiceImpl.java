@@ -24,6 +24,12 @@ public class BoardServiceImpl implements BoardService {
 	private final CategoryRepository categoryRepository;
 
 	@Override
+	public List<BoardResponseDto> getAllBoards() {
+		List<Board> boards = boardRepository.findAll();
+		return boards.stream().map(BoardResponseDto::new).collect(Collectors.toList());
+	}
+
+	@Override
 	public BoardResponseDto createBoard(Long categoryId, BoardRequestDto requestDto) {
 		log.info("Service - createBoard : 시작");
 

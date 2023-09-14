@@ -100,6 +100,7 @@ public class AdminService {
 // 관리자 생성
 	// TODO 권한 설정 필요
 	public AdminResponseDto createAdmin(AdminRequestDto adminRequestDto) {
+
 		// 입력된 비밀번호를 인코딩
 		String encodedPassword = passwordEncoder.encode(adminRequestDto.getAdminPassword());
 		// 새로운 관리자 생성
@@ -110,11 +111,36 @@ public class AdminService {
 		return new AdminResponseDto(savedAdmin);
 	}
 
+	//관리자 수정
+	@Transactional
+	public AdminResponseDto updateAdmin(Long id, AdminRequestDto adminRequestDto) {
+
+		Admin admin = findById(id);
+
+		if (admin.getId() != 1) {
+			throw new IllegalArgumentException("접근권한이 없습니다.");
+		}
+
+		admin.setAdminName(adminRequestDto.getAdminName());
+		admin.setAdminPassword(adminRequestDto.getAdminPassword());
+
+		return new AdminResponseDto(admin);
+	}
 
 	//관리자 삭제
+//	@Transactional
+//	public AdminResponseDto deleteAdmin(Long id) {
+//
+//		Admin admin = findById(id);
+////		if (admin.getId() != 1) {
+////			throw new IllegalArgumentException("접근권한이 없습니다.");
+////		}
+//
+//		adminRepository.delete(admin);
+//		return new AdminResponseDto(admin);
+//	}
 	@Transactional
 	public String deleteAdmin(Long id) {
-
 		Admin admin = findById(id);
 		adminRepository.delete(admin);
 		return "관리자 삭제완료";

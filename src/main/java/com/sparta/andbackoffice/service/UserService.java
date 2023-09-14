@@ -19,14 +19,16 @@ public class UserService {
 	private final UserRepository userRepository;
 
 	// 유저 블랙리스트로 등록
-	public UserBlackListResponseDto registerUser(Long userId, UserBlackListRequestDto userBlackListRequestDto) {
-		User user = userRepository.findByUserId(userId)
+	public String  registerUser(UserBlackListRequestDto userBlackListRequestDto) {
+		String userName = userBlackListRequestDto.getUserName();
+		// 유저 검색 및 블랙리스트에 등록하는 로직 추가
+		User user = userRepository.findByUserName(userName)
 				.orElseThrow(() -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다."));
 
-		UserBlackList userBlackList = new UserBlackList(userBlackListRequestDto.getUserId());
-
-		userBlackListRepository.save(userBlackList);
+		UserBlackList userBlacklist = new UserBlackList(user.getUserName());
+		userBlackListRepository.save(userBlacklist);
 		userRepository.delete(user);
-		return new UserBlackListResponseDto();
+
+		return "User added to the blacklist successfully.";
 	}
 }

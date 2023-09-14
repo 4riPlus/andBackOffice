@@ -36,6 +36,13 @@ public class BoardController {
 
 
 
+	//글 전체조회
+	@GetMapping("/getAll")
+	public ResponseEntity<List<BoardResponseDto>> getAllBoards() {
+		List<BoardResponseDto> boards = boardService.getAllBoards();
+		return ResponseEntity.ok(boards);
+	}
+
 	// 글 수정
 	@PatchMapping("/{categoryId}/{boardId}")
 	public ResponseEntity<?> modifyBoard(@PathVariable Long categoryId,
