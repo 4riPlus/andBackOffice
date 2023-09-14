@@ -42,7 +42,7 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<ReportComment> reportCommentList = new ArrayList<>();
 
-	public User(String userName, String userPassword, String userEmail) {
+	public User(String userName, String userPassword) {
 		this.userName = userName;
 		this.userPassword = userPassword;
 	}
