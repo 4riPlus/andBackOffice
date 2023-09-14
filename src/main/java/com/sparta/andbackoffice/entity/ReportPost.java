@@ -26,7 +26,7 @@ public class ReportPost extends TimeStamped {
 
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "post_id")
+	@JoinColumn(name = "postId")
 	private Post post;
 
 	@ManyToOne
