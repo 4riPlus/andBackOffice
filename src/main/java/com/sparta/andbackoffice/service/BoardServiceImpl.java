@@ -40,17 +40,7 @@ public class BoardServiceImpl implements BoardService {
 		return new BoardResponseDto(board);
 	}
 
-	@Override
-	public BoardResponseDto getBoard(Long categoryId, Long boardId) {
-		log.info("Service - getBoard : 시작");
 
-		findCategory(categoryId);
-		Board board = findBoard(boardId);
-		equalsCategory(categoryId, board);
-
-		log.info("Service - getBoard : 끝");
-		return new BoardResponseDto(board);
-	}
 
 	@Override
 	@Transactional
@@ -90,6 +80,11 @@ public class BoardServiceImpl implements BoardService {
 		categoryRepository.findById(categoryId).orElseThrow(
 				() -> new IllegalArgumentException("존재하지 않는 카테고리입니다.")
 		);
+	}
+	@Override
+	public List<BoardResponseDto> getAllBoards() {
+		List<Board> boards = boardRepository.findAll();
+		return boards.stream().map(BoardResponseDto::new).collect(Collectors.toList());
 	}
 
 	@Override

@@ -24,6 +24,7 @@ public class BottomCategory {
     @JoinColumn(name = "middle_category_id")
     private MiddleCategory middleCategory;
 
+
     @OneToMany(mappedBy = "bottomCategory", orphanRemoval = true)
     private List<Contest_BottomCategory> contestList = new ArrayList<>();
 

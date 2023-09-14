@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +27,6 @@ public class AdminController {
 
 	private final AdminService adminService;
 	private final JwtUtil jwtUtil;
-	private final MappingJackson2HttpMessageConverter converter;
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> signUp(@RequestBody SignupRequestDto requestDto) {
@@ -73,12 +71,12 @@ public class AdminController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(createAdmin);
 	}
 
-	//관리자 수정
-	@PutMapping("/{id}")
-	public ResponseEntity<AdminResponseDto> updateAdmin(@PathVariable Long id, @RequestBody AdminRequestDto adminRequestDto) {
-		AdminResponseDto updateAdmin = adminService.updateAdmin(id, adminRequestDto);
-		return ResponseEntity.ok().body(updateAdmin);
-	}
+//	//관리자 수정
+//	@PutMapping("/{id}")
+//	public ResponseEntity<AdminResponseDto> updateAdmin(@PathVariable Long id, @RequestBody AdminRequestDto adminRequestDto) {
+//		AdminResponseDto updateAdmin = adminService.updateAdmin(id, adminRequestDto);
+//		return ResponseEntity.ok().body(updateAdmin);
+//	}
 
 	//관리자 삭제
 	@DeleteMapping("/delete/{id}")

@@ -18,14 +18,7 @@ public interface BoardService {
 	 */
 	BoardResponseDto createBoard(Long categoryId, BoardRequestDto requestDto);
 
-	/**
-	 * 게시글 단건 조회
-	 *
-	 * @param categoryId : 카테고리
-	 * @param boardId    : 조회할 글 id
-	 * @return : 게시글 정보 반환
-	 */
-	BoardResponseDto getBoard(Long categoryId, Long boardId);
+
 
 	/**
 	 * 게시글 전체 조회
@@ -42,6 +35,13 @@ public interface BoardService {
 	 * @return : 수정된 게시글 내용 반환
 	 */
 	BoardResponseDto modifyBoard(Long categoryId, Long boardId, BoardRequestDto requestDto);
+	/**
+	 * 게시글 전체 조회
+	 *
+	 * @return : 게시글 정보 반환
+	 */
+	List<BoardResponseDto> getAllBoards();
+
 
 	/**
 	 * 게시글 삭제

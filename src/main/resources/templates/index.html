@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://i.postimg.cc/YqTT15xb/image.png">
     <title>&nd, admin</title>
-    <!--  <link rel="stylesheet" href="/main.css"/>-->
     <style>
-        /* Reset some default styles */
         body, h1, h2, p, ul, li {
             margin: 0;
             padding: 0;
@@ -17,7 +15,6 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Header Styles */
         .logo img {
             margin-top: 10px;
             margin-left: 20px;
@@ -25,9 +22,7 @@
             height: auto;
         }
 
-
         #profile-text {
-            /* 추가된 스타일 */
             display: inline-block;
             margin-left: 40px;
             color: #000;
@@ -35,14 +30,12 @@
         }
 
         #profile-text:hover {
-            /* 추가된 스타일 */
             display: inline-block;
             margin-left: 40px;
             color: #fff;
             font-weight: bold;
         }
 
-        /* Container Styles */
         .container {
             display: flex;
             margin: 20px;
@@ -54,7 +47,6 @@
             background-color: #fff;
         }
 
-        /* Banner Styles */
         .banner img {
             width: 100%;
             height: auto;
@@ -70,7 +62,7 @@
             padding: 10px;
             border: 2px solid lightgray;
             border-radius: 20px;
-            width: 500px; /* Adjust the width as needed */
+            width: 500px;
         }
 
         .search-icon {
@@ -91,7 +83,6 @@
             max-height: 90%;
         }
 
-        /* Contest List Styles */
         .section {
             /* 추가된 스타일 */
             flex: 1;
@@ -116,7 +107,6 @@
         }
 
 
-        /* Responsive Styles */
         @media screen and (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -295,11 +285,10 @@
             color: #fff;
         }
 
-    .post-page a:first-child {
-      border-left: 1px solid #ddd;
-    }
+        .post-page a:first-child {
+            border-left: 1px solid #ddd;
+        }
 
-    /* Center the content within the container */
     .section_in {
       text-align: center;
       width: 100%;
@@ -318,28 +307,84 @@
         height: 690px;
     }
 
-    .category.container h2.section-heading {
-      font-size: 24px;
-      margin-bottom: 20px;
-      color: #333;
-    }
+        .category.container h2.section-heading {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
 
-    .create-category, .read-categories {
-      margin-bottom: 20px;
-    }
+        .create-category, .read-categories {
+            margin-bottom: 20px;
+        }
 
-    .create-category h3, .read-categories h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
-      color: #444;
-    }
+        .create-category h3, .read-categories h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+        .board.container {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 800px;
+        }
 
-    #createCategoryForm input[type="text"] {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-right: 10px;
-    }
+        .section-heading {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Style for form elements */
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Style for the board list */
+        #boardList {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #createCategoryForm input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
 
     #createCategoryForm button {
       padding: 10px 20px;
@@ -356,10 +401,10 @@
       color: white;
     }
 
-    #categoryTable {
-      width: 100%;
-      border-collapse: collapse;
-    }
+        #categoryTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
     #categoryTable th {
       background-color: lightsalmon;
@@ -368,14 +413,14 @@
       text-align: center;
     }
 
-    #categoryTable td {
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-    }
+        #categoryTable td {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
 
-    #categoryTable td:last-child {
-      text-align: center;
-    }
+        #categoryTable td:last-child {
+            text-align: center;
+        }
 
     /* Update and Delete buttons */
     #categoryTable button {
@@ -558,14 +603,14 @@
                       </div>
                     </div>
                 `;
-                $(".list").empty();
-                $(".list").append(html);
-              })
-              .fail(function(response) {
-                alert("자유게시글 조회 실패");
-                console.log(response.responseJSON.msg);
-              });
-    }
+                    $(".list").empty();
+                    $(".list").append(html);
+                })
+                .fail(function (response) {
+                    alert("자유게시글 조회 실패");
+                    console.log(response.responseJSON.msg);
+                });
+        }
 
     // Function to create a new category
     function createCategory() {
@@ -679,18 +724,159 @@
     // Call readCategories function to initially populate the table
     readCategories();
 
-    function logout() {
-      let authCookie = getCookie('Authorization');
-      console.log(authCookie);
-      $.ajax({
-        url: 'http://localhost:8080/api/users/logout',
-        type: 'POST',
-        headers: {
-          'Authorization': authCookie
-        },
-        processData: false,
-        contentType: false,
-        success: function (response) {
+
+
+        function populateCategories() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/admin/category', // Update the URL based on your API endpoint
+                success: function (response) {
+                    const categorySelect = document.getElementById('categorySelect');
+
+                    // Clear existing options
+                    categorySelect.innerHTML = '';
+
+                    // Add a default option (optional)
+                    const defaultOption = document.createElement('option');
+                    defaultOption.value = '';
+                    defaultOption.text = 'Select a category';
+                    categorySelect.appendChild(defaultOption);
+
+                    // Add options for each category
+                    response.categoryList.forEach(function (category) {
+                        const option = document.createElement('option');
+                        option.value = category.id;
+                        option.text = category.categoryName;
+                        categorySelect.appendChild(option);
+                    });
+                },
+                error: function (error) {
+                    console.error('Failed to fetch categories:', error);
+                }
+            });
+        }
+
+        // Call the function to populate categories when the page loads
+        populateCategories();
+
+
+        function createBoard() {
+            const categoryId = document.getElementById('categorySelect').value; // Get the selected category ID
+            const title = document.getElementById('createTitle').value;
+            const contents = document.getElementById('createContents').value;
+
+            const boardData = {
+                category: categoryId, // Set the selected category as 'category' property
+                title: title,
+                contents: contents
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: `/api/admin/posts/${categoryId}`, // Pass the categoryId as a path variable
+                contentType: 'application/json',
+                data: JSON.stringify(boardData),
+                success: function (response) {
+                    // Handle the success response, e.g., update the board list
+                    readBoards(categoryId); // Assuming you have a function to refresh the board list
+                    alert('Board created successfully.');
+                },
+                error: function (xhr) {
+                    alert('Failed to create board: ' + xhr.statusText);
+                }
+            });
+        }
+
+
+        // Function to read boards
+        function readBoards(categoryId) {
+            $.ajax({
+                type: 'GET',
+                url: `/api/admin/posts/getAll`,
+                success: function (response) {
+                    // Handle the success response, e.g., display the list of boards
+                    displayBoardList(response);
+                },
+                error: function (xhr) {
+                    alert('Failed to fetch boards: ' + xhr.statusText);
+                }
+            });
+        }
+
+        // Function to update a board
+        function updateBoard(categoryId, boardId, updatedTitle, updatedContents) {
+            const boardData = {
+                title: updatedTitle,
+                contents: updatedContents
+            };
+
+            $.ajax({
+                type: 'PATCH',
+                url: `/api/admin/posts/${categoryId}/${boardId}`,
+                contentType: 'application/json',
+                data: JSON.stringify(boardData),
+                success: function (response) {
+                    readBoards(categoryId); // Refresh the board list after update
+                    alert('Board updated successfully.');
+                },
+                error: function (xhr) {
+                    alert('Failed to update board: ' + xhr.statusText);
+                }
+            });
+        }
+
+        // Function to delete a board
+        function deleteBoard(categoryId, boardId) {
+            const confirmDelete = confirm('Are you sure you want to delete this board?');
+            if (!confirmDelete) {
+                return;
+            }
+
+            $.ajax({
+                type: 'DELETE',
+                url: `/api/admin/posts/${categoryId}/${boardId}`,
+                success: function (response) {
+                    // Handle the success response, e.g., remove the deleted board from the list
+                    removeBoardFromList(boardId); // Assuming you have a function to remove a board
+                    alert('Board deleted successfully.');
+                },
+                error: function (xhr) {
+                    alert('Failed to delete board: ' + xhr.statusText);
+                }
+            });
+        }
+        // Define the displayBoardList function
+        function displayBoardList(boards) {
+            var boardList = $('#boardList'); // Assuming you have an element with id "boardList" to display the boards
+
+            boardList.empty();
+
+            boards.forEach(function (board) {
+                var boardItem = `
+            <div class="board-item">
+                <h3>${board.title}</h3>
+                <p>${board.contents}</p>
+                <p>Category: ${board.categoryName}</p>
+            </div>
+        `;
+
+                boardList.append(boardItem);
+            });
+        }
+
+
+        function logout() {
+            let authCookie = getCookie('Authorization');
+            console.log(authCookie);
+            $.ajax({
+                url: 'http://localhost:8081/api/users/logout',
+                type: 'POST',
+                headers: {
+                    'Authorization': authCookie
+                },
+                processData: false,
+                contentType: false,
+                success: function (response) {
 
                     Cookies.remove('Authorization', {path: '/'}); // 쿠키삭제
                     // Cookies.set('Authorization', token, {path: '/', expires: expirationDate});
@@ -711,6 +897,7 @@
             const reportMenu = document.querySelector('#report-post');
             const contestMenu = document.querySelector('#contest');
             const categoryMenu = document.querySelector('#category');
+            const boardMenu = document.querySelector('#board');
             const userMenu = document.querySelector('#user');
             const etcMenu = document.querySelector('#etc');
 
@@ -720,6 +907,7 @@
             const contestContainer = document.querySelector('.contest.container');
             const categoryContainer = document.querySelector('.category.container');
             const userContainer = document.querySelector('.user.container');
+            const boardContainer = document.querySelector('.board.container');
             const etcContainer = document.querySelector('.etc.container');
 
             postMenu.addEventListener('click', function () {
@@ -728,6 +916,7 @@
                 reportContainer.style.display = 'none';
                 contestContainer.style.display = 'none';
                 categoryContainer.style.display = 'none';
+                boardContainer.style.display='none';
                 userContainer.style.display = 'none';
                 etcContainer.style.display = 'none';
             });
@@ -738,6 +927,7 @@
                 reportContainer.style.display = 'none';
                 contestContainer.style.display = 'none';
                 categoryContainer.style.display = 'none';
+                boardContainer.style.display='none';
                 userContainer.style.display = 'none';
                 etcContainer.style.display = 'none';
             });
@@ -748,6 +938,7 @@
                 reportContainer.style.display = 'block';
                 contestContainer.style.display = 'none';
                 categoryContainer.style.display = 'none'; // 다른 컨테이너 숨기기
+                boardContainer.style.display='none';
                 userContainer.style.display = 'none';
                 etcContainer.style.display = 'none';
             });
@@ -758,6 +949,7 @@
                 reportContainer.style.display = 'none';
                 contestContainer.style.display = 'block';
                 categoryContainer.style.display = 'none'; // 다른 컨테이너 숨기기
+                boardContainer.style.display='none';
                 userContainer.style.display = 'none';
                 etcContainer.style.display = 'none';
             });
@@ -768,6 +960,18 @@
                 reportContainer.style.display = 'none';
                 contestContainer.style.display = 'none';
                 categoryContainer.style.display = 'block';
+                boardContainer.style.display='none';
+                userContainer.style.display = 'none';
+                etcContainer.style.display = 'none';
+            });
+
+           boardMenu.addEventListener('click', function () {
+                homeContainer.style.display = 'none';
+                postContainer.style.display = 'none';
+                reportContainer.style.display = 'none';
+                contestContainer.style.display = 'none';
+                categoryContainer.style.display = 'none';
+                boardContainer.style.display='block';
                 userContainer.style.display = 'none';
                 etcContainer.style.display = 'none';
             });
@@ -778,6 +982,7 @@
                 reportContainer.style.display = 'none';
                 contestContainer.style.display = 'none';
                 categoryContainer.style.display = 'none';
+                boardContainer.style.display='none';
                 userContainer.style.display = 'block';
                 etcContainer.style.display = 'none';
             });
@@ -793,60 +998,59 @@
             });
         });
 
+        //관리자 관리
+        // 관리자 생성
+        function createAdmin() {
+            // HTML 폼에서 입력된 데이터 가져오기
+            const companyNo = document.getElementById('companyNo').value;
+            const adminName = document.getElementById('adminName').value;
+            const adminPassword = document.getElementById('adminPassword').value;
+            // 데이터 유효성 검사
+            if (!companyNo || !adminName || !adminPassword) {
+                alert("빈칸 없이 모두 입력해야 합니다.");
+                return;
+            }
 
-    //관리자 관리
-    // 관리자 생성
-    function createAdmin() {
-      // HTML 폼에서 입력된 데이터 가져오기
-      const companyNo = document.getElementById('companyNo').value;
-      const adminName = document.getElementById('adminName').value;
-      const adminPassword = document.getElementById('adminPassword').value;
-      // 데이터 유효성 검사
-      if (!companyNo || !adminName || !adminPassword) {
-        alert("빈칸 없이 모두 입력해야 합니다.");
-        return;
-      }
+            // 관리자 데이터 생성
+            const adminData = {
+                companyNo: companyNo,
+                adminName: adminName,
+                adminPassword:adminPassword
+            };
+            // 서버에 관리자 데이터 전송 (AJAX 요청)
+            $.ajax({
+                type: 'POST',
+                url: '/api/admin/create',
+                data: JSON.stringify(adminData),
+                contentType: 'application/json',
+                success: function (response) {
+                    alert('관리자 등록 성공');
+                    readAdmin();
+                },
+                error: function (xhr) {
+                    alert('관리자 등록 실패: ' + xhr.statusText);
+                },
+            });
+        }
+        //관리자 리스트 조회
+        $(document).ready(function () {
+            // 페이지 로드 시 자동으로 관리자 리스트 불러오기
+            readAdmin();
+        });
+        function readAdmin() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/admin/get',
+                success: function (response) {
+                    // 관리자 목록을 표시할 HTML 테이블 업데이트
+                    const adminTable = document.getElementById('adminTable');
+                    const tbody = adminTable.getElementsByTagName('tbody')[0];
+                    tbody.innerHTML = '';
 
-      // 관리자 데이터 생성
-      const adminData = {
-        companyNo: companyNo,
-        adminName: adminName,
-        adminPassword:adminPassword
-      };
-      // 서버에 관리자 데이터 전송 (AJAX 요청)
-      $.ajax({
-        type: 'POST',
-        url: '/api/admin/create',
-        data: JSON.stringify(adminData),
-        contentType: 'application/json',
-        success: function (response) {
-          alert('관리자 등록 성공');
-          readAdmin();
-        },
-        error: function (xhr) {
-          alert('관리자 등록 실패: ' + xhr.statusText);
-        },
-      });
-    }
-   //관리자 리스트 조회
-    $(document).ready(function () {
-      // 페이지 로드 시 자동으로 관리자 리스트 불러오기
-      readAdmin();
-    });
-    function readAdmin() {
-      $.ajax({
-        type: 'GET',
-        url: '/api/admin/get',
-        success: function (response) {
-          // 관리자 목록을 표시할 HTML 테이블 업데이트
-          const adminTable = document.getElementById('adminTable');
-          const tbody = adminTable.getElementsByTagName('tbody')[0];
-          tbody.innerHTML = '';
-
-          response.adminList.forEach(function (admin) {
-            const newRow = tbody.insertRow();
-            newRow.id = `adminRow_${admin.id}`;
-            newRow.innerHTML = `
+                    response.adminList.forEach(function (admin) {
+                        const newRow = tbody.insertRow();
+                        newRow.id = `adminRow_${admin.id}`;
+                        newRow.innerHTML = `
           <td>${admin.id}</td>
           <td>${admin.companyNo}</td>
           <td>${admin.adminName}</td>
@@ -854,36 +1058,36 @@
               ${admin.id === 1 ? '' : `<button onclick="deleteAdmin(${admin.id})">Delete</button>`}
           </td>
         `;
-          });
-        },
-        error: function (error) {
-          console.error('관리자 리스트 조회 실패', error);
+                    });
+                },
+                error: function (error) {
+                    console.error('관리자 리스트 조회 실패', error);
+                }
+            });
         }
-      });
-    }
-    // 관리자 삭제
-    function deleteAdmin(adminId, loggedInAdminId) {
-      const confirmDelete = confirm("정말로 삭제하시겠습니까?");
-      if (confirmDelete) {
-        $.ajax({
-          type: 'DELETE',
-          url: `/api/admin/delete/${adminId}`, // Use the correct URL
-          data: JSON.stringify({ loggedInAdminId }), // Include the loggedInAdminId
-          contentType: 'application/json',
-          success: function () {
-            alert('관리자 삭제 완료.');
-            const row = document.getElementById(`adminRow_${adminId}`);
-            if (row) {
-              row.remove();
+        // 관리자 삭제
+        function deleteAdmin(adminId, loggedInAdminId) {
+            const confirmDelete = confirm("정말로 삭제하시겠습니까?");
+            if (confirmDelete) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: `/api/admin/delete/${adminId}`, // Use the correct URL
+                    data: JSON.stringify({ loggedInAdminId }), // Include the loggedInAdminId
+                    contentType: 'application/json',
+                    success: function () {
+                        alert('관리자 삭제 완료.');
+                        const row = document.getElementById(`adminRow_${adminId}`);
+                        if (row) {
+                            row.remove();
+                        }
+                    },
+                    error: function (xhr) {
+                        alert('관리자 삭제 실패: ' + xhr.statusText);
+                    },
+                });
             }
-          },
-          error: function (xhr) {
-            alert('관리자 삭제 실패: ' + xhr.statusText);
-          },
-        });
-      }
-    }
-  </script>
+        }
+    </script>
 </head>
 <body>
 <header>
@@ -898,17 +1102,6 @@
       <li><a id="board" href="#">공지사항 관리</a></li>
       <li><a id="user" href="#">관리자/유저 관리</a></li>
       <li><a id="etc" href="#">기타 이용약관</a></li>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
       <br>
       <br>
       <br>
@@ -954,7 +1147,6 @@
                     </div>
                 </div>
                 <div class="list">
-                    <!--          불러 온 게시물 노출영역-->
                 </div>
                 <div class="delete-button">
                     <a onclick="deletePost()">삭제</a>
@@ -1031,6 +1223,31 @@
 
 </div>
 
+<div class="board container" style="display: none;">
+    <div class="board contents">
+        <h2 class="section-heading">공지사항&이벤트 관리페이지</h2>
+        <form id="createBoardForm">
+            <div>
+                <label for="createTitle">Title:</label>
+                <input type="text" id="createTitle" name="title" />
+            </div>
+            <div>
+                <label for="createContents">Contents:</label>
+                <textarea id="createContents" name="contents"></textarea>
+            </div>
+            <div>
+                <label for="categorySelect">Category:</label>
+                <select id="categorySelect" name="categoryId"></select>
+            </div>
+            <button type="button" onclick="createBoard()">Create</button>
+        </form>
+
+        <h2>Board List</h2>
+    <div id="boardList">
+
+    </div>
+</div>
+</div>
 
 <div class="user container" style="display: none;">
     <main class="sections-container">

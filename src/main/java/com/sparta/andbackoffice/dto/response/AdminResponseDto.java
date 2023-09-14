@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AdminResponseDto{
+public class AdminResponseDto {
 	private Long id;
 	private Long companyNo;
 	private String adminName;
@@ -18,5 +18,4 @@ public class AdminResponseDto{
 		this.companyNo=admin.getCompanyNo();
 		this.adminName = admin.getAdminName();
 	}
-
 }

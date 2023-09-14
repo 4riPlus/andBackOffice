@@ -41,6 +41,7 @@ public class Contest extends TimeStamped {
 	@Column(name = "startDate")
 	private LocalDateTime startDate;
 
+	@Enumerated(EnumType.STRING) //enum의 값을 텍스트 값으로 저장
 	@Column(name = "status")
 	private ContestStatus status;
 
@@ -62,7 +63,6 @@ public class Contest extends TimeStamped {
 		this.company = requestDto.getCompany();
 		this.endDate = requestDto.getEndDate();
 		this.startDate = requestDto.getStartDate();
-		this.status = (ContestStatus.CLOSED);
 		this.homepage = requestDto.getHomepage();
 		this.contents = requestDto.getContents();
 	}
