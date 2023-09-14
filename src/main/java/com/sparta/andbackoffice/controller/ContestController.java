@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j(topic = "ContestController")
 @RestController
 @RequiredArgsConstructor
@@ -43,7 +45,7 @@ public class ContestController {
 	// 글 수정
 	@PatchMapping("/{contestId}")
 	public ResponseEntity<?> modifyContest(@PathVariable Long contestId,
-	                                       @RequestBody ContestRequestDto requestDto) {
+										   @RequestBody ContestRequestDto requestDto) {
 		log.info("Controller - modifyContest : 시작");
 
 		ContestResponseDto result = contestService.modifyContest(contestId, requestDto);
@@ -62,5 +64,11 @@ public class ContestController {
 
 		log.info("Controller - deleteContest : 끝");
 		return ResponseEntity.status(HttpStatus.OK).body(result);
+	}
+
+	//글전체조회
+	@GetMapping("")
+	public List<ContestResponseDto> getContests() {
+		return contestService.getContests();
 	}
 }

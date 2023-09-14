@@ -1,8 +1,12 @@
 package com.sparta.andbackoffice.dto.request;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
+@NoArgsConstructor
 public class BoardRequestDto {
 	/**
 	 * 글 작성할 때 Body에 카테고리 적을 필요 x

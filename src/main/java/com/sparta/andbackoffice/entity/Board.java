@@ -26,10 +26,6 @@ public class Board extends TimeStamped {
     @Column(name = "contents")
     private String contents;
 
-    @ManyToOne
-    @JoinColumn(name = "bottom_category_id")
-    private BottomCategory bottomCategory;
-
     public void setContents(String contents) {
         this.contents = contents;
     }

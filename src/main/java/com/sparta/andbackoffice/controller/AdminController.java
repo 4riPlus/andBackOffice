@@ -52,31 +52,22 @@ public class AdminController {
 	}
 
 	//관리자 조회
-	@GetMapping
+	@GetMapping("/get")
 	public ResponseEntity<AdminListResponseDto> getAdmin() {
 		AdminListResponseDto getAdmin = adminService.getAdmin();
 		return ResponseEntity.ok().body(getAdmin);
 	}
 
-	//관리자 생성
-	@PostMapping
-	public ResponseEntity<AdminResponseDto> createAdmin(@PathVariable Long id, @RequestBody AdminRequestDto adminRequestDto) {
-
-		AdminResponseDto createAdmin = adminService.createAdmin(id, adminRequestDto);
+	@PostMapping("/create")
+	public ResponseEntity<AdminResponseDto> createAdmin(@RequestBody AdminRequestDto adminRequestDto) {
+		AdminResponseDto createAdmin = adminService.createAdmin(adminRequestDto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(createAdmin);
 	}
 
-	//관리자 수정
-	@PutMapping("/{id}")
-	public ResponseEntity<AdminResponseDto> updateAdmin(@PathVariable Long id, @RequestBody AdminRequestDto adminRequestDto) {
-		AdminResponseDto updateAdmin = adminService.updateAdmin(id, adminRequestDto);
-		return ResponseEntity.ok().body(updateAdmin);
-	}
-
 	//관리자 삭제
-	@DeleteMapping("/{id}")
-	public ResponseEntity<AdminResponseDto> deleteAdmin(@PathVariable Long id) {
-		AdminResponseDto deleteAdmin = adminService.deleteAdmin(id);
-		return ResponseEntity.ok().body(deleteAdmin);
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<String> deleteAdmin(@PathVariable Long id) {
+		String msg = adminService.deleteAdmin(id);
+		return ResponseEntity.ok(msg);
 	}
 }

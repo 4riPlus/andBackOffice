@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j(topic = "BoardController")
 @RestController
 @RequiredArgsConstructor
@@ -32,17 +34,7 @@ public class BoardController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(result);
 	}
 
-	// 글 단건 조회
-	@GetMapping("/{categoryId}/{boardId}")
-	public ResponseEntity<?> getBoard(@PathVariable Long categoryId,
-	                                  @PathVariable Long boardId) {
-		log.info("Controller - getBoard : 시작");
 
-		BoardResponseDto result = boardService.getBoard(categoryId, boardId);
-
-		log.info("Controller - getBoard : 끝");
-		return ResponseEntity.status(HttpStatus.OK).body(result);
-	}
 
 	// 글 수정
 	@PatchMapping("/{categoryId}/{boardId}")
@@ -68,6 +60,13 @@ public class BoardController {
 
 		log.info("Controller - deleteBoard : 끝");
 		return ResponseEntity.status(HttpStatus.OK).body(result);
+	}
+
+	//글 전체조회
+	@GetMapping("/getAll")
+	public ResponseEntity<List<BoardResponseDto>> getAllBoards() {
+		List<BoardResponseDto> boards = boardService.getAllBoards();
+		return ResponseEntity.ok(boards);
 	}
 }
 

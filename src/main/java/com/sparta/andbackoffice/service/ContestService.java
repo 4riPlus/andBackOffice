@@ -4,14 +4,21 @@ import com.sparta.andbackoffice.dto.request.ContestRequestDto;
 import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.ContestResponseDto;
 import com.sparta.andbackoffice.entity.Contest;
+import com.sparta.andbackoffice.entity.ContestStatus;
 import com.sparta.andbackoffice.repository.ContestRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Service
+@EnableScheduling
 @Slf4j(topic = "ContestService")
 @RequiredArgsConstructor
 public class ContestService {
@@ -21,7 +28,9 @@ public class ContestService {
 	public ContestResponseDto createContest(ContestRequestDto requestDto) {
 		log.info("Service - createContest : 시작");
 
-		Contest contest = contestRepository.save(new Contest(requestDto));
+		Contest contest = new Contest(requestDto);
+		contest.setStatus((contestStatus(contest))); // 마감기한 코드 넣기
+		contest = contestRepository.save(contest);
 
 		log.info("Service - createContest : 끝");
 		return new ContestResponseDto(contest);
@@ -34,6 +43,10 @@ public class ContestService {
 
 		log.info("Service - getContest : 끝");
 		return new ContestResponseDto(contest);
+	}
+
+	public List<ContestResponseDto> getContests() {
+		return contestRepository.findAllByOrderByCreatedDateDesc().stream().map(ContestResponseDto::new).toList();
 	}
 
 	@Transactional
@@ -50,6 +63,8 @@ public class ContestService {
 		contest.setStartDate(requestDto.getStartDate());
 		contest.setHomepage(requestDto.getHomepage());
 		contest.setContents(requestDto.getContents());
+
+		contest.setStatus(contestStatus(contest)); //마감기한 상태코드 다시 계산해서 업데이트
 
 		log.info("Service - modifyContest : 끝");
 		return new ContestResponseDto(contest);
@@ -72,17 +87,49 @@ public class ContestService {
 		);
 	}
 
-//	public ContestStatus contestStatus(Contest contest) {
-//		LocalDate currentDate = LocalDate.now();
-//
-//		if (currentDate.isBefore(contest.getStartDate())) {
-//			return ContestStatus.UPCOMING;
-//		} else if (currentDate.isEqual(contest.getStartDate()) || currentDate.isEqual(contest.getEndDate()) || currentDate.isBefore(contest.getEndDate())) {
-//			return ContestStatus.ONGOING;
-//		} else if (currentDate.isBefore(contest.getEndDate().minusDays(3))) {
-//			return ContestStatus.CLOSING;
-//		} else {
-//			return ContestStatus.CLOSED;
-//		}
-//	}
+	@Transactional
+	@Scheduled(cron = "0 0 0 * * ?") //매일 자정에 실행됨
+	public void updateContestStatus() {
+		log.info("Service - updateStatus : 시작");
+
+		contestRepository.findAll() //모든 공보전을 가져오고
+				.forEach(contest -> {  // 반복 루프 ContestStatus메서드 호출해서 상태코드 설정
+					ContestStatus status = contestStatus(contest);
+					contest.setStatus(status); //contest 객체에 set
+					log.info("상태코드 update확인 ID {}: {}", contest.getId(), status);
+				});
+
+		log.info("Service - updateStatus : 끝");
+	}
+
+	public ContestStatus contestStatus(Contest contest) {
+		LocalDateTime currentDateTime = LocalDateTime.now();
+		LocalDateTime startDate = contest.getStartDate();
+		LocalDateTime endDate = contest.getEndDate();
+		LocalDateTime endDateMinus3Days = endDate.minusDays(3);
+
+		if (currentDateTime.isBefore(startDate)) {
+			return ContestStatus.UPCOMING;  //접수예정
+		} else if (currentDateTime.isEqual(startDate) || currentDateTime.isBefore(endDate)) {
+			return ContestStatus.ONGOING; //접수중
+		} else if (currentDateTime.isBefore(endDateMinus3Days)) {
+			return ContestStatus.CLOSING; //마감임박
+		} else {
+			return ContestStatus.CLOSED; //마감
+		}
+	}
 }
+
+//오래된 데이터 삭제 메서드 (보류)
+//	@Transactional
+//	@Scheduled(cron = "0 0 0 * * ?")
+//	public void deleteOldContestPosts(){
+//		log.info("Service - deleteOldContestPosts: 시작");
+//
+//		LocalDateTime currentDateTime = LocalDateTime.now().minusDays(30);
+//
+//		List<Contest> oldContestPosts = contestRepository.findByEndDate(currentDateTime);
+//
+//		contestRepository.deleteAll(oldContestPosts);
+//	}
+//}
