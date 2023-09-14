@@ -5,6 +5,8 @@ import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.BoardResponseDto;
 import com.sparta.andbackoffice.entity.Board;
 
+import java.util.List;
+
 public interface BoardService {
 
 	/**
@@ -16,15 +18,14 @@ public interface BoardService {
 	 */
 	BoardResponseDto createBoard(Long categoryId, BoardRequestDto requestDto);
 
+
+
 	/**
-	 * 게시글 단건 조회
+	 * 게시글 전체 조회
 	 *
-	 * @param categoryId : 카테고리
-	 * @param boardId    : 조회할 글 id
 	 * @return : 게시글 정보 반환
 	 */
-	BoardResponseDto getBoard(Long categoryId, Long boardId);
-
+	List<BoardResponseDto> getAllBoards();
 	/**
 	 * 게시글 수정
 	 *
@@ -34,6 +35,8 @@ public interface BoardService {
 	 * @return : 수정된 게시글 내용 반환
 	 */
 	BoardResponseDto modifyBoard(Long categoryId, Long boardId, BoardRequestDto requestDto);
+
+
 
 	/**
 	 * 게시글 삭제

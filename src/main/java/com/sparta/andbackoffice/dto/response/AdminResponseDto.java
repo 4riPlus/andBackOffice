@@ -10,10 +10,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AdminResponseDto {
 	private Long id;
+	private Long companyNo;
 	private String adminName;
 
 	public AdminResponseDto(Admin admin) {
 		this.id = admin.getId();
+		this.companyNo=admin.getCompanyNo();
 		this.adminName = admin.getAdminName();
 	}
 }

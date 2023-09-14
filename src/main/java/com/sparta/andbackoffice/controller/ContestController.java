@@ -6,9 +6,16 @@ import com.sparta.andbackoffice.dto.response.ContestResponseDto;
 import com.sparta.andbackoffice.service.ContestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+import java.util.List;
 
 @Slf4j(topic = "ContestController")
 @RestController
@@ -20,7 +27,7 @@ public class ContestController {
 
 	// 글 작성
 	@PostMapping
-	public ResponseEntity<?> createContest(@RequestBody ContestRequestDto requestDto) {
+	public ResponseEntity<?> createContest(@ModelAttribute ContestRequestDto requestDto) {
 		log.info("Controller - createContest : 시작");
 
 		ContestResponseDto result = contestService.createContest(requestDto);
@@ -43,7 +50,7 @@ public class ContestController {
 	// 글 수정
 	@PatchMapping("/{contestId}")
 	public ResponseEntity<?> modifyContest(@PathVariable Long contestId,
-	                                       @RequestBody ContestRequestDto requestDto) {
+										   @RequestBody ContestRequestDto requestDto) {
 		log.info("Controller - modifyContest : 시작");
 
 		ContestResponseDto result = contestService.modifyContest(contestId, requestDto);
@@ -62,5 +69,11 @@ public class ContestController {
 
 		log.info("Controller - deleteContest : 끝");
 		return ResponseEntity.status(HttpStatus.OK).body(result);
+	}
+
+	//글전체조회
+	@GetMapping("")
+	public List<ContestResponseDto> getContests() {
+		return contestService.getContests();
 	}
 }

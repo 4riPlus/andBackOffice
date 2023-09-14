@@ -3,11 +3,13 @@ package com.sparta.andbackoffice.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 @Entity
 @Component
 @Getter
+@Setter
 @Table(name = "UserBlackList")
 @NoArgsConstructor
 public class UserBlackList {
@@ -17,10 +19,10 @@ public class UserBlackList {
     private Long blackListId;
 
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userName")
     private User user;
 
-    public UserBlackList(Long blackListId) {
-        this.blackListId = blackListId;
+    public UserBlackList(User user) {
+        this.user = user;
     }
 }

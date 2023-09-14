@@ -15,14 +15,15 @@ import java.time.format.DateTimeFormatter;
 public abstract class TimeStamped {
 
 	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
+	public static final DateTimeFormatter FORMATTER_DATE = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	@CreatedDate
 	@Column(updatable = false) //최초 생성시간만 초기화 되고 그 뒤 수정될 수 없음
 	private LocalDateTime createdDate;
 
-	@LastModifiedDate //변경될 때마다 시간 저장
-	@Column
+	@LastModifiedDate
+	@Column(updatable = false)
 	private LocalDateTime modifiedDate;
+
 
 	public String getCreatedDateFormatted() {
 		return createdDate.format(FORMATTER);
@@ -30,6 +31,14 @@ public abstract class TimeStamped {
 
 	public String getModifiedDateFormatted() {
 		return modifiedDate.format(FORMATTER);
+	}
+
+	public String getCreatedDateFormatted(DateTimeFormatter formatter) {
+		return createdDate.format(formatter);
+	}
+
+	public String getModifiedDateFormatted(DateTimeFormatter formatter) {
+		return modifiedDate.format(formatter);
 	}
 }
 

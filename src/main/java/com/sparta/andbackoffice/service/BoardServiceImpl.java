@@ -12,6 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Slf4j(topic = "BoardService")
 @RequiredArgsConstructor
@@ -19,6 +22,12 @@ public class BoardServiceImpl implements BoardService {
 
 	private final BoardRepository boardRepository;
 	private final CategoryRepository categoryRepository;
+
+	@Override
+	public List<BoardResponseDto> getAllBoards() {
+		List<Board> boards = boardRepository.findAll();
+		return boards.stream().map(BoardResponseDto::new).collect(Collectors.toList());
+	}
 
 	@Override
 	public BoardResponseDto createBoard(Long categoryId, BoardRequestDto requestDto) {
@@ -31,17 +40,7 @@ public class BoardServiceImpl implements BoardService {
 		return new BoardResponseDto(board);
 	}
 
-	@Override
-	public BoardResponseDto getBoard(Long categoryId, Long boardId) {
-		log.info("Service - getBoard : 시작");
 
-		findCategory(categoryId);
-		Board board = findBoard(boardId);
-		equalsCategory(categoryId, board);
-
-		log.info("Service - getBoard : 끝");
-		return new BoardResponseDto(board);
-	}
 
 	@Override
 	@Transactional
