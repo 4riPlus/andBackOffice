@@ -31,5 +31,4 @@ public class ContestResponseDto {
 		this.contestViews = contest.getContestViews();
 		this.prize = contest.getPrize();
 	}
-
 }

@@ -20,9 +20,6 @@ public class MiddleCategory {
     @Column(nullable = false)
     private String categoryName;
 
-    @ManyToOne
-    @JoinColumn(name = "top_category_id")
-    private Category category;
 
     @OneToMany(mappedBy = "middleCategory", orphanRemoval = true)
     private List<BottomCategory> bottomCategories;

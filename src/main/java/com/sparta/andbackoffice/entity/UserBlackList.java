@@ -17,14 +17,13 @@ public class UserBlackList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "blackListId")
     private Long blackListId;
-    public String userName;
 
     @ManyToOne
     @JoinColumn(name = "userName")
     private User user;
 
 
-    public UserBlackList(String userName) {
-        this.userName = userName;
+    public UserBlackList(User user) {
+        this.user = user;
     }
 }

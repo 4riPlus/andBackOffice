@@ -4,6 +4,7 @@ import com.sparta.andbackoffice.dto.request.BoardRequestDto;
 import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.BoardResponseDto;
 import com.sparta.andbackoffice.entity.Board;
+import com.sparta.andbackoffice.entity.Category;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface BoardService {
 	 * @param requestDto : 작성할 내용
 	 * @return : 생성한 글 내용 반환
 	 */
-	BoardResponseDto createBoard(Long categoryId, BoardRequestDto requestDto);
+	BoardResponseDto createBoard(Category categoryId, BoardRequestDto requestDto);
 
 
 
@@ -34,25 +35,22 @@ public interface BoardService {
 	 * @param requestDto : 수정할 내용
 	 * @return : 수정된 게시글 내용 반환
 	 */
-	BoardResponseDto modifyBoard(Long categoryId, Long boardId, BoardRequestDto requestDto);
-
-
+	BoardResponseDto modifyBoard(Long Id, BoardRequestDto requestDto);
 
 	/**
 	 * 게시글 삭제
 	 *
-	 * @param categoryId : 카테고리
-	 * @param boardId    : 삭제할 게시글 id
+	 * @param id    : 삭제할 게시글 id
 	 * @return : 요청 처리 메시지 + 상태코드
 	 */
-	ApiResponseDto deleteBoard(Long categoryId, Long boardId);
+	ApiResponseDto deleteBoard(Long id);
 
 	/**
 	 * 존재하는 카테고리인지 검증
 	 *
 	 * @param categoryId : 검증할 카테고리 id
 	 */
-	void findCategory(Long categoryId);
+	void findCategory(Category categoryId);
 
 	/**
 	 * 존재하는 게시글인지 검증
@@ -68,5 +66,5 @@ public interface BoardService {
 	 * @param categoryId : 내가 입력한 카테고리
 	 * @param board      : 게시글 정보 - 실제 글이 위치한 카테고리 id
 	 */
-	void equalsCategory(Long categoryId, Board board);
+	void equalsCategory(Category categoryId, Board board);
 }

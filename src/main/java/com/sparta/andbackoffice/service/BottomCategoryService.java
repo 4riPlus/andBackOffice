@@ -1,10 +1,13 @@
 package com.sparta.andbackoffice.service;
 
 import com.sparta.andbackoffice.dto.request.BottomCategoryRequestDto;
+import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.BottomCategoryListResponseDto;
 import com.sparta.andbackoffice.dto.response.BottomCategoryResponseDto;
 import com.sparta.andbackoffice.entity.BottomCategory;
+import com.sparta.andbackoffice.entity.MiddleCategory;
 import com.sparta.andbackoffice.repository.BottomCategoryRepository;
+import com.sparta.andbackoffice.repository.MiddleCategoryRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,12 +19,24 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class BottomCategoryService {
 	private final BottomCategoryRepository bottomCategoryRepository;
+	private final MiddleCategoryRepository middleCategoryRepository;
 
 	//생성
 	public void createBottomCategory(BottomCategoryRequestDto bottomCategoryRequestDto) {
-		String CategoryName = bottomCategoryRequestDto.getCategoryName();
-		BottomCategory bottomCategory = new BottomCategory(CategoryName);
+//		String CategoryName = bottomCategoryRequestDto.getCategoryName();
+//		BottomCategory bottomCategory = new BottomCategory(CategoryName);
+//		bottomCategoryRepository.save(bottomCategory);
+		Long middleCategoryId = bottomCategoryRequestDto.getMiddleCategoryId(); // 중위 카테고리 ID 가져오기
+
+		MiddleCategory middleCategory = middleCategoryRepository.findById(middleCategoryId)
+				.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 중위 카테고리입니다."));
+
+		String categoryName = bottomCategoryRequestDto.getCategoryName();
+		BottomCategory bottomCategory = new BottomCategory(categoryName);
+		bottomCategory.setMiddleCategory(middleCategory); // 중위 카테고리와의 연관 관계 설정
 		bottomCategoryRepository.save(bottomCategory);
+
+		BottomCategoryResponseDto responseDto = new BottomCategoryResponseDto(bottomCategory);
 	}
 
 	//조회

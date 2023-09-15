@@ -21,7 +21,7 @@ public class CategoryController {
     @PostMapping("/category")
     public ResponseEntity<ApiResponseDto> createCategory(@RequestBody CategoryRequestDto categoryRequestDto) {
         categoryService.createCategory(categoryRequestDto);
-        return ResponseEntity.ok().body(new ApiResponseDto("카테고리 생성 완료", HttpStatus.OK.value()));
+        return ResponseEntity.ok().body(new ApiResponseDto("상위 카테고리 생성 완료", HttpStatus.OK.value()));
     }
 
     // 카테고리 전체조회
@@ -45,6 +45,3 @@ public class CategoryController {
         return ResponseEntity.ok(msg);
     }
 }
-
-
-

@@ -54,7 +54,7 @@ public class Contest extends TimeStamped {
 	@Column(name = "contestViews")
 	private Long contestViews = 0L;
 
-	@Column(name="prize")
+	@Column(name = "prize")
 	private String prize;
 
 	@OneToMany(mappedBy = "contest")
@@ -70,11 +70,12 @@ public class Contest extends TimeStamped {
 		this.contents = requestDto.getContents();
 		this.prize = requestDto.getPrize();
 	}
+}
 
 	// 값 입력이 없다면 default => 1번
-	@PrePersist
-	public void prePersist() {
-		this.category = this.category == null ? 1 : this.category;
-//		this.contestViews = this.contestViews == null ? 0 : this.contestViews;
-	}
-}
+//	@PrePersist
+//	public void prePersist() {
+//		this.category = this.category == null ? 1 : this.category;
+////		this.contestViews = this.contestViews == null ? 0 : this.contestViews;
+//	}
+//}
