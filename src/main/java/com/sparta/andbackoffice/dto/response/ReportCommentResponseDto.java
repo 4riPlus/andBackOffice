@@ -7,6 +7,7 @@ import lombok.Getter;
 public class ReportCommentResponseDto {
 	private Long reportCommentId;
 	private Long commentId;
+	private String comment;
 	private String writer;
 	private String reporter;
 	private String reportReason;
@@ -15,6 +16,7 @@ public class ReportCommentResponseDto {
 	public ReportCommentResponseDto(ReportComment reportComment) {
 		this.reportCommentId = reportComment.getId();
 		this.commentId = reportComment.getComment().getId();
+		this.comment = reportComment.getComment().getContent();
 		this.writer = reportComment.getComment().getWriter().getNickname();
 		this.reporter = reportComment.getUser().getNickname();
 		this.reportReason = reportComment.getReportReason();
