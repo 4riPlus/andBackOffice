@@ -101,7 +101,7 @@ public class ContestService {
 		contestRepository.delete(contest);
 
 		log.info("Service - deleteContest : 끝");
-		return new ApiResponseDto("게시글 삭제 완료", HttpStatus.OK.value());
+		return new ApiResponseDto("공모전 삭제 완료", HttpStatus.OK.value());
 	}
 
 	public Contest findContest(Long contestId) {

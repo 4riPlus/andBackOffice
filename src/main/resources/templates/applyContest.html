@@ -111,12 +111,12 @@
                   placeholder="Enter contest contents here..." required></textarea>
       </div>
 
-      <div class="mb-3">
+      <!--<div class="mb-3">
         <label for="category">Category:</label>
         <select class="form-control" name="category" id="category">
-          <!-- Add category options here -->
+          &lt;!&ndash; Add category options here &ndash;&gt;
         </select>
-      </div>
+      </div>-->
     </div>
 
     <div>
@@ -150,7 +150,7 @@
     formData.append('target', $('#target').val());
     formData.append('prize', $('#prize').val());
     formData.append('contents', $('#contents').summernote('code'));
-    formData.append('category', $('#category').val());
+    //formData.append('category', $('#category').val());
 
     // Add files to the FormData object
     for (var i = 0; i < filesArr.length; i++) {
