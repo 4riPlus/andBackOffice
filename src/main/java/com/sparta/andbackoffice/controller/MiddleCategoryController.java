@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/auth")
+@RequestMapping("/api/admin")
 public class MiddleCategoryController {
 
     private final MiddleCategoryService middleCategoryService;
@@ -29,7 +29,7 @@ public class MiddleCategoryController {
     @PostMapping("/middleCategory")
     public ResponseEntity<ApiResponseDto> createMiddleCategory(@RequestBody MiddleCategoryRequestDto middleCategoryRequestDto) {
         middleCategoryService.createMiddleCategory(middleCategoryRequestDto);
-        return ResponseEntity.ok().body(new ApiResponseDto("카테고리 생성완료", HttpStatus.OK.value()));
+        return ResponseEntity.ok().body(new ApiResponseDto("중위 카테고리 생성완료", HttpStatus.OK.value()));
     }
 
     //조회

@@ -1,131 +1,1818 @@
-
-
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-          crossorigin="anonymous"></script>
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-        crossorigin="anonymous">
-
-  <!-- Summernote CSS and JavaScript -->
-  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-
-  <title>Create Contest</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://i.postimg.cc/YqTT15xb/image.png">
+  <title>&nd, admin</title>
+  <!--  <link rel="stylesheet" href="/main.css"/>-->
   <style>
-    body {
-      padding-top: 70px;
-      padding-bottom: 30px;
+    /* Reset some default styles */
+    body, h1, h2, p, ul, li {
+      margin: 0;
+      padding: 0;
     }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* Header Styles */
+    .logo img {
+      margin-top: 10px;
+      margin-left: 20px;
+      max-width: 150px;
+      height: auto;
+    }
+
+
+    #profile-text {
+      /* 추가된 스타일 */
+      display: inline-block;
+      margin-left: 40px;
+      color: #000;
+      font-weight: bold;
+    }
+
+    #profile-text:hover {
+      /* 추가된 스타일 */
+      display: inline-block;
+      margin-left: 40px;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    /* Container Styles */
+    .container {
+      display: flex;
+      margin: 20px;
+    }
+
+    main {
+      flex: 3;
+      padding: 20px;
+      background-color: #fff;
+    }
+
+    /* Banner Styles */
+    .banner img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-bar input[type="text"] {
+      padding: 10px;
+      border: 2px solid lightgray;
+      border-radius: 20px;
+      width: 500px; /* Adjust the width as needed */
+    }
+
+    .search-icon {
+      margin-left: -40px;
+      padding: 8px;
+      background-color: white;
+      border-radius: 50%;
+      cursor: pointer;
+      width: 17px;
+      height: 17px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .search-icon img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    /* Contest List Styles */
+    .section {
+      /* 추가된 스타일 */
+      flex: 1;
+      padding: 5px;
+    }
+
+    .sections-container {
+      margin-left: 200px;
+      height: 750px;
+      display: flex;
+      gap: 30px;
+      background-color: #fff;
+    }
+
+    .section_in {
+      height: 700px;
+    }
+
+    .section-heading {
+      margin-top: 1px;
+      text-align: center;
+    }
+
+
+    /* Responsive Styles */
+    @media screen and (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0px;
+      margin: 0px;
+      width: 200px;
+      background: linen;
+      height: 100%;
+      overflow: auto;
+      position: fixed;
+    }
+
+    li a {
+      margin-top: 20px;
+      text-decoration: none;
+      padding: 10px;
+      display: block;
+      color: #000;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    li a:hover {
+      background: lightsalmon;
+      color: #fff;
+    }
+
+    .cd1 {
+      margin-left: 20px;
+      height: 100px;
+      background-color: linen;
+    }
+
+    .auth-buttons {
+      width: 149px;
+      height: 25px;
+      margin-left: 10px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 20px;
+      background-color: lightsalmon;
+      color: white;
+      cursor: pointer;
+    }
+
+    .delete-button {
+      position: fixed; /* 요소를 화면에 고정 */
+      bottom: 50px; /* 아래 여백 조절 */
+      right: 50px; /* 오른쪽 여백 조절 */
+      z-index: 1; /* 다른 요소 위에 위치하도록 설정 */
+      background-color: lightsalmon;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .delete-button:hover {
+      color: white;
+    }
+    .registerAmin-button {
+      position: fixed; /* 요소를 화면에 고정 */
+      background-color: lightsalmon;
+      color: black;
+      z-index: 1; /* 다른 요소 위에 위치하도록 설정 */
+      padding: 10px 20px;
+      margin-left: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .registerAmin-button:hover {
+      color: white;
+    }
+
+    .post-title p {
+      margin-top: 5px;
+      font-size: 0.8rem;
+    }
+
+    .post-list {
+      width: 100%;
+      border-top: 2px solid #000;
+    }
+
+    .post-list > div {
+      border-bottom: 1px;
+      font-size: 0;
+    }
+
+    .post-list > div.top {
+      border-bottom: 1px solid #999;
+    }
+
+    .post-list > div:last-child {
+      border-bottom: 1px solid #000;
+    }
+
+    .post-list > div > div {
+      display: inline-block;
+      padding: 15px 0;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .post-list > div.top > div {
+      font-weight: bold;
+    }
+
+    .post-list .num {
+      width: 10%;
+    }
+
+    .post-list .title {
+      width: 50%;
+      text-align: left;
+    }
+
+    .post-list .top .title {
+      text-align: center;
+    }
+
+    .post-list .writer {
+      width: 10%;
+    }
+
+    .post-list .date {
+      width: 20%;
+    }
+
+    .post-list .count {
+      width: 10%;
+    }
+
+    .post-page {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 0;
+    }
+
+    .post-page a {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      box-sizing: border-box;
+      vertical-align: middle;
+      border: 1px solid #ddd;
+      border-radius: 7px;
+      border-left: 0;
+      line-height: 100%;
+    }
+
+    .post-page a.bt {
+      padding-top: 10px;
+      font-size: 1.0rem;
+      letter-spacing: -1px;
+    }
+
+    .post-page a.num {
+      padding-top: 9px;
+      font-size: 0.9rem;
+    }
+
+    .post-page a.num.on {
+      border-color: #000;
+      background: #000;
+      color: #fff;
+    }
+
+    .post-page a:first-child {
+      border-left: 1px solid #ddd;
+    }
+
+    /* 카테고리 공통적용 사항 */
+    .section_in {
+      text-align: center;
+      width: 100%;
+    }
+
+    /* Category Management Container Styles */
+    .category.container {
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 50px 280px;
+      margin-right: 68px;
+      width: 1500px;
+    }
+
+    .category.container h2.section-heading {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .create-category, .read-categories {
+      margin-bottom: 20px;
+    }
+
+    .create-category h3, .read-categories h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #444;
+    }
+    .board.container {
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+      max-width: 800px;
+    }
+
+    .section-heading {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    /* Style for form elements */
+    form {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Style for the board list */
+    #boardList {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      background-color: #fff;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 상위 카테고리*/
+    #createCategoryForm input[type="text"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+      text-align: center;
+      width: 200px;
+    }
+
+    #createCategoryForm button {
+      padding: 10px 20px;
+      background-color: lightsalmon;
+      color: #000;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #createCategoryForm button:hover {
+      background-color: lightsalmon;
+      color: white;
+    }
+
+    #topcategoryTable {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #topcategoryTable th {
+      background-color: lightsalmon;
+      color: #000;
+      padding: 10px;
+      text-align: center;
+    }
+
+    #topcategoryTable td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    #topcategoryTable td:last-child {
+      text-align: center;
+    }
+
+    /* Update and Delete buttons */
+    #topcategoryTable button {
+      padding: 6px 12px;
+      background-color: lightsalmon;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    #topcategoryTable button:hover {
+      background-color: lightsalmon;
+      color: #fff;
+    }
+    /* 중위 카테고리*/
+    #createMiddleCategoryForm input[type="text"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+      text-align: center;
+      width: 200px;
+    }
+
+    #createMiddleCategoryForm button {
+      padding: 10px 20px;
+      background-color: lightsalmon;
+      color: #000;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #createMiddleCategoryForm button:hover {
+      background-color: lightsalmon;
+      color: white;
+    }
+
+    #middleCategoryTable {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #middleCategoryTable th {
+      background-color: lightsalmon;
+      color: #000;
+      padding: 10px;
+      text-align: center;
+    }
+
+    #middleCategoryTable td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    #middleCategoryTable td:last-child {
+      text-align: center;
+    }
+
+    /* Update and Delete buttons */
+    #middleCategoryTable button {
+      padding: 6px 12px;
+      background-color: lightsalmon;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    #middleCategoryTable button:hover {
+      background-color: lightsalmon;
+      color: #fff;
+    }
+    /* 하위 카테고리*/
+    #createBottomCategoryForm input[type="text"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+      text-align: center;
+      width: 200px;
+    }
+
+    #createBottomCategoryForm button {
+      padding: 10px 20px;
+      background-color: lightsalmon;
+      color: #000;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #createBottomCategoryForm button:hover {
+      background-color: lightsalmon;
+      color: white;
+    }
+
+    #bottomCategoryTable {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #bottomCategoryTable th {
+      background-color: lightsalmon;
+      color: #000;
+      padding: 10px;
+      text-align: center;
+    }
+
+    #bottomCategoryTable td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    #bottomCategoryTable td:last-child {
+      text-align: center;
+    }
+
+    /* Update and Delete buttons */
+    #bottomCategoryTable button {
+      padding: 6px 12px;
+      background-color: lightsalmon;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    #bottomCategoryTable button:hover {
+      background-color: lightsalmon;
+      color: #fff;
+    }
+
+    /*관리자 관리*/
+    .user-section {
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 10px auto 10px; /* 가운데 정렬을 위해 auto 설정 */
+      max-width: 1500px; /* 최대 너비 설정 */
+      width: 100%; /* 너비 100%로 설정하여 화면 크기에 맞게 조절 */
+    }
+
+    .user.container h2.section-heading {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .create-admin, .read-Admin {
+      margin-bottom: 20px;
+    }
+
+    .create-admin h3, .read-Admin h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #444;
+    }
+    #createAdminForm input[type="text"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+      text-align: center;
+      width: 200px;
+    }
+
+    #createAdminForm button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: lightsalmon;
+      color: #000;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #createAdminForm button:hover {
+      background-color: lightsalmon;
+      color: white;
+    }
+    #adminTable {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #adminTable th {
+      background-color: lightsalmon;
+      color: #000;
+      padding: 10px;
+      text-align: center;
+    }
+
+    #adminTable td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    #adminTable td:last-child {
+      text-align: center;
+    }
+
+    /* Update and Delete buttons */
+    #adminTable button {
+      padding: 6px 12px;
+      background-color: lightsalmon;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    #adminTable button:hover {
+      background-color: lightsalmon;
+    }
+
   </style>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+          integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+  <script>
+    // 자유게시판 페이징 출력
+    const pageSize = 10;
+    const pageBtnSize = 5;
+
+    function showPosts(page, size) {
+      if (page <= 0) {
+        page = 1;
+      }
+
+      $.ajax({
+        type: 'GET',
+        url: `/api/admin/posts?page=${page}&size=${size}`
+      })
+              .done(function (response, status, xhr) {
+                let pages = response['totalPages'];
+                console.log(pageSize);
+                if (page > pages) {
+                  page = pages;
+                }
+
+                let html = `
+
+                          <div class="post-list">
+                            <div class="top">
+                              <div class="num">번호</div>
+                              <div class="title">제목</div>
+                              <div class="writer">작성자</div>
+                              <div class="date">작성일</div>
+                              <div class="count">조회수</div>
+                            </div>`;
+
+                let startNum = (page - 1) * pageSize;
+                response['content'].forEach((post) => {
+                  startNum += 1;
+                  html += `
+                        <div>
+                          <div class="num">${startNum}</div>
+                          <div class="title"><a href="#">${post.title}</a></div>
+                          <div class="writer">${post.writer}</div>
+                          <div class="date">${post.modifiedDate}</div>
+                          <div class="count">${post.communityPostViews}</div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                    </div>
+                     <div class="post-page">
+                        <a onclick="showPosts(1,pageSize)" class="bt first"><<</a>
+                        <a onclick="showPosts(${page}-1,pageSize)" class="bt prev"><</a>
+                `;
+
+                let startPage = (Math.floor(page / pageBtnSize) * pageBtnSize) + 1;
+                let endPage = (startPage + pageBtnSize) <= pages ? (startPage + pageBtnSize) : pages;
+
+                for (let i = startPage; i <= endPage; i++) {
+                  if (page === i) {
+                    html += `
+                            <a onclick="showPosts(${i},pageSize)" class="num on">${i}</a>
+                        `;
+                  } else {
+                    html += `
+                            <a onclick="showPosts(${i},pageSize)" class="num">${i}</a>
+                        `;
+                  }
+                }
+
+                html += `
+                            <a onclick="showPosts(${page}+1,pageSize)" class="bt first">></a>
+                            <a onclick="showPosts(${pages},pageSize)" class="bt prev">>></a>
+                          </div>
+                      </div>
+                    </div>
+                `;
+                $(".list").empty();
+                $(".list").append(html);
+              })
+              .fail(function (response) {
+                alert("자유게시글 조회 실패");
+                console.log(response.responseJSON.msg);
+              });
+    }
+
+    // 상위 카테고리
+    function createCategory() {
+      const categoryName = document.getElementById('categoryName').value;
+
+      // Prepare the data to send in the request body
+      const categoryData = {
+        categoryName: categoryName,
+      };
+
+      // Perform AJAX POST request to create a new category on the server
+      $.ajax({
+        type: 'POST',
+        url: '/api/admin/category',
+        contentType: 'application/json',
+        data: JSON.stringify(categoryData),
+        success: function (response) {
+          // Update the table with the newly created category
+          readCategories();
+          alert(response.message); // Display a success message
+        },
+        error: function (xhr) {
+          alert('상위 카테고리 생성실패: ' + xhr.statusText);
+        },
+      });
+    }
+
+    // Function to read categories and populate the table
+    function readCategories() {
+      // Perform AJAX GET request to retrieve all categories from the server
+      $.ajax({
+        type: 'GET',
+        url: '/api/admin/category',
+        success: function (response) {
+          const topcategoryTable = document.getElementById('topcategoryTable');
+          const tbody = topcategoryTable.getElementsByTagName('tbody')[0];
+          tbody.innerHTML = ''; // Clear existing table rows
+
+          response.categoryList.forEach(function (category) {
+            const newRow = tbody.insertRow();
+            newRow.id = `categoryRow_${category.id}`; // Assign a unique id
+            newRow.innerHTML = `
+        <td>${category.id}</td>
+        <td>${category.categoryName}</td>
+        <td>
+            <button onclick="updateCategory(${category.id})">Update</button>
+            <button onclick="deleteCategory(${category.id})">Delete</button>
+        </td>
+    `;
+          });
+        },
+        error: function (error) {
+          console.error('상위 카테고리 조회 실패:', error);
+        }
+      });
+    }
+
+    // Call readCategories() to populate the table when the page loads
+    readCategories();
+
+    // Function to update a category
+    function updateCategory(categoryId) {
+      const updatedName = prompt('변경하고자 하는 상위 카테고리 이름을 적어주세요:');
+      if (updatedName) {
+        // Prepare the data to send in the request body
+        const categoryData = {
+          categoryName: updatedName,
+        };
+
+        // Perform AJAX PUT request to update the category on the server
+        $.ajax({
+          type: 'PUT',
+          url: `/api/admin/category/${categoryId}`,
+          contentType: 'application/json',
+          data: JSON.stringify(categoryData),
+          success: function () {
+            // Update the table with the updated category
+            readCategories();
+            alert('상위 카테고리 수정완료');
+          },
+          error: function (xhr) {
+            alert('상위 카테고리 수정실패: ' + xhr.statusText);
+          },
+        });
+      }
+    }
+
+    // Function to delete a category
+    function deleteCategory(categoryId) {
+      // Confirm deletion with the user
+      const confirmDelete = confirm('상위 카테고리를 삭제하시겠습니까?');
+      if (confirmDelete) {
+        // Perform AJAX DELETE request to delete the category on the server
+        $.ajax({
+          type: 'DELETE',
+          url: `/api/admin/category/${categoryId}`,
+          success: function () {
+            // Remove the category row from the table
+            const row = document.getElementById(`categoryRow_${categoryId}`);
+            if (row) {
+              row.remove();
+            }
+            alert('상위 카테고리 삭제완료.');
+          },
+          error: function (xhr) {
+            alert('상위 카테고리 삭제실패: ' + xhr.statusText);
+          },
+        });
+      }
+    }
+    // Call readCategories function to initially populate the table
+    readCategories();
+
+    // 중위 카테고리 생성 함수
+    function createMiddle() {
+      const middleCategoryName = document.getElementById('middleCategoryName').value;
+      const middleCategoryData = {
+        categoryName: middleCategoryName, // DTO 필드명과 일치하도록 수정
+      };
+      $.ajax({
+        type: 'POST',
+        url: '/api/admin/middleCategory',
+        contentType: 'application/json',
+        data: JSON.stringify(middleCategoryData),
+        success: function (response) {
+          readMiddleCategories();
+          alert(response.message);
+          middleCategoryData.loca
+        },
+        error: function (xhr) {
+          alert('중위 카테고리 생성 실패: ' + xhr.statusText);
+        },
+      });
+    }
+
+    // 중위 카테고리 목록 읽기 함수
+    function readMiddleCategories() {
+      $.ajax({
+        type: 'GET',
+        url: '/api/admin/middleCategory',
+        success: function (response) {
+          const middleCategoryTable = document.getElementById('middleCategoryTable');
+          const tbody = middleCategoryTable.getElementsByTagName('tbody')[0];
+          tbody.innerHTML = ''; // 테이블 초기화
+
+          response.middleCategoryList.forEach(function (middleCategory) {
+            const newRow = tbody.insertRow();
+            newRow.id = `middleCategoryRow_${middleCategory.id}`; // 고유 ID 할당
+            newRow.innerHTML = `
+                      <td>${middleCategory.id}</td>
+                      <td>${middleCategory.categoryName}</td>
+                      <td>
+                        <button onclick="updateMiddleCategory(${middleCategory.id})">Update</button>
+                        <button onclick="deleteMiddleCategory(${middleCategory.id})">Delete</button>
+                      </td>
+                    `;
+          });
+        },
+        error: function (error) {
+          console.error('중위 카테고리 조회 실패:', error);
+        },
+      });
+    }
+
+    // 중위 카테고리 목록 초기화
+    readMiddleCategories();
+
+    // 중위 카테고리 수정 함수
+    function updateMiddleCategory(middleCategoryId) {
+      const updatedMiddleName = prompt('변경하고자 하는 카테고리 이름을 입력하세요:');
+      if (updatedMiddleName) {
+        // 요청 본문에 보낼 데이터 준비
+        const middleCategoryData = {
+          categoryName: updatedMiddleName,
+        };
+
+        // 서버에 카테고리 업데이트를 위한 AJAX PUT 요청 수행
+        $.ajax({
+          type: 'PUT',
+          url: `/api/admin/middleCategory/${middleCategoryId}`, // 적절한 엔드포인트로 변경
+          contentType: 'application/json',
+          data: JSON.stringify(middleCategoryData),
+          success: function () {
+            // 업데이트된 카테고리로 테이블 업데이트
+            readMiddleCategories();
+            alert('중위 카테고리 수정 완료');
+          },
+          error: function (xhr) {
+            alert('중위 카테고리 수정 실패: ' + xhr.statusText);
+          },
+        });
+      }
+    }
+
+    // 중위 카테고리 삭제 함수
+    function deleteMiddleCategory(middleCategoryId) {
+      // 사용자 확인 후 삭제 여부 확인
+      const confirmDelete = confirm('중위 카테고리를 삭제하시겠습니까?');
+      if (confirmDelete) {
+        // 서버에 카테고리 삭제를 위한 AJAX DELETE 요청 수행
+        $.ajax({
+          type: 'DELETE',
+          url: `/api/admin/middleCategory/${middleCategoryId}`, // 적절한 엔드포인트로 변경
+          success: function () {
+            // 테이블에서 해당 카테고리 행 삭제
+            const row = document.getElementById(`middleCategoryRow_${middleCategoryId}`);
+            if (row) {
+              row.remove();
+            }
+            alert('중위 카테고리 삭제 완료');
+          },
+          error: function (xhr) {
+            alert('중위 카테고리 삭제 실패: ' + xhr.statusText);
+          },
+        });
+      }
+    }
+    // 중위 카테고리 목록을 동적으로 추가하는 함수
+    function populateMiddleCategories() {
+      $.ajax({
+        type: 'GET',
+        url: '/api/admin/middleCategory',
+        success: function (response) {
+          var data = response.middleCategoryList
+          console.log(data[1].id);
+
+          for (var i =0; i <= response.middleCategoryList.length; i++) {
+            $('#middleCategoryId').append("<option value='"+data[i].id +"'>" +data[i].categoryName+ "</option>")
+          };
+          // console.log(response);
+          // const middleCategoryDropdown = document.getElementById('middleCategoryId');
+          // middleCategoryDropdown.innerHTML = ''; // 드롭다운 메뉴 초기화
+          // middleCategoryDropdown.options.add(new Option('중위 카테고리 선택', '', true, true)); // 기본 선택 옵션 추가
+          //
+          // response.middleCategoryList.forEach(function (middleCategory) {
+          //     middleCategoryDropdown.options.add(new Option(middleCategory.categoryName,middleCategory.id,));
+          // });
+        },
+        error: function (error) {
+          console.error('중위 카테고리 조회 실패:', error);
+        },
+      });
+    }
+
+    // 페이지 로딩 시 중위 카테고리 목록을 미리 가져오기
+    populateMiddleCategories();
+
+    // 하위 카테고리 생성 함수
+    function createBottomCategory() {
+      // const bottomCategoryName = document.getElementById('bottomCategoryName').value;
+      // const middleCategoryId = document.getElementById('middleCategoryId').value
+
+      var mid_id = $('#middleCategoryId').val();
+      var bottom_name = $('#bottomCategoryName').val();
+      // console.log(mid_id)
+
+      var bottomCategoryData = {
+        middleCategoryId : mid_id,
+        categoryName: bottom_name
+
+        // middleCategoryId : middleCategoryId,
+        // categoryName: bottomCategoryName
+      };
+      console.log(bottomCategoryData);
+      if (!middleCategoryId) {
+        alert('중위 카테고리를 선택하세요.');
+        return;
+      }
+      // TODO url 변경필요
+      // TODO 의미없는 카테고리 아이디
+      $.ajax({
+        type: 'POST',
+        url: `/api/admin/bottomcategory`, // URL 변경
+        contentType: 'application/json',
+        data: JSON.stringify(bottomCategoryData),
+        success: function (response) {
+          readBottomCategories();
+          alert(response.message);
+        },
+        error: function (xhr) {
+          alert('하위 카테고리 생성 실패: ' + xhr.statusText);
+        },
+      });
+    }
+
+
+    // 하위 카테고리 목록 읽기 함수
+    function readBottomCategories() {
+      $.ajax({
+        type: 'GET',
+        url: '/api/admin/bottomcategory',
+        success: function (response) {
+          const bottomCategoryTable = document.getElementById('bottomCategoryTable');
+          const tbody = bottomCategoryTable.getElementsByTagName('tbody')[0];
+          tbody.innerHTML = ''; // 테이블 초기화
+
+          response.bottomCategoryList.forEach(function (bottomCategory) {
+            const newRow = tbody.insertRow();
+            newRow.id = `bottomCategoryRow_${bottomCategory.id}`;
+            newRow.innerHTML = `
+                    <td>${bottomCategory.id}</td>
+                    <td>${bottomCategory.categoryName}</td>
+                    <td>
+                        <button onclick="updateBottomCategory(${bottomCategory.id})">Update</button>
+                        <button onclick="deleteBottomCategory(${bottomCategory.id})">Delete</button>
+                    </td>
+                `;
+          });
+        },
+        error: function (error) {
+          console.error('하위 카테고리 조회 실패:', error);
+        },
+      });
+    }
+
+    // 하위 카테고리 목록 초기화
+    readBottomCategories();
+
+
+    // 하위 카테고리 수정 함수
+    function updateBottomCategory(bottomCategoryId) {
+      const updatedBottomName = prompt('변경하고자 하는 카테고리 이름을 입력하세요:');
+      if (updatedBottomName) {
+        const middleCategoryId = document.getElementById('middleCategoryId').value; // 중위 카테고리 ID 추가
+        const bottomCategoryData = {
+          categoryName: updatedBottomName,
+          middleCategoryId: middleCategoryId, // 중위 카테고리 ID 추가
+        };
+
+        $.ajax({
+          type: 'PUT',
+          url: `/api/admin/bottomcategory/${bottomCategoryId}`,
+          contentType: 'application/json',
+          data: JSON.stringify(bottomCategoryData),
+          success: function () {
+            readBottomCategories();
+            alert('하위 카테고리 수정 완료');
+          },
+          error: function (xhr) {
+            alert('하위 카테고리 수정 실패: ' + xhr.statusText);
+          },
+        });
+      }
+    }
+
+    // 하위 카테고리 삭제 함수
+    function deleteBottomCategory(bottomCategoryId) {
+      const confirmDelete = confirm('하위 카테고리를 삭제하시겠습니까?');
+      if (confirmDelete) {
+        $.ajax({
+          type: 'DELETE',
+          url: `/api/admin/bottomcategory/${bottomCategoryId}`,
+          success: function () {
+            const row = document.getElementById(`bottomCategoryRow_${bottomCategoryId}`);
+            if (row) {
+              row.remove();
+            }
+            alert('하위 카테고리 삭제 완료');
+          },
+          error: function (xhr) {
+            alert('하위 카테고리 삭제 실패: ' + xhr.statusText);
+          },
+        });
+      }
+    }
+
+    //보드
+
+    function populateCategories() {
+      $.ajax({
+        type: 'GET',
+        url: '/api/admin/category', // Update the URL based on your API endpoint
+        success: function (response) {
+          const categorySelect = document.getElementById('categorySelect');
+
+          // Clear existing options
+          categorySelect.innerHTML = '';
+
+          // Add a default option (optional)
+          const defaultOption = document.createElement('option');
+          defaultOption.value = '';
+          defaultOption.text = 'Select a category';
+          categorySelect.appendChild(defaultOption);
+
+          // Add options for each category
+          response.categoryList.forEach(function (category) {
+            const option = document.createElement('option');
+            option.value = category.id;
+            option.text = category.categoryName;
+            categorySelect.appendChild(option);
+          });
+        },
+        error: function (error) {
+          console.error('Failed to fetch categories:', error);
+        }
+      });
+    }
+
+    // Call the function to populate categories when the page loads
+    populateCategories();
+
+
+    function createBoard() {
+      const categoryId = document.getElementById('categorySelect').value; // Get the selected category ID
+      const title = document.getElementById('createTitle').value;
+      const contents = document.getElementById('createContents').value;
+
+      const boardData = {
+        category: categoryId, // Set the selected category as 'category' property
+        title: title,
+        contents: contents
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: `/api/admin/posts/${categoryId}`, // Pass the categoryId as a path variable
+        contentType: 'application/json',
+        data: JSON.stringify(boardData),
+        success: function (response) {
+          // Handle the success response, e.g., update the board list
+          readBoards(categoryId); // Assuming you have a function to refresh the board list
+          alert('Board created successfully.');
+        },
+        error: function (xhr) {
+          alert('Failed to create board: ' + xhr.statusText);
+        }
+      });
+    }
+
+
+    // Function to read boards
+    function readBoards() {
+      $.ajax({
+        type: 'GET',
+        url: `/api/admin/posts/getAll`,
+        success: function (response) {
+          displayBoardList(response);
+        },
+        error: function (xhr) {
+          alert('Failed to fetch boards: ' + xhr.statusText);
+        }
+      });
+    }
+
+    function updateBoard(categoryId, boardId, updatedTitle, updatedContents) {
+      const boardData = {
+        title: updatedTitle,
+        contents: updatedContents
+      };
+
+      $.ajax({
+        type: 'PATCH',
+        url: `/api/admin/posts/${categoryId}/${boardId}`,
+        contentType: 'application/json',
+        data: JSON.stringify(boardData),
+        success: function (response) {
+          readBoards(categoryId); // Refresh the board list after update
+          alert('Board updated successfully.');
+        },
+        error: function (xhr) {
+          alert('Failed to update board: ' + xhr.statusText);
+        }
+      });
+    }
+
+    // Function to delete a board
+    function deleteBoard(categoryId, boardId) {
+      const confirmDelete = confirm('Are you sure you want to delete this board?');
+      if (!confirmDelete) {
+        return;
+      }
+
+      $.ajax({
+        type: 'DELETE',
+        url: `/api/admin/posts/${categoryId}/${boardId}`,
+        success: function (response) {
+          // Handle the success response, e.g., remove the deleted board from the list
+          removeBoardFromList(boardId); // Assuming you have a function to remove a board
+          alert('Board deleted successfully.');
+        },
+        error: function (xhr) {
+          alert('Failed to delete board: ' + xhr.statusText);
+        }
+      });
+    }
+
+    // Define the displayBoardList function
+    function displayBoardList(boards) {
+      var boardList = $('#boardList'); // Assuming you have an element with id "boardList" to display the boards
+
+      boardList.empty();
+
+      boards.forEach(function (board) {
+        var boardItem = `
+            <div class="board-item">
+                <h3>${board.title}</h3>
+                <p>${board.contents}</p>
+
+            </div>
+        `;
+
+        boardList.append(boardItem);
+      });
+    }
+    function logout() {
+      let authCookie = getCookie('Authorization');
+      console.log(authCookie);
+      $.ajax({
+        url: 'http://localhost:8080/api/users/logout',
+        type: 'POST',
+        headers: {
+          'Authorization': authCookie
+        },
+        processData: false,
+        contentType: false,
+        success: function (response) {
+
+          Cookies.remove('Authorization', {path: '/'}); // 쿠키삭제
+          // Cookies.set('Authorization', token, {path: '/', expires: expirationDate});
+          // 요청 성공 시 처리할
+          alert("로그아웃 성공 !");
+          window.location.href = host + '/api/view/user/login';
+        },
+        error: function (xhr, status, error) {
+          console.log(xhr);
+          alert("로그아웃 실패 !");
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+      const postMenu = document.querySelector('#post');
+      const homeMenu = document.querySelector('#home');
+      const reportMenu = document.querySelector('#report-post');
+      const contestMenu = document.querySelector('#contest');
+      const categoryMenu = document.querySelector('#category');
+      const boardMenu = document.querySelector('#board');
+      const userMenu = document.querySelector('#user');
+      const etcMenu = document.querySelector('#etc');
+
+      const homeContainer = document.querySelector('.home.container');
+      const postContainer = document.querySelector('.post.container');
+      const reportContainer = document.querySelector('.report.container');
+      const contestContainer = document.querySelector('.contest.container');
+      const categoryContainer = document.querySelector('.category.container');
+      const userContainer = document.querySelector('.user.container');
+      const boardContainer = document.querySelector('.board.container');
+      const etcContainer = document.querySelector('.etc.container');
+
+      postMenu.addEventListener('click', function () {
+        homeContainer.style.display = 'none';
+        postContainer.style.display = 'block';
+        reportContainer.style.display = 'none';
+        contestContainer.style.display = 'none';
+        categoryContainer.style.display = 'none';
+        boardContainer.style.display='none';
+        userContainer.style.display = 'none';
+        etcContainer.style.display = 'none';
+      });
+
+      homeMenu.addEventListener('click', function () {
+        homeContainer.style.display = 'block';
+        postContainer.style.display = 'none';
+        reportContainer.style.display = 'none';
+        contestContainer.style.display = 'none';
+        categoryContainer.style.display = 'none';
+        boardContainer.style.display='none';
+        userContainer.style.display = 'none';
+        etcContainer.style.display = 'none';
+      });
+
+      reportMenu.addEventListener('click', function () {
+        homeContainer.style.display = 'none';
+        postContainer.style.display = 'none';
+        reportContainer.style.display = 'block';
+        contestContainer.style.display = 'none';
+        categoryContainer.style.display = 'none'; // 다른 컨테이너 숨기기
+        boardContainer.style.display='none';
+        userContainer.style.display = 'none';
+        etcContainer.style.display = 'none';
+      });
+
+      contestMenu.addEventListener('click', function () {
+        homeContainer.style.display = 'none';
+        postContainer.style.display = 'none';
+        reportContainer.style.display = 'none';
+        contestContainer.style.display = 'block';
+        categoryContainer.style.display = 'none'; // 다른 컨테이너 숨기기
+        boardContainer.style.display='none';
+        userContainer.style.display = 'none';
+        etcContainer.style.display = 'none';
+      });
+
+      categoryMenu.addEventListener('click', function () {
+        homeContainer.style.display = 'none';
+        postContainer.style.display = 'none';
+        reportContainer.style.display = 'none';
+        contestContainer.style.display = 'none';
+        categoryContainer.style.display = 'block';
+        boardContainer.style.display='none';
+        userContainer.style.display = 'none';
+        etcContainer.style.display = 'none';
+      });
+
+      boardMenu.addEventListener('click', function () {
+        homeContainer.style.display = 'none';
+        postContainer.style.display = 'none';
+        reportContainer.style.display = 'none';
+        contestContainer.style.display = 'none';
+        categoryContainer.style.display = 'none';
+        boardContainer.style.display='block';
+        userContainer.style.display = 'none';
+        etcContainer.style.display = 'none';
+      });
+
+      userMenu.addEventListener('click', function () {
+        homeContainer.style.display = 'none';
+        postContainer.style.display = 'none';
+        reportContainer.style.display = 'none';
+        contestContainer.style.display = 'none';
+        categoryContainer.style.display = 'none';
+        boardContainer.style.display='none';
+        userContainer.style.display = 'block';
+        etcContainer.style.display = 'none';
+      });
+
+      etcMenu.addEventListener('click', function () {
+        homeContainer.style.display = 'none';
+        postContainer.style.display = 'none';
+        reportContainer.style.display = 'none';
+        contestContainer.style.display = 'none';
+        categoryContainer.style.display = 'none';
+        boardContainer.style.display='none';
+        userContainer.style.display = 'none';
+        etcContainer.style.display = 'block';
+      });
+    });
+
+    //관리자 관리
+    // 관리자 생성
+    function createAdmin() {
+      // HTML 폼에서 입력된 데이터 가져오기
+      const companyNo = document.getElementById('companyNo').value;
+      const adminName = document.getElementById('adminName').value;
+      const adminPassword = document.getElementById('adminPassword').value;
+      // 데이터 유효성 검사
+      if (!companyNo || !adminName || !adminPassword) {
+        alert("빈칸 없이 모두 입력해야 합니다.");
+        return;
+      }
+
+      // 관리자 데이터 생성
+      const adminData = {
+        companyNo: companyNo,
+        adminName: adminName,
+        adminPassword:adminPassword
+      };
+      // 서버에 관리자 데이터 전송 (AJAX 요청)
+      $.ajax({
+        type: 'POST',
+        url: '/api/admin/create',
+        data: JSON.stringify(adminData),
+        contentType: 'application/json',
+        success: function (response) {
+          alert('관리자 등록 성공');
+          readAdmin();
+        },
+        error: function (xhr) {
+          alert('관리자 등록 실패: ' + xhr.statusText);
+        },
+      });
+    }
+    //관리자 리스트 조회
+    $(document).ready(function () {
+      // 페이지 로드 시 자동으로 관리자 리스트 불러오기
+      readAdmin();
+    });
+    function readAdmin() {
+      $.ajax({
+        type: 'GET',
+        url: '/api/admin/get',
+        success: function (response) {
+          // 관리자 목록을 표시할 HTML 테이블 업데이트
+          const adminTable = document.getElementById('adminTable');
+          const tbody = adminTable.getElementsByTagName('tbody')[0];
+          tbody.innerHTML = '';
+
+          response.adminList.forEach(function (admin) {
+            const newRow = tbody.insertRow();
+            newRow.id = `adminRow_${admin.id}`;
+            newRow.innerHTML = `
+          <td>${admin.id}</td>
+          <td>${admin.companyNo}</td>
+          <td>${admin.adminName}</td>
+          <td>
+              ${admin.id === 1 ? '' : `<button onclick="deleteAdmin(${admin.id})">Delete</button>`}
+          </td>
+        `;
+          });
+        },
+        error: function (error) {
+          console.error('관리자 리스트 조회 실패', error);
+        }
+      });
+    }
+    // 관리자 삭제
+    function deleteAdmin(adminId, loggedInAdminId) {
+      const confirmDelete = confirm("정말로 삭제하시겠습니까?");
+      if (confirmDelete) {
+        $.ajax({
+          type: 'DELETE',
+          url: `/api/admin/delete/${adminId}`, // Use the correct URL
+          data: JSON.stringify({ loggedInAdminId }), // Include the loggedInAdminId
+          contentType: 'application/json',
+          success: function () {
+            alert('관리자 삭제 완료.');
+            const row = document.getElementById(`adminRow_${adminId}`);
+            if (row) {
+              row.remove();
+            }
+          },
+          error: function (xhr) {
+            alert('관리자 삭제 실패: ' + xhr.statusText);
+          },
+        });
+      }
+    }
+  </script>
 </head>
-
 <body>
-<article>
-  <div class="container" role="main">
-    <h2>Create Contest</h2>
-    <form name="form" id="form" role="form" method="post"
-          action="${pageContext.request.contextPath}/api/admin/contest">
+<header>
+  <div class="logo">
+    <ul>
+      <img src="https://i.postimg.cc/T3KxY0gd/2.png" alt="Logo">
+      <li><a id="home" href="#">홈</a></li>
+      <li><a id="post" href="#" onclick="showPosts(1,pageSize)">최근 게시글</a></li>
+      <li><a id="report-post" href="#">신고된 게시글/댓글 관리</a></li>
+      <li><a id="contest" href="#">공모전 관리</a></li>
+      <li><a id="category" href="#">카테고리 관리</a></li>
+      <li><a id="board" href="#">공지사항 관리</a></li>
+      <li><a id="user" href="#">관리자/유저 관리</a></li>
+      <li><a id="etc" href="#">기타 이용약관</a></li>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="auth-buttons">
+        <span id="profile-text" href="javascript:logout()">로그아웃</span> </div>
+    </ul>
+  </div>
+  <div class="cd1">
+  </div>
+</header>
 
-      <div class="mb-3">
-        <label for="title">공모전 제목:</label>
-        <input type="text" class="form-control" name="title" id="title" placeholder="Title" required>
+<div class="home container" style="display: block;">
+  <main class="sections-container">
+    <div class="section">
+      <h2 class="section-heading"><&ND> 최근 방문자 수</h2>
+      <div class="section_in">
+        <h1>이게된다??</h1>
       </div>
-
-      <div class="mb-3">
-        <label for="company">주최사:</label>
-        <input type="text" class="form-control" name="company" id="company" placeholder="Company"
-               required>
+    </div>
+    <div class="section">
+      <h2 class="section-heading">최근 신고된 게시글 추이</h2>
+      <div class="section_in">
+        <h1>이게된다??</h1>
       </div>
+    </div>
+  </main>
+</div>
 
-      <div class="mb-3">
-        <label for="homepage">홈페이지:</label>
-        <input type="text" class="form-control" name="homepage" id="homepage" placeholder="homepage" required>
+<div class="post container" style="display: none;">
+  <main class="sections-container">
+    <div class="section">
+      <h2 class="section-heading">최근 게시글 전체 조회</h2>
+      <div class="section_in">
+        <div class="search-bar">
+          <input type="text" placeholder="게시물 검색"><br><br><br><br>
+          <div class="search-icon">
+            <img src="https://i.postimg.cc/MT8tf3Qy/searchmagnifierinterfacesymbol-79894.png"
+                 alt="Search Icon">
+          </div>
+        </div>
+        <div class="list">
+        </div>
+        <div class="delete-button">
+          <a onclick="deletePost()">삭제</a>
+        </div>
       </div>
+    </div>
+  </main>
+</div>
 
-      <div class="mb-3">
-        <label for="endDate">End Date:</label>
-        <input type="datetime-local" class="form-control" name="endDate" id="endDate" required>
+<div class="report container" style="display: none;">
+  <main class="sections-container">
+    <div class="section">
+      <h2 class="section-heading">2</h2>
+      <div class="section_in">
+        <h1>야호!!</h1>
       </div>
-
-      <div class="mb-3">
-        <label for="startDate">Start Date:</label>
-        <input type="datetime-local" class="form-control" name="startDate" id="startDate">
+    </div>
+    <div class="section">
+      <h2 class="section-heading">2</h2>
+      <div class="section_in">
+        <h1>야호!!</h1>
       </div>
+    </div>
+  </main>
+</div>
 
-      <div class="mb-3">
-        <label for="target">응모대상:</label>
-        <input type="text" class="form-control" name="homepage" id="target" placeholder="Target"
-               required>
+<div class="contest container" style="display: none;">
+  <main class="sections-container">
+    <div class="section">
+      <h2 class="section-heading">3</h2>
+      <div class="section_in">
+        <h1>야호~~~~~~~~~~!!</h1>
       </div>
-
-      <div class="mb-3">
-        <label for="prize">상금:</label>
-        <input type="text" class="form-control" name="prize" id="prize" placeholder="prize"
-               required>
+    </div>
+    <div class="section">
+      <h2 class="section-heading">3</h2>
+      <div class="section_in">
+        <h1>야호~~~~~~~~~~!!!!</h1>
       </div>
+    </div>
+  </main>
+</div>
 
+<div class="category container" style="display: none;">
+  <div class="category contents">
+    <h2 class="section-heading">카테고리 관리페이지</h2>
 
+    <div class="create-category">
+      <h3>상위 카테고리 생성</h3>
+      <form id="createCategoryForm">
+        <input type="text" id="categoryName" placeholder="CATEGORY NAME">
+        <button type="button" onclick="createCategory()">등록</button>
+      </form>
+    </div>
 
+    <!-- Read Categories Table -->
+    <div class="read-categories">
+      <h3>카테고리 목록</h3>
+      <table id="topcategoryTable">
+        <!-- Table headers here -->
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>CATEGORY NAME</th>
+          <th>ACTION</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Category rows will be populated here by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <div class="create-category">
+      <h3>중위 카테고리 생성</h3>
+      <form id="createMiddleCategoryForm">
+        <input type="text" id="middleCategoryName" placeholder="MIDDLE CATEGORY NAME">
+        <button type="button" onclick="createMiddle()">등록</button>
+      </form>
+    </div>
 
-      <div class="mb-3">
-        <label for="contents">Contents:</label>
-        <textarea class="form-control" rows="5" name="contents" id="contents"
-                  placeholder="Enter contest contents here..." required></textarea>
-      </div>
+    <!-- Read Categories Table -->
+    <div class="read-categories">
+      <h3>중위 카테고리 목록</h3>
+      <table id="middleCategoryTable">
+        <!-- Table headers here -->
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>CATEGORY NAME</th>
+          <th>ACTION</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Category rows will be populated here by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <div class="create-category">
+      <h3>하위 카테고리 생성</h3>
+      <form id="createBottomCategoryForm">
+        <select id="middleCategoryId" required>
+          <option value="" disabled selected>중위 카테고리 선택</option>
+          <!-- 여기에 중위 카테고리 목록을 동적으로 추가할 수 있도록 코드 추가 -->
+        </select><br>
+        <input type="text" id="bottomCategoryName" placeholder="BOTTOM CATEGORY NAME">
+        <button type="button" onclick="createBottomCategory()">등록</button>
+      </form>
+      <!--          <form id="createBottomCategoryForm">-->
+      <!--              <input type="text" id="bottomCategoryName" placeholder="하위 카테고리 이름">-->
+      <!--              <button type="button" onclick="createBottomCategory()">등록</button>-->
+      <!--          </form>-->
+    </div>
 
-
-      <div class="mb-3">
-        <label for="category">Category:</label>
-        <select class="form-control" name="category" id="category">
-          <!-- Add category options here -->
-        </select>
-      </div>
-    </form>
-
-    <div>
-      <button type="button" class="btn btn-sm btn-primary" id="btnSave">Save</button>
-      <button type="button" class="btn btn-sm btn-primary" id="btnList">List</button>
+    <!-- Read Categories Table -->
+    <div class="read-categories">
+      <h3>하위 카테고리 목록</h3>
+      <table id="bottomCategoryTable">
+        <!-- Table headers here -->
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>CATEGORY NAME</th>
+          <th>ACTION</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Category rows will be populated here by JavaScript -->
+        </tbody>
+      </table>
     </div>
   </div>
-</article>
+</div>
 
-<script>
-  // Initialize Summernote
-  $(document).ready(function () {
-    $('#contents').summernote({
-      height: 300,
-      placeholder: 'Enter contest contents here...',
-    });
-  });
+<div class="board container" style="display: none;">
+  <div class="board contents">
+    <h2 class="section-heading">공지사항&이벤트 관리페이지</h2>
+    <form id="createBoardForm">
+      <div>
+        <label for="createTitle">Title:</label>
+        <input type="text" id="createTitle" name="title" />
+      </div>
+      <div>
+        <label for="createContents">Contents:</label>
+        <textarea id="createContents" name="contents"></textarea>
+      </div>
+      <div>
+        <label for="categorySelect">Category:</label>
+        <select id="categorySelect" name="categoryId"></select>
+      </div>
+      <button type="button" onclick="createBoard()">Create</button>
+    </form>
 
-  $(document).on('click', '#btnSave', function (e) {
-    // Prevent form submission
-    e.preventDefault();
+    <h2>Board List</h2>
+    <div id="boardList">
 
-    // Get the HTML content from Summernote
-    const contentsHtml = $('#contents').summernote('code');
-    // Set the HTML content in the hidden input field
-    $('#contents').html(contentsHtml);
+    </div>
+  </div>
+</div>
 
-    // Submit the form
-    $("#form").submit();
-  });
 
-  $(document).on('click', '#btnList', function (e) {
-    e.preventDefault();
-    location.href = "${pageContext.request.contextPath}/board/getBoardList";
-  });
-</script>
+<div class="user container" style="display: none;">
+  <main class="sections-container">
+    <div class="user-section">
+      <h2 class="section-heading">관리자 등록/삭제</h2>
+      <div class="create-admin">
+        <h3>관리자 생성</h3>
+        <form id="createAdminForm">
+          <input type="text" id="companyNo" placeholder="COMPANY NO">
+          <input type="text" id="adminName" placeholder="ADMIN NAME">
+          <input type="text" id="adminPassword" placeholder="ADMIN PASSWORD">
+          <button type="button" onclick="createAdmin()">등록</button>
+        </form>
+      </div>
+      <!-- Read Admin Table -->
+      <div class="read-Admin">
+        <h3>관리자 현황</h3>
+        <table id="adminTable">
+          <thead>
+          <tr>
+            <th>AMIND ID</th>
+            <th>COMPANY NO</th>
+            <th>ADMIN NAME</th>
+            <th>ACTION</th>
+          </tr>
+          </thead>
+          <tbody>
+          <!-- Category rows will be populated here by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+<div class="etc container" style="display: none;">
+  <main class="sections-container">
+    <div class="section">
+      <h2 class="section-heading"><&ND> 기타 이용약관</h2>
+      <div class="section_in">
+        <div id="footer" class="re_text" module="Layout_footer">
+
+          <h3>제 1장 총칙</h3>
+          <br>
+          <strong>제 1 조 (목 적)</strong><br>
+          이 약관은 주식회사 사리추가(이하 "회사"라고 합니다)가
+          주식회사 사리추가 홈페이지(이하 "사이트"라 합니다)를 통해
+          제공하는 모든 서비스의 이용조건 및 절차에 관한 사항과
+          기타 필요한 사항을 정함을 목적으로 합니다. <br>
+
+          <br>
+          <strong>제 2 조 (정 의)</strong><br>
+          이 약관에서 사용하는 용어의 정의는 다음과 같습니다.<br>
+          1. "이용자"라 함은 사이트에 접속하여 이 약관에 따라 사이트가 제공하는 서비스를 이용하는 회원을 말합니다.<br>
+          2. "회원"이라 함은 사이트에 개인정보를 제공하여 회원등록을 한 자로서, 사이트의 정보를 지속적으로 제공받으며, 사이트가 제공하는 서비스를 계속적으로 이용할 수 있는 자를 말합니다.<br>
+          3. "비회원"이라 함은 회원에 가입하지 않고 회사 사이트에서 제공하는 서비스를 이용하는 자를 말합니다.<br>
+
+          <br>
+          <strong>제 3 조 (약관의 명시와 변경)</strong><br>
+          1. 회사는 합리적인 사유가 있는 경우에 이 약관을 개정할 수 있으며, 약관이 개정된 경우에는 적용일자 및 개정사유를 명시하여 현행약관과 함께 사이트의 초기화면에 그 적용일자 7일 이전부터 적용일자 전일까지 이를 공지합니다.<br>
+          2. 회사는 약관의 규제등에 관한 법률, 전자거래 기본법, 전자서명법, 정보통신망 이용 촉진등에 관한 법률, 소비자 보호법 등 관련법을 위배하지 않는 범위에서 이 약관을 개정할 수 있습니다.
+          3. 회원은 변경된 약관 사항에 동의하지 않으면 서비스 이용을 중단하고 이용계약을 해지할 수 있습니다. <br>
+
+          <br>
+          <strong>제 4 조 (약관 외 준칙)</strong><br>
+          이 약관에 명시되지 않은 사항이 관계 법령에 규정되어 있을 경우에는 관련 법령 규정에 따릅니다.<br>
+          <br>
+          <h3>제 2장 회원가입 및 서비스 이용</h3>
+          <br>
+          <strong>제 5 조 (서비스 이용 및 제한)</strong><br>
+          1. 회원은 사이트를 회사의 업무상 또는 기술상 특별한 지장이 없는 한 연중무휴, 1일 24시간 이용할 수 있습니다.<br>
+          2. 사이트에서 제공하는 서비스 중 일부는 회원에 가입하여 회사에서 인정한 ID와 비밀번호를 통해서만 서비스를 받을 수 있습니다.<br>
+          3. 전항의 이용시간은 시스템 등 정기점검/교체 등 회사가 필요한 경우, 회원에게 사전 통지한 후, 제한할 수 있습니다.<br>
+          4. 제3항에 의한 서비스 중단의 경우에는 회사는 회원이 회사의 홈페이지에 제출한 전자우편 주소로 개별 통지하거나, 불특정다수 회원에 대하여는 홈페이지 초기화면에 서비스 중단 3일전 게시함으로써 개별 통지에 갈음할 수 있습니다.<br>
+
+          <br>
+          <strong>제 6 조 (회원 가입)</strong><br>
+          1. 이용자는 회사가 정한 가입 양식에 따라 회원정보를 기입한 후 이 약관에 동의한다는 의사표시를 함으로서 회원 가입을 신청합니다.<br>
+          2. 회사는 제 1항과 같이 회원으로 가입할 것을 신청한 이용자 중 다음 각 호에 해당하지 않는 한 회원으로 등록합니다.<br>
+          ① 가입 신청자가 이 약관 제 7조 제 3항에 의하여 이전에 회원자격을 상실한 적이 있는 경우. 다만 제 7조 제 3항에 의한 회원자격 상실 후 3년이 경과한 자로서 회사의 회원 재가입 승낙을 얻은 경우에는 예외로 한다.<br>
+          ② 모든 가입신청자는 반드시 실명으로 본인의 이름과 전화번호, 이메일을 기입하며, 그러하지 아니한 경우.<br>
+          ③ 등록 내용에 허위, 기재누락, 오기가 있는 경우.<br>
+          ④ 기타 회원으로 등록하는 것이 회사의 기술상 현저히 지장이 있다고 판단되는 경우.<br>
+          3. 회원가입 계약의 성립 시기는 회사의 승낙이 회원에게 도달한 시점으로 합니다.<br>
+
+          <br>
+          <strong>제 7조 (회원 탈퇴 및 자격 상실 등)</strong><br>
+          1. 회원은 회사에 언제든지 탈퇴를 요청할 수 있으며 회사는 즉시 회원 탈퇴를 처리합니다.<br>
+          2. 회사는 회원이 다음 사항에 해당하는 행위를 하였을 경우 사전 통지 없이 사이트이용 계약을 해지할 수 있습니다.<br>
+          ①공공 질서 및 미풍 양속에 반하는 경우<br>
+          ② 범죄적 행위에 관련되는 경우<br>
+          ③ 국익 또는 사회적 공익을 저해할 목적으로 서비스 이용을 계획 또는 실행할 경우<br>
+          ④ 타인의 ID 및 비밀번호를 도용한 경우<br>
+          ⑤ 타인의 명예를 손상시키거나 불이익을 주는 경우<br>
+          ⑥ 같은 사용자가 다른 ID로 이중 등록을 한 경우<br>
+          ⑦ 서비스에 위해를 가하는 등 건전한 이용을 저해하는 경우<br>
+          ⑧ 기타 관련 법령이나 회사가 정한 이용조건에 위배되는 경우<br>
+          3. 회사가 회원 자격을 상실시키는 경우에는 회원 등록을 말소 합니다.<br>
+          이 경우 회원에게 이를 통지하고 회원 등록 말소 전에 소명할 기회를 부여합니다.<br>
+          단, 회원에게 이 통지가 도달한 날로부터 7일 이내에 전자우편 등을 통해 회사에 소명 해야 합니다.<br>
+          <br>
+          <h3>제 3장 의무</h3>
+          <br>
+          <strong>제 8조 (개인정보 보호)</strong><br>
+          1. 회사는 이용자의 정보 수집 시 서비스 제공 이행에 필요한 최소한의 정보를 수집합니다.<br>
+          2. 회사가 이용자의 개인 식별이 가능한 개인정보를 수집하는 때에는 반드시 당해 이용자의 동의를 받습니다.<br>
+          3. 제공된 개인정보는 이용자의 동의 없이 목적 외의 이용이나 제 3자에게 제공할 수 없으며 이에 대한 모든 책임은 회사가 집니다.<br>
+          <br>
+          Copyright © 4riplus. All rights reserved.
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
 </body>
-
 </html>

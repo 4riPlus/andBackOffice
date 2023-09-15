@@ -23,6 +23,7 @@
             max-width: 150px;
             height: auto;
         }
+
         .board-item {
             border: 1px solid #ccc;
             padding: 10px;
@@ -43,8 +44,6 @@
         .button-container button {
             margin-right: 10px; /* Add spacing between buttons */
         }
-
-
 
 
         #profile-text {
@@ -205,6 +204,7 @@
         .delete-button:hover {
             color: white;
         }
+
         .registerAmin-button {
             position: fixed; /* 요소를 화면에 고정 */
             background-color: lightsalmon;
@@ -218,6 +218,7 @@
             cursor: pointer;
             font-weight: bold;
         }
+
         .registerAmin-button:hover {
             color: white;
         }
@@ -353,6 +354,7 @@
             margin-bottom: 10px;
             color: #444;
         }
+
         .board.container {
             background-color: #fff;
             padding: 20px;
@@ -471,6 +473,7 @@
             background-color: lightsalmon;
             color: #fff;
         }
+
         /* 중위 카테고리*/
         #createMiddleCategoryForm input[type="text"] {
             padding: 10px;
@@ -532,6 +535,7 @@
             background-color: lightsalmon;
             color: #fff;
         }
+
         /* 하위 카테고리*/
         #createBottomCategoryForm input[type="text"] {
             padding: 10px;
@@ -621,6 +625,7 @@
             margin-bottom: 10px;
             color: #444;
         }
+
         #createAdminForm input[type="text"] {
             padding: 10px;
             border: 1px solid #ccc;
@@ -645,6 +650,7 @@
             background-color: lightsalmon;
             color: white;
         }
+
         #adminTable {
             width: 100%;
             border-collapse: collapse;
@@ -879,6 +885,7 @@
                 });
             }
         }
+
         // Call readCategories function to initially populate the table
         readCategories();
 
@@ -985,6 +992,7 @@
                 });
             }
         }
+
         // 중위 카테고리 목록을 동적으로 추가하는 함수
         function populateMiddleCategories() {
             $.ajax({
@@ -994,9 +1002,10 @@
                     var data = response.middleCategoryList
                     console.log(data[1].id);
 
-                    for (var i =0; i <= response.middleCategoryList.length; i++) {
-                        $('#middleCategoryId').append("<option value='"+data[i].id +"'>" +data[i].categoryName+ "</option>")
-                    };
+                    for (var i = 0; i <= response.middleCategoryList.length; i++) {
+                        $('#middleCategoryId').append("<option value='" + data[i].id + "'>" + data[i].categoryName + "</option>")
+                    }
+                    ;
                     // console.log(response);
                     // const middleCategoryDropdown = document.getElementById('middleCategoryId');
                     // middleCategoryDropdown.innerHTML = ''; // 드롭다운 메뉴 초기화
@@ -1025,7 +1034,7 @@
             // console.log(mid_id)
 
             var bottomCategoryData = {
-                middleCategoryId : mid_id,
+                middleCategoryId: mid_id,
                 categoryName: bottom_name
 
                 // middleCategoryId : middleCategoryId,
@@ -1281,13 +1290,11 @@
         });
 
 
-
-
         function logout() {
             let authCookie = getCookie('Authorization');
             console.log(authCookie);
             $.ajax({
-                url: 'http://localhost:8081/api/users/logout',
+                url: 'http://localhost:8081/api/admin/view/login',
                 type: 'POST',
                 headers: {
                     'Authorization': authCookie
@@ -1334,7 +1341,7 @@
                 reportContainer.style.display = 'none';
                 contestContainer.style.display = 'none';
                 categoryContainer.style.display = 'none';
-                boardContainer.style.display='none';
+                boardContainer.style.display = 'none';
                 userContainer.style.display = 'none';
                 etcContainer.style.display = 'none';
             });
@@ -1345,7 +1352,7 @@
                 reportContainer.style.display = 'none';
                 contestContainer.style.display = 'none';
                 categoryContainer.style.display = 'none';
-                boardContainer.style.display='none';
+                boardContainer.style.display = 'none';
                 userContainer.style.display = 'none';
                 etcContainer.style.display = 'none';
             });
@@ -1356,7 +1363,7 @@
                 reportContainer.style.display = 'block';
                 contestContainer.style.display = 'none';
                 categoryContainer.style.display = 'none'; // 다른 컨테이너 숨기기
-                boardContainer.style.display='none';
+                boardContainer.style.display = 'none';
                 userContainer.style.display = 'none';
                 etcContainer.style.display = 'none';
             });
@@ -1367,7 +1374,7 @@
                 reportContainer.style.display = 'none';
                 contestContainer.style.display = 'block';
                 categoryContainer.style.display = 'none'; // 다른 컨테이너 숨기기
-                boardContainer.style.display='none';
+                boardContainer.style.display = 'none';
                 userContainer.style.display = 'none';
                 etcContainer.style.display = 'none';
             });
@@ -1378,7 +1385,7 @@
                 reportContainer.style.display = 'none';
                 contestContainer.style.display = 'none';
                 categoryContainer.style.display = 'block';
-                boardContainer.style.display='none';
+                boardContainer.style.display = 'none';
                 userContainer.style.display = 'none';
                 etcContainer.style.display = 'none';
             });
@@ -1389,7 +1396,7 @@
                 reportContainer.style.display = 'none';
                 contestContainer.style.display = 'none';
                 categoryContainer.style.display = 'none';
-                boardContainer.style.display='block';
+                boardContainer.style.display = 'block';
                 userContainer.style.display = 'none';
                 etcContainer.style.display = 'none';
             });
@@ -1400,7 +1407,7 @@
                 reportContainer.style.display = 'none';
                 contestContainer.style.display = 'none';
                 categoryContainer.style.display = 'none';
-                boardContainer.style.display='none';
+                boardContainer.style.display = 'none';
                 userContainer.style.display = 'block';
                 etcContainer.style.display = 'none';
             });
@@ -1411,7 +1418,7 @@
                 reportContainer.style.display = 'none';
                 contestContainer.style.display = 'none';
                 categoryContainer.style.display = 'none';
-                boardContainer.style.display='none';
+                boardContainer.style.display = 'none';
                 userContainer.style.display = 'none';
                 etcContainer.style.display = 'block';
             });
@@ -1434,7 +1441,7 @@
             const adminData = {
                 companyNo: companyNo,
                 adminName: adminName,
-                adminPassword:adminPassword
+                adminPassword: adminPassword
             };
             // 서버에 관리자 데이터 전송 (AJAX 요청)
             $.ajax({
@@ -1451,11 +1458,13 @@
                 },
             });
         }
+
         //관리자 리스트 조회
         $(document).ready(function () {
             // 페이지 로드 시 자동으로 관리자 리스트 불러오기
             readAdmin();
         });
+
         function readAdmin() {
             $.ajax({
                 type: 'GET',
@@ -1484,6 +1493,7 @@
                 }
             });
         }
+
         // 관리자 삭제
         function deleteAdmin(adminId, loggedInAdminId) {
             const confirmDelete = confirm("정말로 삭제하시겠습니까?");
@@ -1491,7 +1501,7 @@
                 $.ajax({
                     type: 'DELETE',
                     url: `/api/admin/delete/${adminId}`, // Use the correct URL
-                    data: JSON.stringify({ loggedInAdminId }), // Include the loggedInAdminId
+                    data: JSON.stringify({loggedInAdminId}), // Include the loggedInAdminId
                     contentType: 'application/json',
                     success: function () {
                         alert('관리자 삭제 완료.');
@@ -1529,7 +1539,7 @@
             <br>
             <br>
             <div class="auth-buttons">
-                <span id="profile-text" href="javascript:logout()">로그아웃</span> </div>
+                <span id="profile-text" href="javascript:logout()">로그아웃</span></div>
         </ul>
     </div>
     <div class="cd1">
@@ -1621,11 +1631,10 @@
             </form>
         </div>
 
-        <!-- Read Categories Table -->
+
         <div class="read-categories">
             <h3>카테고리 목록</h3>
             <table id="topcategoryTable">
-                <!-- Table headers here -->
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -1634,7 +1643,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <!-- Category rows will be populated here by JavaScript -->
                 </tbody>
             </table>
         </div>
@@ -1658,7 +1666,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <!-- Category rows will be populated here by JavaScript -->
                 </tbody>
             </table>
         </div>
@@ -1705,7 +1712,7 @@
         <form id="createBoardForm">
             <div>
                 <label for="createTitle">Title:</label>
-                <input type="text" id="createTitle" name="title" />
+                <input type="text" id="createTitle" name="title"/>
             </div>
             <div>
                 <label for="createContents">Contents:</label>
@@ -1779,13 +1786,16 @@
                     <strong>제 2 조 (정 의)</strong><br>
                     이 약관에서 사용하는 용어의 정의는 다음과 같습니다.<br>
                     1. "이용자"라 함은 사이트에 접속하여 이 약관에 따라 사이트가 제공하는 서비스를 이용하는 회원을 말합니다.<br>
-                    2. "회원"이라 함은 사이트에 개인정보를 제공하여 회원등록을 한 자로서, 사이트의 정보를 지속적으로 제공받으며, 사이트가 제공하는 서비스를 계속적으로 이용할 수 있는 자를 말합니다.<br>
+                    2. "회원"이라 함은 사이트에 개인정보를 제공하여 회원등록을 한 자로서, 사이트의 정보를 지속적으로 제공받으며, 사이트가 제공하는 서비스를 계속적으로 이용할 수 있는 자를
+                    말합니다.<br>
                     3. "비회원"이라 함은 회원에 가입하지 않고 회사 사이트에서 제공하는 서비스를 이용하는 자를 말합니다.<br>
 
                     <br>
                     <strong>제 3 조 (약관의 명시와 변경)</strong><br>
-                    1. 회사는 합리적인 사유가 있는 경우에 이 약관을 개정할 수 있으며, 약관이 개정된 경우에는 적용일자 및 개정사유를 명시하여 현행약관과 함께 사이트의 초기화면에 그 적용일자 7일 이전부터 적용일자 전일까지 이를 공지합니다.<br>
-                    2. 회사는 약관의 규제등에 관한 법률, 전자거래 기본법, 전자서명법, 정보통신망 이용 촉진등에 관한 법률, 소비자 보호법 등 관련법을 위배하지 않는 범위에서 이 약관을 개정할 수 있습니다.
+                    1. 회사는 합리적인 사유가 있는 경우에 이 약관을 개정할 수 있으며, 약관이 개정된 경우에는 적용일자 및 개정사유를 명시하여 현행약관과 함께 사이트의 초기화면에 그 적용일자 7일
+                    이전부터 적용일자 전일까지 이를 공지합니다.<br>
+                    2. 회사는 약관의 규제등에 관한 법률, 전자거래 기본법, 전자서명법, 정보통신망 이용 촉진등에 관한 법률, 소비자 보호법 등 관련법을 위배하지 않는 범위에서 이 약관을 개정할 수
+                    있습니다.
                     3. 회원은 변경된 약관 사항에 동의하지 않으면 서비스 이용을 중단하고 이용계약을 해지할 수 있습니다. <br>
 
                     <br>
@@ -1798,13 +1808,15 @@
                     1. 회원은 사이트를 회사의 업무상 또는 기술상 특별한 지장이 없는 한 연중무휴, 1일 24시간 이용할 수 있습니다.<br>
                     2. 사이트에서 제공하는 서비스 중 일부는 회원에 가입하여 회사에서 인정한 ID와 비밀번호를 통해서만 서비스를 받을 수 있습니다.<br>
                     3. 전항의 이용시간은 시스템 등 정기점검/교체 등 회사가 필요한 경우, 회원에게 사전 통지한 후, 제한할 수 있습니다.<br>
-                    4. 제3항에 의한 서비스 중단의 경우에는 회사는 회원이 회사의 홈페이지에 제출한 전자우편 주소로 개별 통지하거나, 불특정다수 회원에 대하여는 홈페이지 초기화면에 서비스 중단 3일전 게시함으로써 개별 통지에 갈음할 수 있습니다.<br>
+                    4. 제3항에 의한 서비스 중단의 경우에는 회사는 회원이 회사의 홈페이지에 제출한 전자우편 주소로 개별 통지하거나, 불특정다수 회원에 대하여는 홈페이지 초기화면에 서비스 중단
+                    3일전 게시함으로써 개별 통지에 갈음할 수 있습니다.<br>
 
                     <br>
                     <strong>제 6 조 (회원 가입)</strong><br>
                     1. 이용자는 회사가 정한 가입 양식에 따라 회원정보를 기입한 후 이 약관에 동의한다는 의사표시를 함으로서 회원 가입을 신청합니다.<br>
                     2. 회사는 제 1항과 같이 회원으로 가입할 것을 신청한 이용자 중 다음 각 호에 해당하지 않는 한 회원으로 등록합니다.<br>
-                    ① 가입 신청자가 이 약관 제 7조 제 3항에 의하여 이전에 회원자격을 상실한 적이 있는 경우. 다만 제 7조 제 3항에 의한 회원자격 상실 후 3년이 경과한 자로서 회사의 회원 재가입 승낙을 얻은 경우에는 예외로 한다.<br>
+                    ① 가입 신청자가 이 약관 제 7조 제 3항에 의하여 이전에 회원자격을 상실한 적이 있는 경우. 다만 제 7조 제 3항에 의한 회원자격 상실 후 3년이 경과한 자로서 회사의 회원
+                    재가입 승낙을 얻은 경우에는 예외로 한다.<br>
                     ② 모든 가입신청자는 반드시 실명으로 본인의 이름과 전화번호, 이메일을 기입하며, 그러하지 아니한 경우.<br>
                     ③ 등록 내용에 허위, 기재누락, 오기가 있는 경우.<br>
                     ④ 기타 회원으로 등록하는 것이 회사의 기술상 현저히 지장이 있다고 판단되는 경우.<br>

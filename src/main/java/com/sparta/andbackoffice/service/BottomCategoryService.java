@@ -23,9 +23,9 @@ public class BottomCategoryService {
 
 	//생성
 	public void createBottomCategory(BottomCategoryRequestDto bottomCategoryRequestDto) {
-//		String CategoryName = bottomCategoryRequestDto.getCategoryName();
-//		BottomCategory bottomCategory = new BottomCategory(CategoryName);
-//		bottomCategoryRepository.save(bottomCategory);
+//      String CategoryName = bottomCategoryRequestDto.getCategoryName();
+//      BottomCategory bottomCategory = new BottomCategory(CategoryName);
+//      bottomCategoryRepository.save(bottomCategory);
 		Long middleCategoryId = bottomCategoryRequestDto.getMiddleCategoryId(); // 중위 카테고리 ID 가져오기
 
 		MiddleCategory middleCategory = middleCategoryRepository.findById(middleCategoryId)

@@ -23,7 +23,7 @@ public class MiddleCategoryService {
 	public MiddleCategoryDetailsDto getMiddleCategoryDetails(Long id){
 		MiddleCategory middleCategory = middleCategoryRepository.findById(id)
 				.orElseThrow(() -> new EntityNotFoundException("MiddleCategory ID를 찾을 수 없습니다."+id));
-				return new MiddleCategoryDetailsDto(middleCategory);
+		return new MiddleCategoryDetailsDto(middleCategory);
 	}
 
 	//조회
@@ -64,5 +64,4 @@ public class MiddleCategoryService {
 		);
 	}
 }
-
 
