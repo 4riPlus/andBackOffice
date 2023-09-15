@@ -32,8 +32,8 @@ public class User {
 //
 //	private String googleId;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private List<Post> myPostList = new ArrayList<>();
+	// @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	// private List<Post> myPostList = new ArrayList<>();
 
 	// 북마크 전체 보기
 	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
@@ -42,7 +42,7 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<ReportComment> reportCommentList = new ArrayList<>();
 
-	public User(String userName, String userPassword, String userEmail) {
+	public User(String userName, String userPassword) {
 		this.userName = userName;
 		this.userPassword = userPassword;
 	}

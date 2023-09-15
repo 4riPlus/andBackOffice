@@ -26,14 +26,19 @@ public class ReportPost extends TimeStamped {
 
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "post_id")
+	@JoinColumn(name = "postId")
 	private Post post;
+
+	@ManyToOne
+	@JoinColumn(name = "userId")
+	private User user;
 
 	@Column
 	private String reportReason;
 
-	public ReportPost(Post post, String reportReason) {
+	public ReportPost(Post post, String reportReason, User writer) {
 		this.post = post;
+		this.user = writer;
 		this.reportReason = reportReason;
 	}
 }

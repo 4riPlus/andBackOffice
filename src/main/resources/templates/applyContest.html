@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+          integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+  <!-- font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+
+  <!-- Summernote CSS and JavaScript -->
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+  <title>Create Contest</title>
+
+  <style>
+    body {
+      padding-top: 70px;
+      padding-bottom: 30px;
+    }
+
+    .insert {
+      padding: 20px 30px;
+      display: block;
+      width: 600px;
+      margin: 5vh auto;
+      height: 150px;
+      border: 1px solid #dbdbdb;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    .file-list {
+      height: fit-content;
+      border: 1px solid #989898;
+      border-radius: 5px;
+      padding-left: 5px;
+    }
+    .file-list .filebox p {
+      font-size: 14px;
+      margin-top: 5px;
+      display: inline-block;
+    }
+    .file-list .filebox .delete i{
+      color: #ff5353;
+      margin-left: 5px;
+    }
+
+  </style>
+</head>
+
+<body>
+<article>
+  <div class="container" role="main">
+    <h2>Create Contest</h2>
+    <div>
+      <div class="mb-3">
+        <label for="title">공모전 제목:</label>
+        <input type="text" class="form-control" name="title" id="title" placeholder="Title" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="company">주최사:</label>
+        <input type="text" class="form-control" name="company" id="company" placeholder="Company" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="homepage">홈페이지:</label>
+        <input type="text" class="form-control" name="homepage" id="homepage" placeholder="homepage" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="endDate">End Date:</label>
+        <input type="datetime-local" class="form-control" name="endDate" id="endDate" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="startDate">Start Date:</label>
+        <input type="datetime-local" class="form-control" name="startDate" id="startDate">
+      </div>
+
+      <div class="mb-3">
+        <label for="target">응모대상:</label>
+        <input type="text" class="form-control" name="homepage" id="target" placeholder="Target" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="prize">상금:</label>
+        <input type="text" class="form-control" name="prize" id="prize" placeholder="prize" required>
+      </div>
+
+      <div class="mb-3">
+        <label>Upload File:</label>
+        <p class="line mb-3">
+          <input class="form-control" type="file" id="FileMultiple" onchange="addFile(this)" multiple />
+          <div class="file-list"></div>
+        </p>
+      </div>
+
+      <div class="mb-3">
+        <label for="contents">Contents:</label>
+        <textarea class="form-control" rows="5" name="contents" id="contents"
+                  placeholder="Enter contest contents here..." required></textarea>
+      </div>
+
+      <!--<div class="mb-3">
+        <label for="category">Category:</label>
+        <select class="form-control" name="category" id="category">
+          &lt;!&ndash; Add category options here &ndash;&gt;
+        </select>
+      </div>-->
+    </div>
+
+    <div>
+      <button type="button" class="btn btn-sm btn-primary" id="btnSave">Save</button>
+      <button type="button" class="btn btn-sm btn-primary" id="btnList">List</button>
+    </div>
+  </div>
+</article>
+
+<script>
+  // Initialize Summernote
+  $(document).ready(function () {
+    $('#contents').summernote({
+      height: 300,
+      placeholder: 'Enter contest contents here...',
+    });
+  });
+
+  $(document).on('click', '#btnSave', function (e) {
+    // Prevent form submission
+    e.preventDefault();
+
+    var formData = new FormData();
+
+    // Add text data to the FormData object
+    formData.append('title', $('#title').val());
+    formData.append('company', $('#company').val());
+    formData.append('homepage', $('#homepage').val());
+    formData.append('endDate', $('#endDate').val());
+    formData.append('startDate', $('#startDate').val());
+    formData.append('target', $('#target').val());
+    formData.append('prize', $('#prize').val());
+    formData.append('contents', $('#contents').summernote('code'));
+    //formData.append('category', $('#category').val());
+
+    // Add files to the FormData object
+    for (var i = 0; i < filesArr.length; i++) {
+      formData.append('files', filesArr[i]);
+    }
+
+    // Perform the AJAX request
+    $.ajax({
+      type: 'POST',
+      url: '/api/admin/contest',
+      data: formData,
+      contentType: false, // Let jQuery handle the content type
+      processData: false, // Don't process the data (jQuery will not try to convert it into a query string)
+      success: function (response) {
+        alert("공모전 등록 성공");
+        history.back();
+        //window.location.href = "/api/admin/view/main";
+      },
+      error: function (response) {
+        alert("공모전 등록 실패 : " + response.responseJSON.msg);
+      }
+    });
+
+  });
+
+  $(document).on('click', '#btnList', function (e) {
+    e.preventDefault();
+    location.href = "${pageContext.request.contextPath}/board/getBoardList";
+  });
+
+  var fileNo = 0;
+  var filesArr = new Array();
+
+  /* 첨부파일 추가 */
+  function addFile(obj){
+    var maxFileCnt = 5;   // 첨부파일 최대 개수
+    var attFileCnt = document.querySelectorAll('.filebox').length;    // 기존 추가된 첨부파일 개수
+    var remainFileCnt = maxFileCnt - attFileCnt;    // 추가로 첨부가능한 개수
+    var curFileCnt = obj.files.length;  // 현재 선택된 첨부파일 개수
+
+    // 첨부파일 개수 확인
+    if (curFileCnt > remainFileCnt) {
+      alert("첨부파일은 최대 " + maxFileCnt + "개 까지 첨부 가능합니다.");
+    } else {
+      for (const file of obj.files) {
+        // 첨부파일 검증
+        if (validation(file)) {
+          // 파일 배열에 담기
+          var reader = new FileReader();
+          reader.onload = function () {
+            filesArr.push(file);
+          };
+          reader.readAsDataURL(file);
+
+          // 목록 추가
+          let htmlData = '';
+          htmlData += '<div id="file' + fileNo + '" class="filebox">';
+          htmlData += '   <p class="name">' + file.name + '</p>';
+          htmlData += '   <a class="delete" onclick="deleteFile(' + fileNo + ');"><i class="fa-solid fa-square-minus"></i></a>';
+          htmlData += '</div>';
+          $('.file-list').append(htmlData);
+          fileNo++;
+        } else {
+          continue;
+        }
+      }
+    }
+    // 초기화
+    document.querySelector("input[type=file]").value = "";
+  }
+
+  /* 첨부파일 검증 */
+  function validation(obj){
+    const fileTypes = ['application/pdf', 'image/gif', 'image/jpeg', 'image/png', 'image/bmp', 'image/tif', 'application/haansofthwp', 'application/x-hwp'];
+    if (obj.name.length > 100) {
+      alert("파일명이 100자 이상인 파일은 제외되었습니다.");
+      return false;
+    } else if (obj.size > (100 * 1024 * 1024)) {
+      alert("최대 파일 용량인 100MB를 초과한 파일은 제외되었습니다.");
+      return false;
+    } else if (obj.name.lastIndexOf('.') == -1) {
+      alert("확장자가 없는 파일은 제외되었습니다.");
+      return false;
+    } else if (!fileTypes.includes(obj.type)) {
+      alert("첨부가 불가능한 파일은 제외되었습니다.");
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  /* 첨부파일 삭제 */
+  function deleteFile(num) {
+    document.querySelector("#file" + num).remove();
+    filesArr[num].is_delete = true;
+  }
+
+
+</script>
+</body>
+
+</html>

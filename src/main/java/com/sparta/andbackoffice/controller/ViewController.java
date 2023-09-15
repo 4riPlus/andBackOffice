@@ -15,4 +15,9 @@ public class ViewController {
     public String loginPage() {
         return "login";
     }
+
+    @GetMapping("/applyContest")
+    public String applyContestPage() {
+        return "applyContest";
+    }
 }
