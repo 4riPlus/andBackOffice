@@ -74,11 +74,12 @@ public class Contest extends TimeStamped {
 		this.contents = requestDto.getContents();
 		this.prize = requestDto.getPrize();
 	}
-}
+
 
 	public void setS3Files(S3File s3File) {
 		this.S3Files.add(s3File);
 	}
+}
 
 	// 값 입력이 없다면 default => 1번
 //	@PrePersist
