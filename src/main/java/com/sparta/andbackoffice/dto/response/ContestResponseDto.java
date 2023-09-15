@@ -35,5 +35,4 @@ public class ContestResponseDto {
 		this.prize = contest.getPrize();
 		this.S3files = contest.getS3Files().stream().map(S3FileDto::new).toList();
 	}
-
 }

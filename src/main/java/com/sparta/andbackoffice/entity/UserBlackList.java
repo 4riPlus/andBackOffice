@@ -22,6 +22,7 @@ public class UserBlackList {
     @JoinColumn(name = "userName")
     private User user;
 
+
     public UserBlackList(User user) {
         this.user = user;
     }

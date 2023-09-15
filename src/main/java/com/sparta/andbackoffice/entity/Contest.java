@@ -54,7 +54,7 @@ public class Contest extends TimeStamped {
 	@Column(name = "contestViews")
 	private Long contestViews = 0L;
 
-	@Column(name="prize")
+	@Column(name = "prize")
 	private String prize;
 
 	@Column(name = "S3Files")
@@ -74,15 +74,16 @@ public class Contest extends TimeStamped {
 		this.contents = requestDto.getContents();
 		this.prize = requestDto.getPrize();
 	}
+}
 
 	public void setS3Files(S3File s3File) {
 		this.S3Files.add(s3File);
 	}
 
 	// 값 입력이 없다면 default => 1번
-	@PrePersist
-	public void prePersist() {
-		this.category = this.category == null ? 1 : this.category;
-//		this.contestViews = this.contestViews == null ? 0 : this.contestViews;
-	}
-}
+//	@PrePersist
+//	public void prePersist() {
+//		this.category = this.category == null ? 1 : this.category;
+////		this.contestViews = this.contestViews == null ? 0 : this.contestViews;
+//	}
+//}
