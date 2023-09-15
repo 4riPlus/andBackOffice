@@ -4,8 +4,6 @@ import com.sparta.andbackoffice.dto.request.S3FileDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
 @Entity
@@ -14,7 +12,8 @@ import org.hibernate.annotations.OnDeleteAction;
 public class S3File {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long fileId;
+    @Column(name = "file_id")
+    private Long id;
     @Column
     private String originalFileName;
     @Column
