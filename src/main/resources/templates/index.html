@@ -1,282 +1,440 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="https://i.postimg.cc/YqTT15xb/image.png">
-  <title>&nd, admin</title>
-<!--  <link rel="stylesheet" href="/main.css"/>-->
-  <style>
-    /* Reset some default styles */
-    body, h1, h2, p, ul, li {
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://i.postimg.cc/YqTT15xb/image.png">
+    <title>&nd, admin</title>
+    <style>
+        body, h1, h2, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
 
-    body {
-      font-family: Arial, sans-serif;
-    }
+        body {
+            font-family: Arial, sans-serif;
+        }
 
-    /* Header Styles */
-    .logo img {
-      margin-top: 10px;
-      margin-left: 20px;
-      max-width: 150px;
-      height: auto;
-    }
+        .logo img {
+            margin-top: 10px;
+            margin-left: 20px;
+            max-width: 150px;
+            height: auto;
+        }
+
+        #profile-text {
+            display: inline-block;
+            margin-left: 40px;
+            color: #000;
+            font-weight: bold;
+        }
+
+        #profile-text:hover {
+            display: inline-block;
+            margin-left: 40px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .container {
+            display: flex;
+            margin: 20px;
+        }
+
+        main {
+            flex: 3;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .banner img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 10px;
+            border: 2px solid lightgray;
+            border-radius: 20px;
+            width: 500px;
+        }
+
+        .search-icon {
+            margin-left: -40px;
+            padding: 8px;
+            background-color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 17px;
+            height: 17px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-icon img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .section {
+            /* 추가된 스타일 */
+            flex: 1;
+            padding: 5px;
+        }
+
+        .sections-container {
+            margin-left: 200px;
+            height: 750px;
+            display: flex;
+            gap: 30px;
+            background-color: #fff;
+        }
+
+        .section_in {
+            height: 700px;
+        }
+
+        .section-heading {
+            margin-top: 1px;
+            text-align: center;
+        }
 
 
-    #profile-text {
-      /* 추가된 스타일 */
-      display: inline-block;
-      margin-left: 40px;
-      color: #000;
-      font-weight: bold;
-    }
-    #profile-text:hover  {
-      /* 추가된 스타일 */
-      display: inline-block;
-      margin-left: 40px;
-      color: #fff;
-      font-weight: bold;
-    }
-    /* Container Styles */
-    .container {
-      display: flex;
-      margin: 20px;
-    }
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
 
-    main {
-      flex: 3;
-      padding: 20px;
-      background-color: #fff;
-    }
-    /* Banner Styles */
-    .banner img {
-      width: 100%;
-      height: auto;
-      margin-bottom: 20px;
-    }
-    .search-bar {
-      display: flex;
-      align-items: center;
-    }
-    .search-bar input[type="text"] {
-      padding: 10px;
-      border: 2px solid lightgray;
-      border-radius: 20px;
-      width: 500px; /* Adjust the width as needed */
-    }
-    .search-icon {
-      margin-left: -40px;
-      padding: 8px;
-      background-color: white;
-      border-radius: 50%;
-      cursor: pointer;
-      width: 17px;
-      height: 17px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .search-icon img {
-      max-width: 90%;
-      max-height: 90%;
-    }
-    /* Contest List Styles */
-    .section {
-      /* 추가된 스타일 */
-      flex: 1;
-      padding: 5px;
-    }
-    .sections-container {
-      margin-left: 200px;
-      height: 750px;
-      display: flex;
-      gap: 30px;
-      background-color: #fff;
-    }
-    .section_in{
-      height: 700px;
-    }
-    .section-heading {
-      margin-top: 1px;
-      text-align: center;
-    }
+        ul {
+            list-style-type: none;
+            padding: 0px;
+            margin: 0px;
+            width: 200px;
+            background: linen;
+            height: 100%;
+            overflow: auto;
+            position: fixed;
+        }
 
+        li a {
+            margin-top: 20px;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            color: #000;
+            text-align: center;
+            font-weight: bold;
+        }
 
-    /* Responsive Styles */
-    @media screen and (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
-    }
+        li a:hover {
+            background: lightsalmon;
+            color: #fff;
+        }
 
-    ul {
-      list-style-type: none;
-      padding: 0px;
-      margin: 0px;
-      width: 200px;
-      background: linen;
-      height: 100%;
-      overflow: auto;
-      position: fixed;
-    }
+        .cd1 {
+            margin-left: 20px;
+            height: 100px;
+            background-color: linen;
+        }
 
-    li a {
-      margin-top: 20px;
-      text-decoration: none;
-      padding: 10px;
-      display: block;
-      color: #000;
-      text-align: center;
-      font-weight: bold;
-    }
+        .auth-buttons {
+            width: 149px;
+            height: 25px;
+            margin-left: 10px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            background-color: lightsalmon;
+            color: white;
+            cursor: pointer;
+        }
 
-    li a:hover {
-      background: lightsalmon;
-      color: #fff;
-    }
-
-    .cd1 {
-      margin-left: 20px;
-      height: 100px;
-      background-color: linen;
-    }
-
-    .auth-buttons {
-      width: 149px;
-      height: 25px;
-      margin-left: 10px;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 20px;
-      background-color: lightsalmon;
-      color: white;
-      cursor: pointer;
-    }
-    .delete-button {
-      position: fixed; /* 요소를 화면에 고정 */
-      bottom: 50px; /* 아래 여백 조절 */
-      right: 50px; /* 오른쪽 여백 조절 */
-      z-index: 1; /* 다른 요소 위에 위치하도록 설정 */
-      background-color: lightsalmon;
-      color: black;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+        .delete-button {
+            position: fixed; /* 요소를 화면에 고정 */
+            bottom: 50px; /* 아래 여백 조절 */
+            right: 50px; /* 오른쪽 여백 조절 */
+            z-index: 1; /* 다른 요소 위에 위치하도록 설정 */
+            background-color: lightsalmon;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
     .delete-button:hover {
       color: white;
     }
-    /* 자유게시판 CSS */
-    /*.post-wrap {*/
-    /*  margin: 20px;*/
-    /*  padding: 20px;*/
-    /*}*/
-
-    /*.post-title {*/
-    /*  margin-bottom: 20px;*/
-    /*}*/
-
-    /*.post-title strong {*/
-    /*  font-size: 1.3rem;*/
-    /*}*/
-
-    .post-title p {
-      margin-top: 5px;
-      font-size: 0.8rem;
-    }
-
-    .post-list {
-      width: 100%;
-      border-top: 2px solid #000;
-    }
-
-    .post-list > div {
-      border-bottom: 1px;
-      font-size: 0;
-    }
-
-    .post-list > div.top {
-      border-bottom: 1px solid #999;
-    }
-
-    .post-list > div:last-child {
-      border-bottom: 1px solid #000;
-    }
-
-    .post-list > div > div {
-      display: inline-block;
-      padding: 15px 0;
-      text-align: center;
-      font-size: 0.9rem;
-    }
-
-    .post-list > div.top > div {
+    .registerAmin-button {
+      position: fixed; /* 요소를 화면에 고정 */
+      background-color: lightsalmon;
+      color: black;
+      z-index: 1; /* 다른 요소 위에 위치하도록 설정 */
+      padding: 10px 20px;
+      margin-left: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
       font-weight: bold;
     }
-
-    .post-list .num {
-      width: 10%;
+    .registerAmin-button:hover {
+      color: white;
     }
 
-    .post-list .title {
-      width: 50%;
-      text-align: left;
+        .post-title p {
+            margin-top: 5px;
+            font-size: 0.8rem;
+        }
+
+        .post-list {
+            width: 100%;
+            border-top: 2px solid #000;
+        }
+
+        .post-list > div {
+            border-bottom: 1px;
+            font-size: 0;
+        }
+
+        .post-list > div.top {
+            border-bottom: 1px solid #999;
+        }
+
+        .post-list > div:last-child {
+            border-bottom: 1px solid #000;
+        }
+
+        .post-list > div > div {
+            display: inline-block;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .post-list > div.top > div {
+            font-weight: bold;
+        }
+
+        .post-list .num {
+            width: 10%;
+        }
+
+        .post-list .title {
+            width: 50%;
+            text-align: left;
+        }
+
+        .post-list .top .title {
+            text-align: center;
+        }
+
+        .post-list .writer {
+            width: 10%;
+        }
+
+        .post-list .date {
+            width: 20%;
+        }
+
+        .post-list .count {
+            width: 10%;
+        }
+
+        .post-page {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0;
+        }
+
+        .post-page a {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            box-sizing: border-box;
+            vertical-align: middle;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+            border-left: 0;
+            line-height: 100%;
+        }
+
+        .post-page a.bt {
+            padding-top: 10px;
+            font-size: 1.0rem;
+            letter-spacing: -1px;
+        }
+
+        .post-page a.num {
+            padding-top: 9px;
+            font-size: 0.9rem;
+        }
+
+        .post-page a.num.on {
+            border-color: #000;
+            background: #000;
+            color: #fff;
+        }
+
+        .post-page a:first-child {
+            border-left: 1px solid #ddd;
+        }
+
+    .section_in {
+      text-align: center;
+      width: 100%;
     }
 
-    .post-list .top .title {
+    /* Category Management Container Styles */
+    .category.container {
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 50px 280px;
+      margin-right: 68px;
+      width: 1500px;
+        height: 690px;
+    }
+
+        .category.container h2.section-heading {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .create-category, .read-categories {
+            margin-bottom: 20px;
+        }
+
+        .create-category h3, .read-categories h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+        .board.container {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        .section-heading {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Style for form elements */
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Style for the board list */
+        #boardList {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #createCategoryForm input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+    #createCategoryForm button {
+      padding: 10px 20px;
+      background-color: lightsalmon;
+      color: #000;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #createCategoryForm button:hover {
+      background-color: lightsalmon;
+      color: white;
+    }
+
+        #categoryTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+    #categoryTable th {
+      background-color: lightsalmon;
+      color: #000;
+      padding: 10px;
       text-align: center;
     }
 
-    .post-list .writer {
-      width: 10%;
+        #categoryTable td {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #categoryTable td:last-child {
+            text-align: center;
+        }
+
+    /* Update and Delete buttons */
+    #categoryTable button {
+      padding: 6px 12px;
+      background-color: lightsalmon;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 5px;
     }
 
-    .post-list .date {
-      width: 20%;
-    }
-
-    .post-list .count {
-      width: 10%;
-    }
-
-    .post-page {
-      margin-top : 20px;
-      text-align: center;
-      font-size: 0;
-    }
-
-    .post-page a {
-      display: inline-block;
-      width: 32px;
-      height: 32px;
-      box-sizing: border-box;
-      vertical-align: middle;
-      border: 1px solid #ddd;
-      border-radius: 7px;
-      border-left: 0;
-      line-height: 100%;
-    }
-
-    .post-page a.bt {
-      padding-top: 10px;
-      font-size: 1.0rem;
-      letter-spacing: -1px;
-    }
-
-    .post-page a.num {
-      padding-top: 9px;
-      font-size: 0.9rem;
-    }
-
-    .post-page a.num.on {
-      border-color: #000;
-      background: #000;
+    #categoryTable button:hover {
+      background-color: lightsalmon;
       color: #fff;
     }
 
@@ -531,91 +689,256 @@
       border-left: 1px solid #ddd;
     }
 
+=======
+        /*관리자 관리*/
+        .user-section {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 10px auto 10px; /* 가운데 정렬을 위해 auto 설정 */
+            max-width: 1500px; /* 최대 너비 설정 */
+            width: 100%; /* 너비 100%로 설정하여 화면 크기에 맞게 조절 */
+        }
+
+        .user.container h2.section-heading {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .create-admin, .read-Admin {
+            margin-bottom: 20px;
+        }
+
+        .create-admin h3, .read-Admin h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+        #createAdminForm input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        #createAdminForm button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: lightsalmon;
+            color: #000;
+            border: none;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #createAdminForm button:hover {
+            background-color: lightsalmon;
+            color: white;
+        }
+        #adminTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #adminTable th {
+            background-color: lightsalmon;
+            color: #000;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #adminTable td {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #adminTable td:last-child {
+            text-align: center;
+        }
+
+        /* Update and Delete buttons */
+        #adminTable button {
+            padding: 6px 12px;
+            background-color: lightsalmon;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        #adminTable button:hover {
+            background-color: lightsalmon;
+        }
+
+        /* contest CSS */
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-container button {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .card-lists {
+            overflow: hidden;
+            overflow-y: auto;
+        }
+
+        .card-lists .card-item {
+            width: 200px;
+            height: 250px;
+        }
+
+        .card-lists .card-item img {
+            width: 100%;
+            height: 200px;
+        }
+
   </style>
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"
           integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
-  <script>
-    // 자유게시판 페이징 출력
-    const pageSize = 10;
-    const pageBtnSize = 5;
-    function showPosts(page, size) {
-      if(page <= 0) {
-        page = 1;
-      }
+    <script>
+        // 자유게시판 페이징 출력
+        const pageSize = 10;
+        const pageBtnSize = 5;
 
-      $.ajax({
-        type: 'GET',
-        url: `/api/admin/posts?page=${page}&size=${size}`
-      })
-              .done(function (response, status, xhr) {
-                let pages = response['totalPages'];
-                console.log(pageSize);
-                if(page > pages) {
-                  page = pages;
+        function showPosts(page, size) {
+                if (page <= 0) {
+                    page = 1;
                 }
 
-                let html = `
+                $.ajax({
+                    type: 'GET',
+                    url: `/api/admin/posts?page=${page}&size=${size}`
+                })
+                    .done(function (response, status, xhr) {
+                        let pages = response['totalPages'];
+                        console.log(pageSize);
+                        if (page > pages) {
+                            page = pages;
+                        }
 
-                          <div class="post-list">
-                            <div class="top">
-                              <div class="num">번호</div>
-                              <div class="title">제목</div>
-                              <div class="writer">작성자</div>
-                              <div class="date">작성일</div>
-                              <div class="count">조회수</div>
-                            </div>`;
+                        let html = `
 
-                let startNum = (page-1) * pageSize;
-                response['content'].forEach((post) => {
-                  startNum += 1;
-                  html += `
-                        <div>
-                          <div class="num">${startNum}</div>
-                          <div class="title"><a href="#">${post.title}</a></div>
-                          <div class="writer">${post.writer}</div>
-                          <div class="date">${post.modifiedDate}</div>
-                          <div class="count">${post.communityPostViews}</div>
+                              <div class="post-list">
+                                <div class="top">
+                                  <div class="num">번호</div>
+                                  <div class="title">제목</div>
+                                  <div class="writer">작성자</div>
+                                  <div class="date">작성일</div>
+                                  <div class="count">조회수</div>
+                                </div>`;
+
+                        let startNum = (page - 1) * pageSize;
+                        response['content'].forEach((post) => {
+                            startNum += 1;
+                            html += `
+                            <div>
+                              <div class="num">${startNum}</div>
+                              <div class="title"><a href="#">${post.title}</a></div>
+                              <div class="writer">${post.writer}</div>
+                              <div class="date">${post.modifiedDate}</div>
+                              <div class="count">${post.communityPostViews}</div>
+                            </div>
+                        `;
+                        });
+
+                        html += `
+                        </div>
+                         <div class="post-page">
+                            <a onclick="showPosts(1,pageSize)" class="bt first"><<</a>
+                            <a onclick="showPosts(${page}-1,pageSize)" class="bt prev"><</a>
+                    `;
+
+                        let startPage = (Math.floor(page / pageBtnSize) * pageBtnSize) + 1;
+                        let endPage = (startPage + pageBtnSize) <= pages ? (startPage + pageBtnSize) : pages;
+
+                        for (let i = startPage; i <= endPage; i++) {
+                            if (page === i) {
+                                html += `
+                                <a onclick="showPosts(${i},pageSize)" class="num on">${i}</a>
+                            `;
+                            } else {
+                                html += `
+                                <a onclick="showPosts(${i},pageSize)" class="num">${i}</a>
+                            `;
+                            }
+                        }
+
+                        html += `
+                                <a onclick="showPosts(${page}+1,pageSize)" class="bt first">></a>
+                                <a onclick="showPosts(${pages},pageSize)" class="bt prev">>></a>
+                              </div>
+                          </div>
                         </div>
                     `;
-                });
+                        $(".list").empty();
+                        $(".list").append(html);
+                    })
+                    .fail(function (response) {
+                        alert("자유게시글 조회 실패");
+                        console.log(response.responseJSON.msg);
+                    });
+            }
 
-                html += `
-                    </div>
-                     <div class="post-page">
-                        <a onclick="showPosts(1,pageSize)" class="bt first"><<</a>
-                        <a onclick="showPosts(${page}-1,pageSize)" class="bt prev"><</a>
-                `;
+        // Function to create a new category
+        function createCategory() {
+          const categoryName = document.getElementById('categoryName').value;
 
-                let startPage = (Math.floor(page / pageBtnSize) * pageBtnSize) + 1;
-                let endPage = (startPage + pageBtnSize) <= pages ? (startPage + pageBtnSize) : pages;
+          // Prepare the data to send in the request body
+          const categoryData = {
+            categoryName: categoryName,
+          };
 
-                for(let i=startPage;i<=endPage;i++) {
-                  if(page === i) {
-                    html += `
-                            <a onclick="showPosts(${i},pageSize)" class="num on">${i}</a>
-                        `;
-                  } else {
-                    html += `
-                            <a onclick="showPosts(${i},pageSize)" class="num">${i}</a>
-                        `;
-                  }
-                }
+          // Perform AJAX POST request to create a new category on the server
+          $.ajax({
+            type: 'POST',
+            url: '/api/admin/category',
+            contentType: 'application/json',
+            data: JSON.stringify(categoryData),
+            success: function (response) {
+              // Update the table with the newly created category
+              readCategories();
+              alert(response.message); // Display a success message
+            },
+            error: function (xhr) {
+              alert('카테고리생성실패: ' + xhr.statusText);
+            },
+          });
+        }
 
-                html += `
-                            <a onclick="showPosts(${page}+1,pageSize)" class="bt first">></a>
-                            <a onclick="showPosts(${pages},pageSize)" class="bt prev">>></a>
-                          </div>
-                      </div>
-                    </div>
-                `;
-                $(".list").empty();
-                $(".list").append(html);
-              })
-              .fail(function(response) {
-                alert("자유게시글 조회 실패");
-                console.log(response.responseJSON.msg);
+        // Function to read categories and populate the table
+        function readCategories() {
+          // Perform AJAX GET request to retrieve all categories from the server
+          $.ajax({
+            type: 'GET',
+            url: '/api/admin/category',
+            success: function (response) {
+              const categoryTable = document.getElementById('categoryTable');
+              const tbody = categoryTable.getElementsByTagName('tbody')[0];
+              tbody.innerHTML = ''; // Clear existing table rows
+
+              response.categoryList.forEach(function (category) {
+                const newRow = tbody.insertRow();
+                newRow.id = `categoryRow_${category.id}`; // Assign a unique id
+                newRow.innerHTML = `
+            <td>${category.id}</td>
+            <td>${category.categoryName}</td>
+            <td>
+                <button onclick="updateCategory(${category.id})">Update</button>
+                <button onclick="deleteCategory(${category.id})">Delete</button>
+            </td>
+        `;
               });
     }
 
@@ -945,6 +1268,7 @@
       alert("게시물이 삭제되었습니다."); // 임시로 경고창을 띄움
     }
   </script>
+
 </head>
 <body>
 <header>
@@ -957,19 +1281,9 @@
       <li><a id="report-comment" href="#" onclick="showReportComments(1,pageSize)">신고된 댓글</a></li>
       <li><a id="contest" href="#">공지 및 공모전 관리</a></li>
       <li><a id="category" href="#">카테고리 관리</a></li>
-      <li><a id="user" href="#">유저 관리</a></li>
+      <li><a id="board" href="#">공지사항 관리</a></li>
+      <li><a id="user" href="#">관리자/유저 관리</a></li>
       <li><a id="etc" href="#">기타 이용약관</a></li>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
       <br>
       <br>
       <br>
@@ -985,43 +1299,43 @@
   </div>
 </header>
 
-<div class="home container"style="display: block;">
-  <main class="sections-container">
-    <div class="section">
-      <h2 class="section-heading"><&ND> 최근 방문자 수</h2>
-      <div class="section_in">
-        <h1>이게된다??</h1>
-      </div>
-    </div>
-    <div class="section">
-      <h2 class="section-heading">최근 신고된 게시글 추이</h2>
-      <div class="section_in">
-        <h1>이게된다??</h1>
-      </div>
-    </div>
-  </main>
+<div class="home container" style="display: block;">
+    <main class="sections-container">
+        <div class="section">
+            <h2 class="section-heading"><&ND> 최근 방문자 수</h2>
+            <div class="section_in">
+                <h1>이게된다??</h1>
+            </div>
+        </div>
+        <div class="section">
+            <h2 class="section-heading">최근 신고된 게시글 추이</h2>
+            <div class="section_in">
+                <h1>이게된다??</h1>
+            </div>
+        </div>
+    </main>
 </div>
 
 <div class="post container" style="display: none;">
-  <main class="sections-container">
-    <div class="section">
-      <h2 class="section-heading">최근 게시글 전체 조회</h2>
-      <div class="section_in">
-        <div class="search-bar">
-          <input type="text" placeholder="게시물 검색"><br><br><br><br>
-          <div class="search-icon">
-            <img src="https://i.postimg.cc/MT8tf3Qy/searchmagnifierinterfacesymbol-79894.png" alt="Search Icon">
-          </div>
+    <main class="sections-container">
+        <div class="section">
+            <h2 class="section-heading">최근 게시글 전체 조회</h2>
+            <div class="section_in">
+                <div class="search-bar">
+                    <input type="text" placeholder="게시물 검색"><br><br><br><br>
+                    <div class="search-icon">
+                        <img src="https://i.postimg.cc/MT8tf3Qy/searchmagnifierinterfacesymbol-79894.png"
+                             alt="Search Icon">
+                    </div>
+                </div>
+                <div class="list">
+                </div>
+                <div class="delete-button">
+                    <a onclick="deletePost()">삭제</a>
+                </div>
+            </div>
         </div>
-        <div class="list">
-<!--          불러 온 게시물 노출영역-->
-        </div>
-        <div class="delete-button">
-          <a onclick="deletePost()">삭제</a>
-        </div>
-      </div>
-    </div>
-  </main>
+    </main>
 </div>
 
 <div class="report container" style="display: none;">
@@ -1060,54 +1374,115 @@
 </div>
 
 <div class="contest container" style="display: none;">
-  <main class="sections-container">
-    <div class="section">
-      <h2 class="section-heading">3</h2>
-      <div class="section_in">
-        <h1>야호~~~~~~~~~~!!</h1>
-      </div>
-    </div>
-    <div class="section">
-      <h2 class="section-heading">3</h2>
-      <div class="section_in">
-        <h1>야호~~~~~~~~~~!!!!</h1>
-      </div>
-    </div>
-  </main>
+    <main class="sections-container">
+        <div class="section">
+            <h2 class="section-heading">전체 공모전 목록</h2>
+            <div class="section_in">
+                <div class="card-lists">
+                    <div class="card-item" style="border: 2px solid black;">
+                        <img src="https://i.namu.wiki/i/x50E-9mjfhfye9no6JHqDo9cwMW6B1YXFmS6a6fmwtYa9r1bEzzCEHwbWiCPYO3f6XDvlsWYzbppFhylX6o91_jkLQsgftBZP_ezngdku3kE7kHcrj2WMVZNLWgsRPGgQvlxZqUvGmeH4dyZITpx_Q.webp"></img>
+                        <p>공모전 제목</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-container">
+            <button id="apply-contest">공모전 등록</button>
+        </div>
+    </main>
 </div>
 
 <div class="category container" style="display: none;">
-  <main class="sections-container">
-    <div class="section">
-      <h2 class="section-heading">4</h2>
-      <div class="section_in">
-        <h1>카테고리 crud</h1>
-      </div>
+  <div class="category contents">
+    <h2 class="section-heading">카테고리 관리페이지</h2>
+
+    <div class="create-category">
+      <h3>카테고리 생성</h3>
+      <form id="createCategoryForm">
+        <input type="text" id="categoryName" placeholder="CATEGORY NAME">
+        <button type="button" onclick="createCategory()">등록</button>
+      </form>
     </div>
-    <div class="section">
-      <h2 class="section-heading">4</h2>
-      <div class="section_in">
-        <h1>카테고리 crud</h1>
-      </div>
+
+    <!-- Read Categories Table -->
+    <div class="read-categories">
+      <h3>카테고리 목록</h3>
+      <table id="categoryTable">
+        <!-- Table headers here -->
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>CATEGORY NAME</th>
+          <th>ACTION</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Category rows will be populated here by JavaScript -->
+        </tbody>
+      </table>
     </div>
-  </main>
+  </div>
+
+</div>
+
+<div class="board container" style="display: none;">
+    <div class="board contents">
+        <h2 class="section-heading">공지사항&이벤트 관리페이지</h2>
+        <form id="createBoardForm">
+            <div>
+                <label for="createTitle">Title:</label>
+                <input type="text" id="createTitle" name="title" />
+            </div>
+            <div>
+                <label for="createContents">Contents:</label>
+                <textarea id="createContents" name="contents"></textarea>
+            </div>
+            <div>
+                <label for="categorySelect">Category:</label>
+                <select id="categorySelect" name="categoryId"></select>
+            </div>
+            <button type="button" onclick="createBoard()">Create</button>
+        </form>
+
+        <h2>Board List</h2>
+    <div id="boardList">
+
+    </div>
+</div>
 </div>
 
 <div class="user container" style="display: none;">
-  <main class="sections-container">
-    <div class="section">
-      <h2 class="section-heading">5</h2>
-      <div class="section_in">
-        <h1>유저 crud</h1>
-      </div>
-    </div>
-    <div class="section">
-      <h2 class="section-heading">5</h2>
-      <div class="section_in">
-        <h1>유저 crud</h1>
-      </div>
-    </div>
-  </main>
+    <main class="sections-container">
+        <div class="user-section">
+            <h2 class="section-heading">관리자 등록/삭제</h2>
+                <div class="create-admin">
+                    <h3>관리자 생성</h3>
+                    <form id="createAdminForm">
+                        <input type="text" id="companyNo" placeholder="COMPANY NO">
+                        <input type="text" id="adminName" placeholder="ADMIN NAME">
+                        <input type="text" id="adminPassword" placeholder="ADMIN PASSWORD">
+                        <button type="button" onclick="createAdmin()">등록</button>
+                    </form>
+                </div>
+                <!-- Read Admin Table -->
+                <div class="read-Admin">
+                    <h3>관리자 현황</h3>
+                    <table id="adminTable">
+                        <thead>
+                        <tr>
+                            <th>AMIND ID</th>
+                            <th>COMPANY NO</th>
+                            <th>ADMIN NAME</th>
+                            <th>ACTION</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Category rows will be populated here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </main>
 </div>
 
 <div class="etc container" style="display: none;">
@@ -1191,8 +1566,7 @@
         </div>
       </div>
     </div>
-  </main>
+    </main>
 </div>
-
 </body>
 </html>

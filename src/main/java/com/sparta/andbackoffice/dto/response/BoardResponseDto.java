@@ -10,7 +10,7 @@ public class BoardResponseDto {
 	private String contents;
 
 	public BoardResponseDto(Board board) {
-		this.category = board.getCategory();
+		this.category = getCategory();
 		this.title = board.getTitle();
 		this.contents = board.getContents();
 	}

@@ -19,6 +19,10 @@ public class UserDetailsImpl implements UserDetails {
 		return admin;
 	}
 
+	public Long AdminId(){
+		return admin.getId();
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return new ArrayList<>();
@@ -53,4 +57,6 @@ public class UserDetailsImpl implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+
+
 }

@@ -11,4 +11,13 @@ public class ViewController {
     public String mainPage() {
         return "index";
     }
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";
+    }
+
+    @GetMapping("/applyContest")
+    public String applyContestPage() {
+        return "applyContest";
+    }
 }

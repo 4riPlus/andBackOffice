@@ -26,6 +26,8 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 	private final UserDetailsServiceImpl userDetailsService;
 	private final ObjectMapper objectMapper;
 
+	//
+
 	public JwtAuthorizationFilter(JwtUtil jwtUtil, UserDetailsServiceImpl userDetailsService, ObjectMapper objectMapper) {
 		this.jwtUtil = jwtUtil;
 		this.userDetailsService = userDetailsService;
