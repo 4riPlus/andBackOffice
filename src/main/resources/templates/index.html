@@ -347,7 +347,30 @@
       width: 35%;
     }
 
-    .report-btn button {
+    /*.report-list .delete-button {*/
+    /*  width: 10%;*/
+    /*  margin: 5px;*/
+    /*  float: right; !* This property positions the button to the right *!*/
+    /*  border: none;*/
+    /*  border-radius: 6px;*/
+    /*  background-color: lightsalmon;*/
+    /*  color: white;*/
+    /*  cursor: pointer;*/
+    /*}*/
+
+    .report-entry {
+      border-bottom: 1px solid #ddd;
+      font-size: 0.9rem;
+    }
+
+    .report-entry > div {
+      display: inline-block;
+      padding: 15px 0;
+      text-align: center;
+    }
+
+    .delete-button {
+      width: 10%;
       margin: 5px;
       float: right;
       border: none;
@@ -396,7 +419,7 @@
       border-left: 1px solid #ddd;
     }
 
-    /* 신고게시판 CSS */
+    /* 신고댓글 게시판 CSS */
     .post-wrap {
       margin: 20px;
       padding: 20px;
@@ -621,6 +644,7 @@
                               <div class="writer">작성자</div>
                               <div class="reporter">신고자</div>
                               <div class="reportReason">신고 사유</div>
+                              <div class="delete-button">삭제</div>
                             </div>`;
 
                 let startNum = (page-1) * pageSize;
@@ -633,7 +657,11 @@
                           <div class="writer">${reportpost.writer}</div>
                           <div class="reporter">${reportpost.reporter}</div>
                           <div class="reportReason">${reportpost.reportReason}</div>
+                          <div class="delete-button">
+                            <a href="#" onclick="deleteReport(${reportpost.postId})">삭제</a>
+                          </div>
                         </div>
+
                     `;
                 });
 
@@ -666,6 +694,7 @@
                       </div>
                     </div>
                 `;
+
                 $(".list-report").empty();
                 $(".list-report").append(html);
               })
@@ -674,6 +703,22 @@
                 console.log(response.responseJSON.msg);
               });
     }
+    //
+    // function deleteReport(postId) {
+    //   $.ajax({
+    //     type: 'DELETE',
+    //     url: `/api/admin/reports/${postId}`
+    //   })
+    //           .done(function (response, status, xhr) {
+    //             // Report deleted successfully, you can handle the response or update the UI accordingly.
+    //             // After deletion, you may want to refresh the report list by calling showReports() again.
+    //             showReports(1, pageSize);
+    //           })
+    //           .fail(function (response) {
+    //             alert("신고 삭제 실패");
+    //             console.log(response.responseJSON.msg);
+    //           });
+    // }
 
     // 신고된 댓글 페이징
     function showReportComments(page, size) {
@@ -986,9 +1031,6 @@
       <div class="section_in">
         <div class="list-report">
           <!--          불러 온 게시물 노출영역-->
-        </div>
-        <div class="delete-button">
-          <a onclick="deletePost()">삭제</a>
         </div>
       </div>
     </div>
