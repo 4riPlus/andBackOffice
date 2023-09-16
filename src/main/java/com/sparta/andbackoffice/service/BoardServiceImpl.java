@@ -1,20 +1,23 @@
 package com.sparta.andbackoffice.service;
 
-import com.sparta.andbackoffice.dto.request.BoardRequestDto;
-import com.sparta.andbackoffice.dto.response.ApiResponseDto;
-import com.sparta.andbackoffice.dto.response.BoardResponseDto;
-import com.sparta.andbackoffice.entity.Board;
-import com.sparta.andbackoffice.entity.Category;
-import com.sparta.andbackoffice.repository.BoardRepository;
-import com.sparta.andbackoffice.repository.CategoryRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import com.sparta.andbackoffice.dto.request.BoardRequestDto;
+import com.sparta.andbackoffice.dto.response.ApiResponseDto;
+import com.sparta.andbackoffice.dto.response.BoardResponseDto;
+import com.sparta.andbackoffice.entity.Board;
+import com.sparta.andbackoffice.entity.MiddleCategory;
+import com.sparta.andbackoffice.repository.BoardRepository;
+import com.sparta.andbackoffice.repository.CategoryRepository;
+import com.sparta.andbackoffice.repository.MiddleCategoryRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j(topic = "BoardService")
@@ -23,6 +26,7 @@ public class BoardServiceImpl implements BoardService {
 
 	private final BoardRepository boardRepository;
 	private final CategoryRepository categoryRepository;
+	private final MiddleCategoryRepository middleCategoryRepository;
 
 	@Override
 	public List<BoardResponseDto> getAllBoards() {
@@ -31,7 +35,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardResponseDto createBoard(Category categoryId, BoardRequestDto requestDto) {
+	public BoardResponseDto createBoard(MiddleCategory categoryId, BoardRequestDto requestDto) {
 		log.info("Service - createBoard : 시작");
 
 		findCategory(categoryId);
@@ -74,8 +78,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void findCategory(Category categoryId) {
-		categoryRepository.findById(categoryId.getCategoryId()).orElseThrow(
+	public void findCategory(MiddleCategory categoryId) {
+		middleCategoryRepository.findById(categoryId.getMiddleCategoryId()).orElseThrow(
 				() -> new IllegalArgumentException("존재하지 않는 카테고리입니다.")
 		);
 	}
@@ -84,12 +88,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Board findBoard(Long boardId) {
 		return boardRepository.findById(boardId).orElseThrow(
-				() -> new IllegalArgumentException("존재하지 않는 글입니다.")
+			() -> new IllegalArgumentException("존재하지 않는 글입니다.")
 		);
 	}
 
+
 	@Override
-	public void equalsCategory(Category categoryId, Board board) {
+	public void equalsCategory(MiddleCategory categoryId, Board board) {
 		if (!(board.getCategoryId().equals(categoryId))) {
 			throw new IllegalArgumentException("카테고리가 일치하는지 다시 확인해주세요.");
 		}

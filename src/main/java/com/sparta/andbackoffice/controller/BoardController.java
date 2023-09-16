@@ -4,6 +4,7 @@ import com.sparta.andbackoffice.dto.request.BoardRequestDto;
 import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.BoardResponseDto;
 import com.sparta.andbackoffice.entity.Category;
+import com.sparta.andbackoffice.entity.MiddleCategory;
 import com.sparta.andbackoffice.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +24,7 @@ public class BoardController {
 
     // 글 작성
     @PostMapping("/{categoryId}")
-    public ResponseEntity<?> createBoard(@PathVariable Category categoryId,
+    public ResponseEntity<?> createBoard(@PathVariable MiddleCategory categoryId,
                                          @RequestBody BoardRequestDto requestDto) {
         log.info("Controller - createBoard : 시작");
 
