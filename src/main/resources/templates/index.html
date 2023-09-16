@@ -527,7 +527,7 @@
             border-left: 1px solid #ddd;
         }
 
-        /* 신고 댓글 게시판 CSS */
+        /* 신고 게시판 CSS */
         .post-wrap {
             margin: 20px;
             padding: 20px;
@@ -774,6 +774,128 @@
             border-left: 1px solid #ddd;
         }
 
+        /* 공모전 CSS */
+        .post-wrap {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .apply-contest-section {
+            text-align: right; /* Align the text inside the container to the right */
+        }
+
+        /* Add styling for the "공모전 등록" button */
+        .apply-contest-btn {
+            width: auto; /* Allow the button to adjust its width based on content */
+            margin: 5px;
+            border: none;
+            border-radius: 6px;
+            background-color: blue;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Add hover effect for the button */
+        .apply-contest-btn:hover {
+            background-color: darkblue; /* Change the background color on hover */
+        }
+
+        .contest-list {
+            width: 100%;
+            border-top: 2px solid #000;
+        }
+
+        .contest-list > div {
+            border-bottom: 1px solid #ddd;
+            font-size: 0;
+        }
+
+        .contest-list > div.top {
+            border-bottom: 1px solid #999;
+        }
+
+        .contest-list > div:last-child {
+            border-bottom: 1px solid #000;
+        }
+
+        .contest-list > div > div {
+            display: inline-block;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .contest-list > div.top > div {
+            font-weight: bold;
+        }
+
+        .contest-list .num {
+            width: 10%;
+        }
+
+        .contest-list .title {
+            width: 30%;
+            text-align: left;
+        }
+
+        .contest-list .top .title {
+            text-align: center;
+        }
+
+        .contest-list .company {
+            width: 15%;
+        }
+
+        .contest-list .status {
+            width: 15%;
+        }
+
+        .contest-list .count-views {
+            width: 30%;
+        }
+
+        .contest-page {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0;
+        }
+
+        .contest-page a {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            box-sizing: border-box;
+            vertical-align: middle;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+            border-left: 0;
+            line-height: 100%;
+        }
+
+        .contest-page a.bt {
+            padding-top: 10px;
+            font-size: 1.0rem;
+            letter-spacing: -1px;
+        }
+
+        .contest-page a.num {
+            padding-top: 9px;
+            font-size: 0.9rem;
+        }
+
+        .contest-page a.num.on {
+            border-color: #000;
+            background: #000;
+            color: #fff;
+        }
+
+        .contest-page a:first-child {
+            border-left: 1px solid #ddd;
+        }
+
         /* 하위 카테고리*/
         #createBottomCategoryForm input[type="text"] {
             padding: 10px;
@@ -925,32 +1047,7 @@
             background-color: lightsalmon;
         }
 
-        /* contest CSS */
-        .menu-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
 
-        .menu-container button {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        .card-lists {
-            overflow: hidden;
-            overflow-y: auto;
-        }
-
-        .card-lists .card-item {
-            width: 200px;
-            height: 250px;
-        }
-
-        .card-lists .card-item img {
-            width: 100%;
-            height: 200px;
-        }
 
     </style>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
@@ -1522,7 +1619,6 @@
             }
         }
 
-
         function displayBoardList(boards) {
             var boardList = $('#boardList');
 
@@ -1549,6 +1645,88 @@
             readBoards(); // Assuming this function fetches and displays the board lists
         });
 
+        // 공모전 페이징 출력
+        function showContests(page, size) {
+            if(page <= 0) {
+                page = 1;
+            }
+
+            $.ajax({
+                type: 'GET',
+                url: `/api/admin/contest?page=${page}&size=${size}`
+            })
+                .done(function (response, status, xhr) {
+                    let pages = response['totalPages'];
+                    console.log(pageSize);
+                    if(page > pages) {
+                        page = pages;
+                    }
+
+                    let html = `
+                          <div class="contest-list">
+                            <div class="top">
+                              <div class="num">번호</div>
+                              <div class="title">제목</div>
+                              <div class="company">주최사</div>
+                              <div class="status">현재현황</div>
+                              <div class="contest-views">조회수</div>
+                            </div>`;
+
+                    let startNum = (page-1) * pageSize;
+                    response['content'].forEach((contest) => {
+                        startNum += 1;
+                        html += `
+                        <div>
+                          <div class="num">${startNum}</div>
+                          <div class="title"><a href="#">${contest.title}</a></div>
+                          <div class="company">${contest.company}</div>
+                          <div class="status">${contest.status}</div>
+                          <div class="contest-views">${contest.contestViews}</div>
+                        </div>
+
+                    `;
+                    });
+
+                    html += `
+                    </div>
+                     <div class="contest-page">
+                        <a onclick="showContests(1,pageSize)" class="bt first"><<</a>
+                        <a onclick="showContests(${page}-1,pageSize)" class="bt prev"><</a>
+                `;
+
+                    let startPage = (Math.floor(page / pageBtnSize) * pageBtnSize) + 1;
+                    let endPage = (startPage + pageBtnSize) <= pages ? (startPage + pageBtnSize) : pages;
+
+                    for(let i=startPage;i<=endPage;i++) {
+                        if(page === i) {
+                            html += `
+                            <a onclick="showContests(${i},pageSize)" class="num on">${i}</a>
+                        `;
+                        } else {
+                            html += `
+                            <a onclick="showContests(${i},pageSize)" class="num">${i}</a>
+                        `;
+                        }
+                    }
+
+                    html += `
+                            <a onclick="showContests(${page}+1,pageSize)" class="bt first">></a>
+                            <a onclick="showContests(${pages},pageSize)" class="bt prev">>></a>
+                          </div>
+                      </div>
+                    </div>
+                `;
+
+                    $(".list-contest").empty();
+                    $(".list-contest").append(html);
+                })
+                .fail(function(response) {
+                    alert("공모전 전체보기 조회 실패");
+                    console.log(response.responseJSON.msg);
+                });
+        }
+
+
         // 신고게시판 페이징 출력
         function showReports(page, size) {
             if(page <= 0) {
@@ -1574,7 +1752,6 @@
                               <div class="writer">작성자</div>
                               <div class="reporter">신고자</div>
                               <div class="reportReason">신고 사유</div>
-                              <div class="delete-button">삭제</div>
                             </div>`;
 
                     let startNum = (page-1) * pageSize;
@@ -1587,9 +1764,6 @@
                           <div class="writer">${reportpost.writer}</div>
                           <div class="reporter">${reportpost.reporter}</div>
                           <div class="reportReason">${reportpost.reportReason}</div>
-                          <div class="delete-button">
-                            <a href="#" onclick="deleteReport(${reportpost.postId})">삭제</a>
-                          </div>
                         </div>
 
                     `;
@@ -1633,23 +1807,6 @@
                     console.log(response.responseJSON.msg);
                 });
         }
-
-        //
-        // function deleteReport(postId) {
-        //   $.ajax({
-        //     type: 'DELETE',
-        //     url: `/api/admin/reports/${postId}`
-        //   })
-        //           .done(function (response, status, xhr) {
-        //             // Report deleted successfully, you can handle the response or update the UI accordingly.
-        //             // After deletion, you may want to refresh the report list by calling showReports() again.
-        //             showReports(1, pageSize);
-        //           })
-        //           .fail(function (response) {
-        //             alert("신고 삭제 실패");
-        //             console.log(response.responseJSON.msg);
-        //           });
-        // }
 
         // 신고된 댓글 페이징
         function showReportComments(page, size) {
@@ -1777,7 +1934,6 @@
             const userContainer = document.querySelector('.user.container');
             const boardContainer = document.querySelector('.board.container');
             const etcContainer = document.querySelector('.etc.container');
-
             const applyContestBtn = document.querySelector('#apply-contest');
 
             postMenu.addEventListener('click', function () {
@@ -1891,7 +2047,7 @@
             })
         });
 
-        //관리자 관리
+        // 관리자 관리
         // 관리자 생성
         function createAdmin() {
             // HTML 폼에서 입력된 데이터 가져오기
@@ -1994,7 +2150,7 @@
             <li><a id="post" href="#" onclick="showPosts(1,pageSize)">최근 게시글</a></li>
             <li><a id="report-post" href="#" onclick="showReports(1,pageSize)">신고된 게시글</a></li>
             <li><a id="report-comment" href="#" onclick="showReportComments(1,pageSize)">신고된 댓글</a></li>
-            <li><a id="contest" href="#">공모전 관리</a></li>
+            <li><a id="contest" href="#" onclick="showContests(1,pageSize)">공모전 관리</a></li>
             <li><a id="category" href="#">카테고리 관리</a></li>
             <li><a id="board" href="#">공지사항 관리</a></li>
             <li><a id="user" href="#">관리자 관리</a></li>
@@ -2042,6 +2198,24 @@
     </main>
 </div>
 
+<div class="contest container" style="display: none;">
+    <main class="sections-container">
+        <div class="section">
+            <h2 class="section-heading">공모전 전체조회</h2>
+            <div class="apply-contest-section">
+                <button class="apply-contest-btn" id="apply-contest">공모전 등록</button>
+            </div>
+            <div class="menu-container">
+                <div class="section_in">
+                    <div class="list-contest">
+                        <!-- Your contest list content goes here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
 <div class="report container" style="display: none;">
     <main class="sections-container">
         <div class="section">
@@ -2050,9 +2224,9 @@
                 <div class="list-report">
                     <!--          불러 온 게시물 노출영역-->
                 </div>
-                <div class="delete-button">
-                    <a onclick="deletePost()">삭제</a>
-                </div>
+<!--                <div class="delete-button">-->
+<!--                    <a onclick="deletePost()">삭제</a>-->
+<!--                </div>-->
             </div>
         </div>
     </main>
@@ -2066,29 +2240,10 @@
                 <div class="list-report-comment">
                     <!--          불러 온 게시물 노출영역-->
                 </div>
-                <div class="delete-button">
-                    <a onclick="deletePost()">삭제</a>
-                </div>
+<!--                <div class="delete-button">-->
+<!--                    <a onclick="deletePost()">삭제</a>-->
+<!--                </div>-->
             </div>
-        </div>
-    </main>
-</div>
-
-<div class="contest container" style="display: none;">
-    <main class="sections-container">
-        <div class="section">
-            <h2 class="section-heading">전체 공모전 목록</h2>
-            <div class="section_in">
-                <div class="card-lists">
-                    <div class="card-item" style="border: 2px solid black;">
-                        <img src="https://i.namu.wiki/i/x50E-9mjfhfye9no6JHqDo9cwMW6B1YXFmS6a6fmwtYa9r1bEzzCEHwbWiCPYO3f6XDvlsWYzbppFhylX6o91_jkLQsgftBZP_ezngdku3kE7kHcrj2WMVZNLWgsRPGgQvlxZqUvGmeH4dyZITpx_Q.webp"></img>
-                        <p>공모전 제목</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="menu-container">
-            <button id="apply-contest">공모전 등록</button>
         </div>
     </main>
 </div>

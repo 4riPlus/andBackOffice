@@ -11,6 +11,10 @@ import com.sparta.andbackoffice.repository.AmazonS3Repository;
 import com.sparta.andbackoffice.repository.ContestRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -63,8 +67,10 @@ public class ContestService {
 		return new ContestResponseDto(contest);
 	}
 
-	public List<ContestResponseDto> getContests() {
-		return contestRepository.findAllByOrderByCreatedDateDesc().stream().map(ContestResponseDto::new).toList();
+	public Page<ContestResponseDto> getContests(int page, int size) {
+		Pageable pageable = PageRequest.of(page, size);
+		Page<Contest> contests = contestRepository.findAll(pageable);
+		return contests.map(ContestResponseDto::new);
 	}
 
 	@Transactional
