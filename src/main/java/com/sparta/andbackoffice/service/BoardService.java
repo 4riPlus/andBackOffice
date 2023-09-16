@@ -30,8 +30,6 @@ public interface BoardService {
 	/**
 	 * 게시글 수정
 	 *
-	 * @param categoryId : 카테고리
-	 * @param boardId    : 수정할 게시글 id
 	 * @param requestDto : 수정할 내용
 	 * @return : 수정된 게시글 내용 반환
 	 */
