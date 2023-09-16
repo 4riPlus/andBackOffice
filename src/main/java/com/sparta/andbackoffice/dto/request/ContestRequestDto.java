@@ -26,5 +26,6 @@ public class ContestRequestDto {
 	private String homepage;
 	private String contents;
 	private String category;
+	private List<String> bottomCategory;
 	private List<MultipartFile> files;
 }

@@ -1,11 +1,16 @@
 package com.sparta.andbackoffice.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
-public class Contest_BottomCategory {
+@Getter
+@NoArgsConstructor
+public class ContestBottomCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "contest_bottom_category_id")
     private Long id;
 
     @ManyToOne
@@ -15,5 +20,10 @@ public class Contest_BottomCategory {
     @ManyToOne
     @JoinColumn(name = "contest_id")
     private Contest contest;
+
+    public ContestBottomCategory(BottomCategory bottomCategory, Contest contest) {
+        this.bottomCategory = bottomCategory;
+        this.contest = contest;
+    }
 }
   
