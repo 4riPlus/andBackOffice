@@ -5,6 +5,7 @@ import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.BoardResponseDto;
 import com.sparta.andbackoffice.entity.Board;
 import com.sparta.andbackoffice.entity.Category;
+import com.sparta.andbackoffice.entity.MiddleCategory;
 
 import java.util.List;
 
@@ -17,8 +18,7 @@ public interface BoardService {
 	 * @param requestDto : 작성할 내용
 	 * @return : 생성한 글 내용 반환
 	 */
-	BoardResponseDto createBoard(Category categoryId, BoardRequestDto requestDto);
-
+	BoardResponseDto createBoard(MiddleCategory categoryId, BoardRequestDto requestDto);
 
 
 	/**
@@ -48,7 +48,7 @@ public interface BoardService {
 	 *
 	 * @param categoryId : 검증할 카테고리 id
 	 */
-	void findCategory(Category categoryId);
+	void findCategory(MiddleCategory categoryId);
 
 	/**
 	 * 존재하는 게시글인지 검증
@@ -64,5 +64,5 @@ public interface BoardService {
 	 * @param categoryId : 내가 입력한 카테고리
 	 * @param board      : 게시글 정보 - 실제 글이 위치한 카테고리 id
 	 */
-	void equalsCategory(Category categoryId, Board board);
+	void equalsCategory(MiddleCategory categoryId, Board board);
 }

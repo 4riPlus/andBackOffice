@@ -1,10 +1,19 @@
 package com.sparta.andbackoffice.entity;
 
+import org.hibernate.annotations.DynamicInsert;
+
 import com.sparta.andbackoffice.dto.request.BoardRequestDto;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicInsert;
 
 @Entity
 @Getter
@@ -26,7 +35,7 @@ public class Board extends TimeStamped {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    private Category categoryId;
+    private MiddleCategory categoryId;
 
     public void setContents(String contents) {
         this.contents = contents;
@@ -36,7 +45,7 @@ public class Board extends TimeStamped {
         this.title = title;
     }
 
-    public Board(Category categoryId, BoardRequestDto requestDto) {
+    public Board(MiddleCategory categoryId, BoardRequestDto requestDto) {
         this.categoryId = categoryId;
         this.title = requestDto.getTitle();
         this.contents = requestDto.getContents();

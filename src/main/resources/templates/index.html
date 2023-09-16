@@ -1505,24 +1505,21 @@
         function populateCategories() {
             $.ajax({
                 type: 'GET',
-                url: '/api/admin/category', // Update the URL based on your API endpoint
+                url: '/api/admin/middleCategory', // Update the URL based on your API endpoint
                 success: function (response) {
                     const categorySelect = document.getElementById('categorySelect');
+                    categorySelect.innerHTML = ''; // Clear existing options
 
-                    // Clear existing options
-                    categorySelect.innerHTML = '';
-
-                    // Add a default option (optional)
                     const defaultOption = document.createElement('option');
                     defaultOption.value = '';
                     defaultOption.text = 'Select a category';
                     categorySelect.appendChild(defaultOption);
 
                     // Add options for each category
-                    response.categoryList.forEach(function (category) {
+                    response.middleCategoryList.forEach(function (middlecategory) {
                         const option = document.createElement('option');
-                        option.value = category.id;
-                        option.text = category.categoryName;
+                        option.value = middlecategory.id; // Use middlecategory.id, assuming it's the correct property
+                        option.text = middlecategory.categoryName; // Use middlecategory.categoryName, assuming it's the correct property
                         categorySelect.appendChild(option);
                     });
                 },
@@ -1531,9 +1528,6 @@
                 }
             });
         }
-
-        // Call the function to populate categories when the page loads
-        populateCategories();
 
         function createBoard() {
             const categoryId = document.getElementById('categorySelect').value; // Get the selected category ID
