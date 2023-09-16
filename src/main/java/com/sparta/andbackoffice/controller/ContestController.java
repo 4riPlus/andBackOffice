@@ -6,6 +6,8 @@ import com.sparta.andbackoffice.dto.response.ContestResponseDto;
 import com.sparta.andbackoffice.service.ContestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -73,7 +75,9 @@ public class ContestController {
 
 	//글전체조회
 	@GetMapping("")
-	public List<ContestResponseDto> getContests() {
-		return contestService.getContests();
+	public ResponseEntity<Page<ContestResponseDto>> getContests(
+		@RequestParam("page") int page,
+		@RequestParam("size") int size){
+		return ResponseEntity.ok().body(contestService.getContests(page-1,size));
 	}
 }
