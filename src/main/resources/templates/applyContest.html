@@ -98,10 +98,15 @@
       </div>
 
       <div class="mb-3">
+        <label>Category:</label>
+        <div class="container" id="category-center"></div>
+      </div>
+
+      <div class="mb-3">
         <label>Upload File:</label>
         <p class="line mb-3">
           <input class="form-control" type="file" id="FileMultiple" onchange="addFile(this)" multiple />
-          <div class="file-list"></div>
+        <div class="file-list"></div>
         </p>
       </div>
 
@@ -110,15 +115,7 @@
         <textarea class="form-control" rows="5" name="contents" id="contents"
                   placeholder="Enter contest contents here..." required></textarea>
       </div>
-
-      <!--<div class="mb-3">
-        <label for="category">Category:</label>
-        <select class="form-control" name="category" id="category">
-          &lt;!&ndash; Add category options here &ndash;&gt;
-        </select>
-      </div>-->
     </div>
-
     <div>
       <button type="button" class="btn btn-sm btn-primary" id="btnSave">Save</button>
       <button type="button" class="btn btn-sm btn-primary" id="btnList">List</button>
@@ -133,7 +130,54 @@
       height: 300,
       placeholder: 'Enter contest contents here...',
     });
+
+    categorySetting();
   });
+
+  function categorySetting() {
+    $.ajax({
+      type:'GET',
+      url:`/api/admin/bottomcategory`
+    })
+            .done(function (response, status, xhr) {
+              let bottom_category = response.bottomCategoryList;
+              let html = ``;
+              let div_close = false;
+
+              for(let i=0;i<bottom_category.length;i++) {
+                if(i % 4 == 0) {
+                  html += `
+                    <div class="row">
+                  `;
+                  if(!div_close) {
+                    div_close = true;
+                  }
+                }
+
+                html += `
+                  <div class="col-md-3">
+                      <div class="form-check">
+                          <input type="checkbox" class="form-check-input" name="category-chk" value="${bottom_category[i].id}">
+                          <label class="form-check-label">${bottom_category[i].categoryName}</label>
+                      </div>
+                  </div>
+                `;
+
+                if(i % 4 == 3 && i != 0 && div_close) {
+                  html += `</div>`;
+                  div_close = false;
+                }
+              }
+              if(div_close) {
+                html += `</div>`;
+              }
+              $('#category-center').empty();
+              $('#category-center').append(html);
+            })
+            .fail(function (response) {
+              alert("카테고리 조회 실패 : " + response.responseJSON.msg);
+            });
+  }
 
   $(document).on('click', '#btnSave', function (e) {
     // Prevent form submission
@@ -150,7 +194,13 @@
     formData.append('target', $('#target').val());
     formData.append('prize', $('#prize').val());
     formData.append('contents', $('#contents').summernote('code'));
-    //formData.append('category', $('#category').val());
+
+    var list =$("input[name='category-chk']");
+    for (var i = 0; i < list.length; i++) {
+      if(list[i].checked) {
+        formData.append('bottomCategory',list[i].value);
+      }
+    }
 
     // Add files to the FormData object
     for (var i = 0; i < filesArr.length; i++) {
@@ -167,7 +217,6 @@
       success: function (response) {
         alert("공모전 등록 성공");
         history.back();
-        //window.location.href = "/api/admin/view/main";
       },
       error: function (response) {
         alert("공모전 등록 실패 : " + response.responseJSON.msg);
@@ -178,7 +227,7 @@
 
   $(document).on('click', '#btnList', function (e) {
     e.preventDefault();
-    location.href = "${pageContext.request.contextPath}/board/getBoardList";
+    history.back();
   });
 
   var fileNo = 0;

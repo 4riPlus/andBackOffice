@@ -4,10 +4,10 @@ import com.sparta.andbackoffice.dto.request.ContestRequestDto;
 import com.sparta.andbackoffice.dto.request.S3FileDto;
 import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.ContestResponseDto;
-import com.sparta.andbackoffice.entity.Contest;
-import com.sparta.andbackoffice.entity.ContestStatus;
-import com.sparta.andbackoffice.entity.S3File;
+import com.sparta.andbackoffice.entity.*;
 import com.sparta.andbackoffice.repository.AmazonS3Repository;
+import com.sparta.andbackoffice.repository.BottomCategoryRepository;
+import com.sparta.andbackoffice.repository.ContestBottomCategoryRepository;
 import com.sparta.andbackoffice.repository.ContestRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,12 +36,21 @@ public class ContestService {
 	private final Amazon3SService amazon3SService;
 	private final AmazonS3Repository amazonS3Repository;
 
+	private final ContestBottomCategoryRepository contestBottomCategoryRepository;
+	private final BottomCategoryRepository bottomCategoryRepository;
+
 	public ContestResponseDto createContest(ContestRequestDto requestDto) {
 		log.info("Service - createContest : 시작");
 
 		Contest contest = new Contest(requestDto);
 		contest.setStatus((contestStatus(contest))); // 마감기한 코드 넣기
 		contest = contestRepository.save(contest);
+
+		Contest finalContest = contest;
+		requestDto.getBottomCategory().forEach((BottomCategoryId) -> {
+			BottomCategory bottomCategory = bottomCategoryRepository.findById(Long.parseLong(BottomCategoryId)).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 카테고리입니다."));
+			contestBottomCategoryRepository.save(new ContestBottomCategory(bottomCategory, finalContest));
+		});
 
 		List<S3File> filePaths = amazon3SService.uploadFiles("contest",requestDto.getFiles())
 				.stream()

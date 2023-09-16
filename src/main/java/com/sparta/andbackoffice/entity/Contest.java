@@ -61,8 +61,8 @@ public class Contest extends TimeStamped {
 	@OneToMany(mappedBy = "contest", cascade = CascadeType.REMOVE)
 	private List<S3File> S3Files = new ArrayList<>();
 
-	/*@OneToMany(mappedBy = "contest")
-	private List<Contest_BottomCategory> bottomCategories = new ArrayList<>();*/
+	@OneToMany(mappedBy = "contest", cascade = CascadeType.REMOVE)
+	private List<ContestBottomCategory> bottomCategories = new ArrayList<>();
 
 	public Contest(ContestRequestDto requestDto) {
 		this.target = requestDto.getTarget();
@@ -74,7 +74,6 @@ public class Contest extends TimeStamped {
 		this.contents = requestDto.getContents();
 		this.prize = requestDto.getPrize();
 	}
-
 
 	public void setS3Files(S3File s3File) {
 		this.S3Files.add(s3File);
