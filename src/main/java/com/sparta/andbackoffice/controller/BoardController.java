@@ -23,12 +23,11 @@ public class BoardController {
     private final BoardService boardService;
 
     // 글 작성
-    @PostMapping("/{categoryId}")
-    public ResponseEntity<?> createBoard(@PathVariable MiddleCategory categoryId,
-                                         @RequestBody BoardRequestDto requestDto) {
+    @PostMapping("")
+    public ResponseEntity<?> createBoard(@RequestBody BoardRequestDto requestDto) {
         log.info("Controller - createBoard : 시작");
 
-        BoardResponseDto result = boardService.createBoard(categoryId, requestDto);
+        BoardResponseDto result = boardService.createBoard(requestDto);
 
         log.info("Controller - createBoard : 끝");
         return ResponseEntity.status(HttpStatus.CREATED).body(result);

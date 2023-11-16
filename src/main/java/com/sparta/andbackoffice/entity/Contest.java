@@ -48,7 +48,7 @@ public class Contest extends TimeStamped {
 	@Column(name = "homepage", nullable = false)
 	private String homepage;
 
-	@Column(name = "contents", nullable = false)
+	@Column(name = "contents", length = 65535, nullable = false)
 	private String contents;
 
 	@Column(name = "contestViews")
@@ -79,11 +79,3 @@ public class Contest extends TimeStamped {
 		this.S3Files.add(s3File);
 	}
 }
-
-	// 값 입력이 없다면 default => 1번
-//	@PrePersist
-//	public void prePersist() {
-//		this.category = this.category == null ? 1 : this.category;
-////		this.contestViews = this.contestViews == null ? 0 : this.contestViews;
-//	}
-//}

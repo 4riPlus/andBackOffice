@@ -30,12 +30,12 @@ public class Board extends TimeStamped {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "contents")
+    @Column(name = "contents", length = 500)
     private String contents;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
-    private MiddleCategory categoryId;
+    @JoinColumn(name = "categoryId")
+    private BoardCategory category;
 
     public void setContents(String contents) {
         this.contents = contents;
@@ -45,8 +45,8 @@ public class Board extends TimeStamped {
         this.title = title;
     }
 
-    public Board(MiddleCategory categoryId, BoardRequestDto requestDto) {
-        this.categoryId = categoryId;
+    public Board(BoardRequestDto requestDto) {
+        this.category = category;
         this.title = requestDto.getTitle();
         this.contents = requestDto.getContents();
     }

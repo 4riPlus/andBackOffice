@@ -1530,19 +1530,19 @@
         }
 
         function createBoard() {
-            const categoryId = document.getElementById('categorySelect').value; // Get the selected category ID
+            // const categoryId = document.getElementById('categorySelect').value; // Get the selected category ID
             const title = document.getElementById('createTitle').value;
             const contents = document.getElementById('createContents').value;
 
             const boardData = {
-                categoryId: categoryId, // Set the selected category as 'categoryId' property
+                // categoryId: categoryId, // Set the selected category as 'categoryId' property
                 title: title,
                 contents: contents
             };
 
             $.ajax({
                 type: 'POST',
-                url: `/api/admin/boards/${categoryId}`, // Pass the categoryId as a path variable
+                url: `/api/admin/boards`, // Pass the categoryId as a path variable
                 contentType: 'application/json',
                 data: JSON.stringify(boardData),
                 success: function (response) {
@@ -1635,7 +1635,7 @@
         }
 
         $(document).ready(function () {
-            populateCategories();
+            // populateCategories();
             readBoards(); // Assuming this function fetches and displays the board lists
         });
 

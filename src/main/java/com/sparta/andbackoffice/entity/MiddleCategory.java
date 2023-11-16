@@ -20,9 +20,6 @@ public class MiddleCategory {
     @Column(nullable = false)
     private String categoryName;
 
-    @OneToMany(mappedBy = "categoryId", orphanRemoval = true)
-    private List<Board> boards;
-
     @OneToMany(mappedBy = "middleCategory", orphanRemoval = true)
     private List<BottomCategory> bottomCategories;
 

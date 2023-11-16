@@ -11,7 +11,9 @@ import com.sparta.andbackoffice.dto.request.BoardRequestDto;
 import com.sparta.andbackoffice.dto.response.ApiResponseDto;
 import com.sparta.andbackoffice.dto.response.BoardResponseDto;
 import com.sparta.andbackoffice.entity.Board;
+import com.sparta.andbackoffice.entity.BoardCategory;
 import com.sparta.andbackoffice.entity.MiddleCategory;
+import com.sparta.andbackoffice.repository.BoardCategoryRepository;
 import com.sparta.andbackoffice.repository.BoardRepository;
 import com.sparta.andbackoffice.repository.CategoryRepository;
 import com.sparta.andbackoffice.repository.MiddleCategoryRepository;
@@ -26,7 +28,7 @@ public class BoardServiceImpl implements BoardService {
 
 	private final BoardRepository boardRepository;
 	private final CategoryRepository categoryRepository;
-	private final MiddleCategoryRepository middleCategoryRepository;
+	private final BoardCategoryRepository boardCategoryRepository;
 
 	@Override
 	public List<BoardResponseDto> getAllBoards() {
@@ -35,11 +37,11 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardResponseDto createBoard(MiddleCategory categoryId, BoardRequestDto requestDto) {
+	public BoardResponseDto createBoard(BoardRequestDto requestDto) {
 		log.info("Service - createBoard : 시작");
 
-		findCategory(categoryId);
-		Board board = boardRepository.save(new Board(categoryId, requestDto));
+		// findCategory(categoryId);
+		Board board = boardRepository.save(new Board(requestDto));
 
 		log.info("Service - createBoard : 끝");
 		return new BoardResponseDto(board);
@@ -78,8 +80,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void findCategory(MiddleCategory categoryId) {
-		middleCategoryRepository.findById(categoryId.getMiddleCategoryId()).orElseThrow(
+	public void findCategory(BoardCategory categoryId) {
+		boardCategoryRepository.findById(categoryId.getId()).orElseThrow(
 				() -> new IllegalArgumentException("존재하지 않는 카테고리입니다.")
 		);
 	}
@@ -94,8 +96,8 @@ public class BoardServiceImpl implements BoardService {
 
 
 	@Override
-	public void equalsCategory(MiddleCategory categoryId, Board board) {
-		if (!(board.getCategoryId().equals(categoryId))) {
+	public void equalsCategory(BoardCategory categoryId, Board board) {
+		if (!(board.getCategory().equals(categoryId))) {
 			throw new IllegalArgumentException("카테고리가 일치하는지 다시 확인해주세요.");
 		}
 	}
