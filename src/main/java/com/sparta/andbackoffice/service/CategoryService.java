@@ -42,13 +42,13 @@ public class CategoryService {
         // 카테고리 아이디로 카테고리를 먼저 받아오기
         Category category = findById(id);
 
-        //세터를 사용
+        //세터를 사용해서 수정된 카테고리 이름을 적용시킴
         category.setCategoryName(categoryRequestDto.getCategoryName());
 
         return new CategoryResponseDto(category);
     }
 
-    //카테고리 삭제
+    //카테고리 삭제 (현업에서는 delete대신 숨김처리를 해야함-디비 완전삭제 금지 //현경)
     @Transactional
     public String deleteCategory(Long id) {
         Category category = findById(id);
