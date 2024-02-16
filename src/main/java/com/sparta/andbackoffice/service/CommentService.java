@@ -12,7 +12,6 @@ public interface CommentService {
 
     /**
      * 댓글 전체 조회 (댓글 원본 표시)
-     *
      * @param postId            게시글 id
      * @return                  게시글의 전체 댓글 리스트
      */
