@@ -20,7 +20,7 @@ public class BoardServiceImpl implements BoardService {
 
 	private final BoardRepository boardRepository;
 	private final CategoryRepository categoryRepository;
-
+	//공모전 생성
 	@Override
 	public BoardResponseDto createBoard(Long categoryId, BoardRequestDto requestDto) {
 		log.info("Service - createBoard : 시작");
@@ -31,7 +31,7 @@ public class BoardServiceImpl implements BoardService {
 		log.info("Service - createBoard : 끝");
 		return new BoardResponseDto(board);
 	}
-
+	//단건조회
 	@Override
 	public BoardResponseDto getBoard(Long categoryId, Long boardId) {
 		log.info("Service - getBoard : 시작");
@@ -44,7 +44,7 @@ public class BoardServiceImpl implements BoardService {
 		log.info("Service - getBoard : 끝");
 		return new BoardResponseDto(board);
 	}
-
+	//수정정
 	@Override
 	@Transactional
 	public BoardResponseDto modifyBoard(Long categoryId, Long boardId, BoardRequestDto requestDto) {
@@ -63,7 +63,7 @@ public class BoardServiceImpl implements BoardService {
 		log.info("Service - modifyBoard : 끝");
 		return new BoardResponseDto(board);
 	}
-
+	//삭제
 	@Override
 	@Transactional
 	public ApiResponseDto deleteBoard(Long categoryId, Long boardId) {
@@ -78,7 +78,7 @@ public class BoardServiceImpl implements BoardService {
 		return new ApiResponseDto("게시글 삭제 완료", HttpStatus.OK.value());
 
 	}
-
+	//카테고리 확인
 	@Override
 	public void findCategory(Long categoryId) {
 		Category category = categoryRepository.findById(categoryId).orElseThrow(
