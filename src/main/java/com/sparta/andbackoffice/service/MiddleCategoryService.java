@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class MiddleCategoryService {
+    //3deps 카테고리 (제일 상단 메뉴 외 중간 카테고리)
     private final MiddleCategoryRepository middleCategoryRepository;
 
     //조회
